@@ -20,13 +20,14 @@
 	%>
 	<script type="text/javascript">
 		alert("가입성공");
+		location.href("signUpForm.jsp");
 	</script>
 	<%
-		}else{
-			
+		} else {
 	%>
 	<script type="text/javascript">
 		alert("가입실패");
+		location.href("signUpForm.jsp");
 	</script>
 	<%
 		}
