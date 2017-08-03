@@ -49,6 +49,7 @@
 	</div>
 	<!-- 상단고정바 끝 -->
 	<div class="header_hidden"></div>
+	<!-- 내용 들어갈 부분 -->
 	<div class="main">
 		<div class="infinite_scroll">
 			<h1>page1</h1>
@@ -75,5 +76,6 @@
 			테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
 		</div>
 	</div>
+	<!-- 내용 들어갈 부분 -->
 </body>
 </html>
