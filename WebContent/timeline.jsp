@@ -5,7 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/timeline.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
@@ -26,6 +25,9 @@
 					});
 	/* infinite scroll 끝 */
 </script>
+<script type="text/javascript" src="js/timeLine_dim.js"></script>
+<link rel="stylesheet" type="text/css" href="css/timeline.css">
+<link rel="stylesheet" type="text/css" href="css/timeLine_dim.css">
 </head>
 <body>
 	<!-- 상단고정바 시작 -->
@@ -51,6 +53,8 @@
 	<div class="header_hidden"></div>
 	<!-- 내용 들어갈 부분 -->
 	<div class="main">
+	<!-- 포스트 딤레이어 테스트 -->
+	<!-- 딤레이어 테스트 끝 -->
 		<div class="infinite_scroll">
 			<h1>page1</h1>
 			테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
@@ -76,6 +80,6 @@
 			테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
 		</div>
 	</div>
-	<!-- 내용 들어갈 부분 -->
+	<!-- 내용 들어갈 부분 끝 -->
 </body>
 </html>
