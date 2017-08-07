@@ -57,6 +57,43 @@
 		<div class="timeline_post">
 			<div class="page_margin"></div>
 			<!-- 포스트 작성 딤레이어 테스트 -->
+			<div class="type_choice_box">
+				<a href="#" class="type_choice">
+					<i class="type_choice_img" id="img_text">
+						<img alt="" src="img_timeline/pencil-edit-button.svg" width="40px">
+						</i>
+					<br>
+					<span class="type_choice_name">텍스트</span>
+				</a>
+				<a href="#" class="type_choice">
+					<i class="type_choice_img" id="img_img">
+						<img alt="" src="img_timeline/photography-landscape-mode.svg" width="40px">
+					</i>
+					<br>
+					<span class="type_choice_name">이미지</span>
+				</a>
+				<a href="#" class="type_choice">
+					<i class="type_choice_img" id="img_video">
+						<img alt="" src="img_timeline/film-roll.svg" width="40px">
+					</i>
+					<br>
+					<span class="type_choice_name">비디오</span>
+				</a>
+				<a href="#" class="type_choice">
+					<i class="type_choice_img" id="img_audio">
+						<img alt="" src="img_timeline/sound-button.svg" width="40px">
+					</i>
+					<br>
+					<span class="type_choice_name">오디오</span>
+				</a>
+				<a href="#" class="type_choice">
+					<i class="type_choice_img" id="img_qna">
+						<img alt="" src="img_timeline/question.svg" width="40px">
+					</i>
+					<br>
+					<span class="type_choice_name">Q&A</span>
+				</a>
+			</div>
 			<!-- 딤레이어 테스트 끝 -->
 			<div class="infinite_scroll">
 				<h3>1번포스트</h3>
