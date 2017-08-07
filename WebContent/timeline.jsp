@@ -9,25 +9,25 @@
 	src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	/* JS - infinite scroll 구현 */
-	var page = 4;
+	var page = 6;
 	$(window)
 			.scroll(
 					function() {
 						if ($(window).scrollTop() == $(document).height()
 								- $(window).height()) {
 							console.log(++page);
-							$("body")
+							$('.timeline_post')
 									.append(
-											'<div class="infinite_scroll"><h1>Page '
+											'<div class="infinite_scroll"><h3>'
 													+ page
-													+ '</h1>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br></div>');
+													+ '번포스트 '
+													+ '<hr>'
+													+ '</h3>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br></div>');
 						}
 					});
 	/* infinite scroll 끝 */
 </script>
-<script type="text/javascript" src="js/timeLine_dim.js"></script>
 <link rel="stylesheet" type="text/css" href="css/timeline.css">
-<link rel="stylesheet" type="text/css" href="css/timeLine_dim.css">
 </head>
 <body>
 	<!-- 상단고정바 시작 -->
@@ -52,33 +52,63 @@
 	<!-- 상단고정바 끝 -->
 	<div class="header_hidden"></div>
 	<!-- 내용 들어갈 부분 -->
-	<div class="main">
-	<!-- 포스트 딤레이어 테스트 -->
-	<!-- 딤레이어 테스트 끝 -->
-		<div class="infinite_scroll">
-			<h1>page1</h1>
-			테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+	<div class="timeline_main">
+		<!-- 포스트작성 / 뷰 부분 -->
+		<div class="timeline_post">
+			<div class="page_margin"></div>
+			<!-- 포스트 작성 딤레이어 테스트 -->
+			<!-- 딤레이어 테스트 끝 -->
+			<div class="infinite_scroll">
+				<h3>1번포스트</h3>
+				<hr>
+				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+			</div>
+			<div class="infinite_scroll">
+				<h3>2번포스트</h3>
+				<hr>
+				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+			</div>
+			<div class="infinite_scroll">
+				<h3>3번포스트</h3>
+				<hr>
+				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+			</div>
+			<div class="infinite_scroll">
+				<h3>4번포스트</h3>
+				<hr>
+				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+			</div>
+			<div class="infinite_scroll">
+				<h3>5번포스트</h3>
+				<hr>
+				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+			</div>
+			<div class="infinite_scroll">
+				<h3>6번포스트</h3>
+				<hr>
+				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+			</div>
 		</div>
-		<div class="infinite_scroll">
-			<h1>page2</h1>
-			테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+		<!-- 포스트작성 / 뷰 끝 -->
+		<!-- aside 부분 / *팔로우 추천, 광고등 -->
+		<div class="timeline_aside">
+			<div class="page_margin"></div>
+			<div class="aside_follow">
+				<h3>팔로우 추천 테스트</h3>
+				<hr>
+				내용 테스트<br>
+				내용 테스트<br>
+				내용 테스트<br>
+			</div>
+			<div class="aside_interested">
+				<h3>내 관심사 테스트</h3>
+				<hr>
+				내용 테스트<br>
+				내용 테스트<br>
+				내용 테스트<br>
+			</div>
 		</div>
-		<div class="infinite_scroll">
-			<h1>page3</h1>
-			테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-		</div>
-		<div class="infinite_scroll">
-			<h1>page4</h1>
-			테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-		</div>
-		<div class="infinite_scroll">
-			<h1>page5</h1>
-			테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-		</div>
-		<div class="infinite_scroll">
-			<h1>page6</h1>
-			테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-		</div>
+		<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
 	</div>
 	<!-- 내용 들어갈 부분 끝 -->
 </body>

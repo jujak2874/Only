@@ -12,12 +12,12 @@
 <script type="text/javascript">
 	function chk() {
 		inputLogin = eval("document.loginForm");
-		if(!inputLogin.member_id.value){
+		if (!inputLogin.member_id.value) {
 			alert("아이디를 입력하세요");
 			inputLogin.member_id.focus();
 			return false;
 		}
-		if(!inputLogin.password.value){
+		if (!inputLogin.password.value) {
 			alert("비밀번호를 입력하세요");
 			inputLogin.password.focus();
 			return false;
@@ -68,19 +68,23 @@
 					<div class="input-name">
 						<h2>ID</h2>
 					</div>
-					<input type="text" name="member_id" value="" class="field-input" />
+					<input type="text" name="member_id" value="" class="field-input"
+						id="member_id"/>
 					<div class="input-name input-margin">
 						<h2>Password</h2>
 					</div>
-					<input type="password" name="password" value="" class="field-input" />
+					<input type="password" name="password" value="" class="field-input"
+						id="password" />
 					<div class="input-name input-margin">
 						<h2>Nickname</h2>
 					</div>
-					<input type="text" name="nickname" value="" class="field-input" />
+					<input type="text" name="nickname" value="" class="field-input"
+						id="nickname" />
 					<div class="input-name input-margin">
 						<h2>E-Mail</h2>
 					</div>
-					<input type="email" name="email" value="" class="field-input" />
+					<input type="email" name="email" value="" class="field-input"
+						id="email" />
 					<button class="submit-btn">Enter</button>
 				</form>
 				<button class="submit-btn" id="login-btn">Login</button>

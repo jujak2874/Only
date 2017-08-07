@@ -23,6 +23,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 body {
 	line-height: 1;
 	overflow-x: hidden;
+	background-image: url("img_all/background_1.jpg");
 }
 
 ol, ul {
@@ -254,5 +255,4 @@ div.rememberme {
 }
 
 .signUpContain {
-	background-image: url("img_all/background_1.jpg");
 }
