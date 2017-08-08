@@ -16,13 +16,13 @@
 						if ($(window).scrollTop() == $(document).height()
 								- $(window).height()) {
 							console.log(++page);
-							$('.timeline_post')
+							$('.post_view_box')
 									.append(
-											'<div class="infinite_scroll"><h3>'
+											'<li class="infinite_scroll"><h3>'
 													+ page
 													+ '번포스트 '
 													+ '<hr>'
-													+ '</h3>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br></div>');
+													+ '</h3>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br></li>');
 						}
 					});
 	/* infinite scroll 끝 */
@@ -35,7 +35,8 @@
 		<!-- 상단고정바 로고 -->
 		<div class="head_logo">
 			<h1 class="head_logo">
-				<a href="#"> <img id="logo_top" alt="" src="img_all/logo3.png">
+				<a id="logo_href" href="#"> <img id="logo_top" alt=""
+					src="img_all/logo3.png">
 				</a>
 			</h1>
 		</div>
@@ -56,75 +57,57 @@
 		<!-- 포스트작성 / 뷰 부분 -->
 		<div class="timeline_post">
 			<div class="page_margin"></div>
-			<!-- 포스트 작성 딤레이어 테스트 -->
-			<div class="type_choice_box">
-				<a href="#" class="type_choice">
-					<i class="type_choice_img" id="img_text">
-						<img alt="" src="img_timeline/pencil-edit-button.svg" width="40px">
-						</i>
-					<br>
-					<span class="type_choice_name">텍스트</span>
-				</a>
-				<a href="#" class="type_choice">
-					<i class="type_choice_img" id="img_img">
-						<img alt="" src="img_timeline/photography-landscape-mode.svg" width="40px">
-					</i>
-					<br>
-					<span class="type_choice_name">이미지</span>
-				</a>
-				<a href="#" class="type_choice">
-					<i class="type_choice_img" id="img_video">
-						<img alt="" src="img_timeline/film-roll.svg" width="40px">
-					</i>
-					<br>
-					<span class="type_choice_name">비디오</span>
-				</a>
-				<a href="#" class="type_choice">
-					<i class="type_choice_img" id="img_audio">
-						<img alt="" src="img_timeline/sound-button.svg" width="40px">
-					</i>
-					<br>
-					<span class="type_choice_name">오디오</span>
-				</a>
-				<a href="#" class="type_choice">
-					<i class="type_choice_img" id="img_qna">
-						<img alt="" src="img_timeline/question.svg" width="40px">
-					</i>
-					<br>
-					<span class="type_choice_name">Q&A</span>
-				</a>
-			</div>
-			<!-- 딤레이어 테스트 끝 -->
-			<div class="infinite_scroll">
-				<h3>1번포스트</h3>
-				<hr>
-				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-			</div>
-			<div class="infinite_scroll">
-				<h3>2번포스트</h3>
-				<hr>
-				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-			</div>
-			<div class="infinite_scroll">
-				<h3>3번포스트</h3>
-				<hr>
-				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-			</div>
-			<div class="infinite_scroll">
-				<h3>4번포스트</h3>
-				<hr>
-				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-			</div>
-			<div class="infinite_scroll">
-				<h3>5번포스트</h3>
-				<hr>
-				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-			</div>
-			<div class="infinite_scroll">
-				<h3>6번포스트</h3>
-				<hr>
-				테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-			</div>
+			<ol class="post_view_box">
+				<!-- 포스트 작성 딤레이어 테스트 -->
+				<li class="type_choice_box"><a href="#" class="type_choice">
+						<i class="type_choice_img" id="img_text"> <img alt=""
+							src="img_timeline/pencil-edit-button.svg" width="35px">
+					</i> <br> <span class="type_choice_name">텍스트</span>
+				</a> <a href="#" class="type_choice"> <i class="type_choice_img"
+						id="img_img"> <img alt=""
+							src="img_timeline/photography-landscape-mode.svg" width="35px">
+					</i> <br> <span class="type_choice_name">이미지</span>
+				</a> <a href="#" class="type_choice"> <i class="type_choice_img"
+						id="img_video"> <img alt="" src="img_timeline/film-roll.svg"
+							width="35px">
+					</i> <br> <span class="type_choice_name">비디오</span>
+				</a> <a href="#" class="type_choice"> <i class="type_choice_img"
+						id="img_audio"> <img alt=""
+							src="img_timeline/sound-button.svg" width="35px">
+					</i> <br> <span class="type_choice_name">오디오</span>
+				</a> <a href="#" class="type_choice"> <i class="type_choice_img"
+						id="img_qna"> <img alt="" src="img_timeline/question.svg"
+							width="35px">
+					</i> <br> <span class="type_choice_name">Q&A</span>
+				</a></li>
+				<!-- 딤레이어 테스트 끝 -->
+				<!-- 포스트 뷰 시작 -->
+				<li class="infinite_scroll">
+					<h3>1번포스트</h3>
+					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+				</li>
+				<li class="infinite_scroll">
+					<h3>2번포스트</h3>
+					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+				</li>
+				<li class="infinite_scroll">
+					<h3>3번포스트</h3>
+					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+				</li>
+				<li class="infinite_scroll">
+					<h3>4번포스트</h3>
+					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+				</li>
+				<li class="infinite_scroll">
+					<h3>5번포스트</h3>
+					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+				</li>
+				<li class="infinite_scroll">
+					<h3>6번포스트</h3>
+					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+				</li>
+			</ol>
+			<!-- 포스트 뷰 끝 -->
 		</div>
 		<!-- 포스트작성 / 뷰 끝 -->
 		<!-- aside 부분 / *팔로우 추천, 광고등 -->
@@ -133,16 +116,12 @@
 			<div class="aside_follow">
 				<h3>팔로우 추천 테스트</h3>
 				<hr>
-				내용 테스트<br>
-				내용 테스트<br>
-				내용 테스트<br>
+				내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
 			</div>
 			<div class="aside_interested">
 				<h3>내 관심사 테스트</h3>
 				<hr>
-				내용 테스트<br>
-				내용 테스트<br>
-				내용 테스트<br>
+				내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
 			</div>
 		</div>
 		<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
