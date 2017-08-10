@@ -5,36 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="js/timeline.js"></script>
 <script type="text/javascript">
-	/* JS - infinite scroll 구현 */
-	var page = 6;
-	$(window)
-			.scroll(
-					function() {
-						if ($(window).scrollTop() == $(document).height()
-								- $(window).height()) {
-							console.log(++page);
-							$('.post_view_box')
-									.append(
-											'<li class="infinite_scroll"><h3>'
-													+ page
-													+ '번포스트 '
-													+ '<hr>'
-													+ '</h3>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br></li>');
-						}
-					});
-	/* infinite scroll 끝 */
 	/* 검색창 focus 상태에서 검색이력 view */
-	$('.img_text').on('click', function() {
-		$('#next').removeClass('choice_box_next');
-		return false;
-	});
 	/* 검색창 focus 상태에서 검색이력 view 끝 */
 </script>
-<style type="text/css">
-</style>
 <link rel="stylesheet" type="text/css" href="css/timeline.css">
 </head>
 <body>
@@ -68,23 +44,23 @@
 			<ol class="post_view_box">
 				<!-- 포스트 작성 타입 선택 전-->
 				<li class="type_choice_box choice_box_prev" id="prev"><a
-					href="#" class="type_choice img_text"> <i
+					href="#" class="type_choice img_text_prev"> <i
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/pencil-edit-button.svg" width="35px">
 					</i> <br> <span class="type_choice_name">텍스트</span>
-				</a> <a href="#" class="type_choice img_img"> <i
+				</a> <a href="#" class="type_choice img_img_prev"> <i
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/photography-landscape-mode.svg" width="35px">
 					</i> <br> <span class="type_choice_name">이미지</span>
-				</a> <a href="#" class="type_choice img_video"> <i
+				</a> <a href="#" class="type_choice img_video_prev"> <i
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/film-roll.svg" width="35px">
 					</i> <br> <span class="type_choice_name">비디오</span>
-				</a> <a href="#" class="type_choice img_audio"> <i
+				</a> <a href="#" class="type_choice img_audio_prev"> <i
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/sound-button.svg" width="35px">
 					</i> <br> <span class="type_choice_name">오디오</span>
-				</a> <a href="#" class="type_choice img_qna"> <i
+				</a> <a href="#" class="type_choice img_qna_prev"> <i
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/question.svg" width="35px">
 					</i> <br> <span class="type_choice_name">Q&A</span>
@@ -92,33 +68,34 @@
 				<!-- 타입 선택 전 끝 -->
 				<!-- 타입 선택 후 -->
 				<li class="type_choice_box choice_box_next" id="next"><a
-					href="#" class="type_choice img_text"> <i
+					href="#" class="type_choice img_text_next"> <i
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/pencil-edit-button.svg" width="35px">
 					</i> <br> <span class="type_choice_name">텍스트</span>
-				</a> <a href="#" class="type_choice img_img"> <i
+				</a> <a href="#" class="type_choice img_img_next"> <i
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/photography-landscape-mode.svg" width="35px">
 					</i> <br> <span class="type_choice_name">이미지</span>
-				</a> <a href="#" class="type_choice img_video"> <i
+				</a> <a href="#" class="type_choice img_video_next"> <i
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/film-roll.svg" width="35px">
 					</i> <br> <span class="type_choice_name">비디오</span>
-				</a> <a href="#" class="type_choice img_audio"> <i
+				</a> <a href="#" class="type_choice img_audio_next"> <i
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/sound-button.svg" width="35px">
 					</i> <br> <span class="type_choice_name">오디오</span>
-				</a> <a href="#" class="type_choice img_qna"> <i
+				</a> <a href="#" class="type_choice img_qna_next"> <i
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/question.svg" width="35px">
 					</i> <br> <span class="type_choice_name">Q&A</span>
-				</a>
-					<hr> <textarea rows="10" cols="80"></textarea></li>
+				</a> <textarea rows="10" cols="80" class="type_choice_textarea"></textarea></li>
 				<!-- 타입 선택 후 끝 -->
 				<!-- 포스트 뷰 시작 -->
 				<li class="infinite_scroll">
 					<h3>1번포스트</h3>
 					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+					<hr>
+					<h3>답변입니다</h3>
 				</li>
 				<li class="infinite_scroll">
 					<h3>2번포스트</h3>

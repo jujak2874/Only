@@ -5,13 +5,16 @@ import java.sql.Date;
 public class Post {
 	private String post_id;
 	private Date write_date;
+	private Date modifi_date;
 	private int delete_chk;
-	private String blog_member_id;
+	private String member_id;
 	private String qna;
 	private String post_text;
 	private String video;
 	private String image;
 	private String audio;
+	private String loc;
+	private int type;
 
 	public String getPost_id() {
 		return post_id;
@@ -37,12 +40,12 @@ public class Post {
 		this.delete_chk = delete_chk;
 	}
 
-	public String getBlog_member_id() {
-		return blog_member_id;
+	public String getmember_id() {
+		return member_id;
 	}
 
-	public void setBlog_member_id(String blog_member_id) {
-		this.blog_member_id = blog_member_id;
+	public void setmember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
 	public String getQna() {
@@ -84,4 +87,37 @@ public class Post {
 	public void setAudio(String audio) {
 		this.audio = audio;
 	}
+
+	public String getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+
+	public String getLoc() {
+		return loc;
+	}
+
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public Date getModifi_date() {
+		return modifi_date;
+	}
+
+	public void setModifi_date(Date modifi_date) {
+		this.modifi_date = modifi_date;
+	}
+
 }

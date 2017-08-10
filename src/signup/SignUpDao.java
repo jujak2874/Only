@@ -3,6 +3,8 @@ package signup;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -114,6 +116,32 @@ public class SignUpDao {
 					con.close();
 				}
 			} catch (Exception e) {
+			}
+		}
+		return result;
+	}
+
+	public int chkId(String id) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			String sql = "select mid from member where mid=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = 1;
+			}
+		} catch (SQLException e) {
+		} finally {
+			try {
+				con.close();
+				rs.close();
+				pstmt.close();
+			} catch (SQLException e) {
 			}
 		}
 		return result;

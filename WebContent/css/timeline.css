@@ -202,3 +202,23 @@ body {
 .choice_box_next {
 	display: none;
 }
+
+.choice_box_prev {
+	display: inline-block;
+}
+
+.type_choice_textarea {
+	margin-top: 15px;
+	padding: 5px;
+	resize: none;
+	border-radius: 5px;
+}
+
+.type_choice_textarea:focus {
+	border: -2px solid #adbed8;
+	box-sizing: content-box;
+}
+
+*:focus {
+	outline: none;
+}

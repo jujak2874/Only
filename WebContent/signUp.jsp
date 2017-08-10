@@ -11,7 +11,7 @@
 	<%
 		request.setCharacterEncoding("utf-8");
 	%>
-	<jsp:useBean id="signUp" class="signup.SignUp"></jsp:useBean>
+	<jsp:useBean id="signUp" class="signup.SignUp" />
 	<jsp:setProperty property="*" name="signUp" />
 	<%
 		SignUpDao dao = SignUpDao.getInstance();
@@ -20,17 +20,24 @@
 	%>
 	<script type="text/javascript">
 		alert("가입성공");
-		location.href="signUpForm.jsp";
+		location.href = "signUpForm.jsp";
 	</script>
 	<%
 		} else {
 	%>
 	<script type="text/javascript">
 		alert("가입실패");
-		location.href="signUpForm.jsp";
+		location.href = "signUpForm.jsp";
 	</script>
 	<%
 		}
 	%>
+
+	<%
+		String id = request.getParameter("mem_id");
+		SignUpDao dao2 = SignUpDao.getInstance();
+		int result2 = dao2.chkId(id);
+	%>
+	<%=result2 %>
 </body>
 </html>

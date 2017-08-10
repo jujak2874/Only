@@ -15,5 +15,6 @@ $(document).ready(function() {
 		$("#login").addClass("l-attop");
 	});
 });
+// 회원가입 로그인페이지 버튼 누를시 페이지 변경하게 하는 스크립트 끝
 
 // 아이디 중복체크하는 스크립트
