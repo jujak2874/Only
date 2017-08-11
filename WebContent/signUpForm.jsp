@@ -23,28 +23,6 @@
 		}
 	}
 </script>
-<script type="text/javascript">
-	var idChk = 0;
-	var pwdChk = 0;
-	function chkId() {
-		var inputed = $('.signup_id').val();
-		$.ajax({
-			type:'post',
-			data : {
-				mem_id : inputed
-			},
-			url: "signUpForm.jsp",
-			success : function(data) {
-				if (inputed == "" && data == '0') {
-					$('#signup_fin').prop('disabled', true);
-					$('#signup_fin').css('background-color', '#CCC');
-					$('#member_id').css('background-color', '#CCC');
-					idChk = 0;
-				}
-			}
-		});
-	}
-</script>
 </head>
 <body>
 	<div class="signUpContain">
@@ -90,7 +68,7 @@
 						<h2>ID</h2>
 					</div>
 					<input type="text" name="member_id" value=""
-						class="field-input signup_id" id="member_id" oninput="chkId()"/>
+						class="field-input signup_id" id="member_id" />
 					<div class="input-name input-margin">
 						<h2>Password</h2>
 					</div>

@@ -80,7 +80,7 @@ public class SignUpDao {
 
 		try {
 			StringBuffer sql = new StringBuffer();
-			sql.append("select password from MEMBER where MEMBER_ID = ?");
+			sql.append("select password from MEMBER where mid = ?");
 			con = getConnection();
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
@@ -139,7 +139,6 @@ public class SignUpDao {
 		} finally {
 			try {
 				con.close();
-				rs.close();
 				pstmt.close();
 			} catch (SQLException e) {
 			}

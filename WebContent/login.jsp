@@ -19,6 +19,7 @@
 
 		if (result == 1) {
 			session.setAttribute("sessionId", id);
+			System.out.println("세션넘어감");
 	%>
 	<script type="text/javascript">
 		alert("로그인 성공");

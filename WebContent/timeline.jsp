@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%!boolean isset(String str) {
+		if (str == null) {
+			return false;
+		}
+		if (str.equals("")) {
+			return false;
+		}
+		return true;
+	}%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +22,17 @@
 </script>
 <link rel="stylesheet" type="text/css" href="css/timeline.css">
 </head>
+<%
+	if (!isset((String) session.getAttribute("sessionId"))) {
+%>
+<script type="text/javascript">
+	console.log("세션불러오기실패");
+	location.href = "signUpForm.jsp";
+</script>
+<%
+	} else {
+		System.out.println("세션받아옴");
+%>
 <body>
 	<!-- 상단고정바 시작 -->
 	<div class="header">
@@ -41,6 +61,9 @@
 		<!-- 포스트작성 / 뷰 부분 -->
 		<div class="timeline_post">
 			<div class="page_margin"></div>
+			<!-- 테스트 -->
+			
+			<!--  -->
 			<ol class="post_view_box">
 				<!-- 포스트 작성 타입 선택 전-->
 				<li class="type_choice_box choice_box_prev" id="prev"><a
@@ -88,7 +111,12 @@
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/question.svg" width="35px">
 					</i> <br> <span class="type_choice_name">Q&A</span>
-				</a> <textarea rows="10" cols="80" class="type_choice_textarea"></textarea></li>
+				</a> 
+				<form action="post.jsp">
+				<textarea rows="10" cols="80" class="type_choice_textarea"></textarea>
+						<button type="submit" class="post_submit_btn"></button>
+					</form>
+				</li>
 				<!-- 타입 선택 후 끝 -->
 				<!-- 포스트 뷰 시작 -->
 				<li class="infinite_scroll">
@@ -107,14 +135,6 @@
 				</li>
 				<li class="infinite_scroll">
 					<h3>4번포스트</h3>
-					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-				</li>
-				<li class="infinite_scroll">
-					<h3>5번포스트</h3>
-					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-				</li>
-				<li class="infinite_scroll">
-					<h3>6번포스트</h3>
 					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
 				</li>
 			</ol>
@@ -139,4 +159,7 @@
 	</div>
 	<!-- 내용 들어갈 부분 끝 -->
 </body>
+<%
+	}
+%>
 </html>

@@ -34,16 +34,16 @@ $(function() {
 // 타입선택 각 버튼 누를시 글쓰기 폼 열림/닫힘 끝
 
 // infinite scroll 구현
-var page = 6;
+var page = 5;
 $(window)
 		.scroll(
 				function() {
 					if ($(window).scrollTop() == $(document).height()
 							- $(window).height()) {
 						$('.post_view_box')
-								.append(
+								.appendTo(
 										'<li class="infinite_scroll"><h3>'
-												+ page
+												+ page++
 												+ '번포스트 '
 												+ '<hr>'
 												+ '</h3>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br></li>');
