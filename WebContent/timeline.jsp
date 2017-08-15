@@ -114,7 +114,7 @@
 				</a> 
 				<form action="post.jsp">
 				<textarea rows="10" cols="80" class="type_choice_textarea"></textarea>
-						<button type="submit" class="post_submit_btn"></button>
+						<button type="submit" class="post_submit_btn">작성</button>
 					</form>
 				</li>
 				<!-- 타입 선택 후 끝 -->
