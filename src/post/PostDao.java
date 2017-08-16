@@ -40,6 +40,7 @@ public class PostDao {
 	public int insertPost(HttpServletRequest request, Post post) {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("sessionId");
+		String text = (String) request.getAttribute("text");
 		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -47,20 +48,21 @@ public class PostDao {
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, null);
 			// question
-			pstmt.setString(2, null);
+			pstmt.setString(1, null);
 			// text
+			pstmt.setString(2, text);
+			// videoURL
 			pstmt.setString(3, null);
-			// video
+			// imageURL
 			pstmt.setString(4, null);
-			// image
+			// audioURL
 			pstmt.setString(5, null);
-			// audio
-			pstmt.setString(6, id);
 			// mid
-			System.out.println(id);
+			pstmt.setString(6, id);
 			result = pstmt.executeUpdate();
+			System.out.println(id);
+			System.out.println(text);
 			System.out.println("작성성공");
 		} catch (Exception e) {
 			System.out.println("작성실패");

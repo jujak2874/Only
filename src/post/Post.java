@@ -9,7 +9,7 @@ public class Post {
 	private int delete_chk;
 	private String member_id;
 	private String qna;
-	private String post_text;
+	private String text;
 	private String video;
 	private String image;
 	private String audio;
@@ -51,11 +51,11 @@ public class Post {
 	public void setQna(String qna) {
 		this.qna = qna;
 	}
-	public String getPost_text() {
-		return post_text;
+	public String getText() {
+		return text;
 	}
-	public void setPost_text(String post_text) {
-		this.post_text = post_text;
+	public void setText(String text) {
+		this.text = text;
 	}
 	public String getVideo() {
 		return video;

@@ -14,23 +14,26 @@
 	<jsp:useBean id="post" class="post.Post" />
 	<jsp:setProperty property="*" name="post" />
 	<%
-		String sessionId=(String)session.getAttribute("sessionId");
-		System.out.println("받아와라세션"+sessionId);
+		String text = request.getParameter("text");
+		request.setAttribute("text", text);
+		String sessionId = (String) session.getAttribute("sessionId");
+		System.out.println("세션아이디는" + sessionId);
 		PostDao dao = PostDao.getInstance();
 		post.setMember_id(sessionId);
+		post.setText(text);
 		int result = dao.insertPost(request, post);
 		if (result > 0) {
 	%>
 	<script type="text/javascript">
 		alert("작성성공");
-		location.href="timeline.jsp";
+		location.href = "timeline.jsp";
 	</script>
 	<%
 		} else {
 	%>
 	<script type="text/javascript">
 		alert("작성실패");
-		location.href="timeline.jsp";
+		location.href = "timeline.jsp";
 	</script>
 	<%
 		}

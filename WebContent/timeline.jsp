@@ -62,11 +62,10 @@
 		<div class="timeline_post">
 			<div class="page_margin"></div>
 			<!-- 테스트 -->
-			
 			<!--  -->
 			<ol class="post_view_box">
 				<!-- 포스트 작성 타입 선택 전-->
-				<li class="type_choice_box choice_box_prev" id="prev"><a
+				<!-- <li class="type_choice_box choice_box_prev" id="prev"><a
 					href="#" class="type_choice img_text_prev"> <i
 						class="type_choice_img"> <img alt=""
 							src="img_timeline/pencil-edit-button.svg" width="35px">
@@ -88,8 +87,8 @@
 							src="img_timeline/question.svg" width="35px">
 					</i> <br> <span class="type_choice_name">Q&A</span>
 				</a></li>
-				<!-- 타입 선택 전 끝 -->
-				<!-- 타입 선택 후 -->
+				타입 선택 전 끝
+				타입 선택 후
 				<li class="type_choice_box choice_box_next" id="next"><a
 					href="#" class="type_choice img_text_next"> <i
 						class="type_choice_img"> <img alt=""
@@ -114,6 +113,27 @@
 				</a> 
 				<form action="post.jsp">
 				<textarea rows="10" cols="80" class="type_choice_textarea"></textarea>
+						<button type="submit" class="post_submit_btn">작성</button>
+					</form>
+				</li> -->
+
+				<li class="type_choice_box">
+					<form action="post.jsp">
+						<textarea rows="1" cols="1" class="type_choice_textarea"
+							name="text" placeholder="오늘은 무슨일이 있었나요?"></textarea>
+						<div class="write_type_choice">
+							<a class="choice_type"><img alt=""
+								src="img_timeline/photography-landscape-mode.svg"
+								class="img_hide img_hidden type_photo" width="40px">
+							</a> 
+							<a class="choice_type">
+							<img src='img_timeline/film-roll.svg'
+								class="img_hide img_hidden img_video" width="40px"
+								border='0'
+								onclick='document.all.file1.click();'>
+								<input type="file" name="file1" style='display: none;'> 
+							</a> 
+						</div>
 						<button type="submit" class="post_submit_btn">작성</button>
 					</form>
 				</li>
