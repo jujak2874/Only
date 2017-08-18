@@ -23,21 +23,21 @@
 	%>
 	<script type="text/javascript">
 		alert("로그인 성공");
-		location.href="timeline.jsp";
+		location.href = "timeline.jsp";
 	</script>
 	<%
 		} else if (result == 0) {
 	%>
 	<script type="text/javascript">
 		alert("로그인 실패 비밀번호를 확인하세요");
-		location.href="signUpForm.jsp";
+		location.href = "signUpForm.jsp";
 	</script>
 	<%
 		} else {
 	%>
 	<script type="text/javascript">
 		alert("로그인 실패 아이디를 확인하세요");
-		location.href="signUpForm.jsp";
+		location.href = "signUpForm.jsp";
 	</script>
 	<%
 		}

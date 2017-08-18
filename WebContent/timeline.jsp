@@ -1,3 +1,4 @@
+<%@page import="post.PostDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%!boolean isset(String str) {
@@ -171,7 +172,7 @@
 			</div>
 			<div class="aside_interested">
 				<h3>내 관심사 테스트</h3>
-				<hr>
+				<hr>R
 				내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
 			</div>
 		</div>

@@ -70,8 +70,8 @@ input, button {
 	text-align: center;
 	font-size: 16px;
 	color: #fff;
-	background-color: #2d1454;
-	border: 1px solid #2d1454;
+	background-color: #3f5068;
+	border: 1px solid #3f5068;
 }
 
 .login-signup-content {
@@ -134,7 +134,7 @@ div.rememberme {
 	border-radius: 4px;
 	top: 5px;
 	left: 3px;
-	background-color: #8c72b5;
+	background-color: #97a6bf;
 }
 
 .input-r {
@@ -179,14 +179,14 @@ div.rememberme {
 	text-align: center;
 	padding: 5px 0;
 	border-radius: 20px;
-	background-color: #8c72b5;
+	background-color: #97a6bf;
 	color: #FFF;
 	border: none;
 	transition: 0.5s cubic-bezier(0.72, 0.15, 0.53, 0.84);
 }
 
 .submit-btn:hover {
-	background-color: #7736db;
+	background-color: #3f5068;
 }
 
 .forgot-pass {
@@ -248,4 +248,9 @@ div.rememberme {
 }
 
 .signUpContain {
+	
+}
+
+#checkMsg {
+	margin-top: 5px;
 }

@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class SignUp {
 	private String member_id;
+	private String member_id1;
 	private String nickname;
 	private String password;
 	private String email;
@@ -13,6 +14,15 @@ public class SignUp {
 	private String pf_img;
 	private String tel;
 	private Date birth;
+
+	
+	public String getMember_id1() {
+		return member_id1;
+	}
+
+	public void setMember_id1(String member_id1) {
+		this.member_id1 = member_id1;
+	}
 
 	public String getMember_id() {
 		return member_id;
