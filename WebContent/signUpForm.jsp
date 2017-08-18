@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet" type="text/css" href="css/signUp.css">
 <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/signUp.js"></script>
@@ -33,7 +34,7 @@
 				<div class="input-name">
 					<h2>ID</h2>
 				</div>
-				<form action="login.jsp" name="loginForm" method="post"
+				<form action="login.do" name="loginForm" method="post"
 					onsubmit="return chk()">
 					<input type="text" name="member_id" value="" class="field-input" />
 					<div class="input-name input-margin">
@@ -63,7 +64,8 @@
 		<div class="login-signup s-atbottom" id="signup">
 			<div class="login-signup-title">SIGN UP</div>
 			<div class="login-signup-content">
-				<form action="signUp.jsp" method="post">
+				<!-- <form action="signUp.jsp" method="post"> -->
+				<form action="signUp.do" method="post">
 					<div class="input-name">
 						<h2>ID</h2>
 					</div>
@@ -82,6 +84,7 @@
 					<div class="input-name input-margin">
 						<h2>E-Mail</h2>
 					</div>
+
 					<input type="email" name="email" value=""
 						class="field-input signup_mail" id="email" />
 					<button class="submit-btn" id="signup_fin">Enter</button>
