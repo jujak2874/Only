@@ -47,22 +47,19 @@ $(function() {
 });
 // textarea focus일 때 작성폼 열기 끝
 // infinite scroll 구현
-var page = 5;
+var page = 7;
 $(window)
 		.scroll(
 				function() {
-					if ($(window).scrollTop() == $(document).height()
-							- $(window).height()) {
-						for (var i = 0; i < 10; i++) {
-							$('.post_view_box')
-									.append(
-											'<li class="infinite_scroll">'
-													+ '<h3>'
-													+ page++
-													+ '번포스트</h3>'
-													+ '<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>'
-													+ '</li>')
-						}
+					if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+						$('.post_view_box')
+								.append(
+										'<li class="infinite_scroll">'
+												+ '<h3>'
+												+ page++
+												+ '번포스트</h3>'
+												+ '<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>'
+												+ '</li>')
 					}
 				});
 // infinite scroll 끝

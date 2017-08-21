@@ -118,7 +118,7 @@
 					</form>
 				</li> -->
 
-				<li class="type_choice_box">
+				<li class="type_choice_box" id="infinite_container">
 					<form action="post.jsp">
 						<textarea rows="1" cols="1" class="type_choice_textarea"
 							name="text" placeholder="오늘은 무슨일이 있었나요?"></textarea>
@@ -144,7 +144,7 @@
 					<h3>답변입니다</h3>
 				</li>
 				<li class="infinite_scroll">
-					<h3>2번포스트</h3>
+					<h3><%=mid%></h3>
 					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
 				</li>
 				<li class="infinite_scroll">
@@ -153,6 +153,14 @@
 				</li>
 				<li class="infinite_scroll">
 					<h3>4번포스트</h3>
+					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+				</li>
+				<li class="infinite_scroll">
+					<h3>5번포스트</h3>
+					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+				</li>
+				<li class="infinite_scroll">
+					<h3>6번포스트</h3>
 					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
 				</li>
 			</ol>

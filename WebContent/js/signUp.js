@@ -116,7 +116,7 @@ function displayResult(data) {
 // 랜덤배경
 $(function() {
 	var images = [ 'mainbg1.jpg', 'mainbg2.jpg', 'mainbg3.jpg', 'mainbg4.jpg',
-			'mainbg5.jpg', 'mainbg6.jpg', 'mainbg7.jpg', 'mainbg8.jpg' ];
+			'mainbg6.jpg', 'mainbg7.jpg', 'mainbg8.jpg', 'mainbg9.jpg' ];
 	$('body').css(
 			{
 				'background-image' : 'url(./img_all/'
