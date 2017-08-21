@@ -53,14 +53,16 @@ $(window)
 				function() {
 					if ($(window).scrollTop() == $(document).height()
 							- $(window).height()) {
-						$('.post_view_box')
-								.append(
-										'<li class="infinite_scroll">'
-												+ '<h3>'
-												+ page++
-												+ '번포스트</h3>'
-												+ '<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>'
-												+ '</li>')
+						for (var i = 0; i < 10; i++) {
+							$('.post_view_box')
+									.append(
+											'<li class="infinite_scroll">'
+													+ '<h3>'
+													+ page++
+													+ '번포스트</h3>'
+													+ '<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>'
+													+ '</li>')
+						}
 					}
 				});
 // infinite scroll 끝

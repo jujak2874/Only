@@ -9,73 +9,7 @@
 <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/signUp.js"></script>
 <script type="text/javascript">
-	/* function chk() {
-		inputLogin = eval("document.loginForm");
-		if (!inputLogin.member_id.value) {
-			alert("아이디를 입력하세요");
-			inputLogin.member_id.focus();
-			return false;
-		}
-		if (!inputLogin.password.value) {
-			alert("비밀번호를 입력하세요");
-			inputLogin.password.focus();
-			return false;
-		}
-	} */
-	var check = false;
-	var lastKeyword = '';
-	var loopSendKeyword = false;
-	function checkId() {
-		if (check == false) {
-			setTimeout("sendId();", 500);
-			loopSendKeyword = true;
-		}
-		check = true;
-	}
-	function sendId() {
-		if (loopSendKeyword == false) {
-			return;
-		}
-		var keyword = $('#member_id').val();
-		if (keyword == '') {
-			lastKeyword = '';
-			$('#checkMsg').css('color','red');
-			$('#checkMsg').text("아이디를 입력하세요");
-			console.log('아이디작성안하면작동');
-		} else if (keyword != lastKeyword) {
-			lastKeyword = keyword;
-			if (keyword != '') {
-				var params ="id="+encodeURIComponent(keyword);
-				console.log(params);
-				$.post("id_check.jsp", params, function(data) {
-					var start = data.indexOf('<li>');
-					var end = data.indexOf('</li>');
-					var kk = data.slice(start+4,end);
-				 displayResult(kk);
-				console.log(kk);
-				});
-				console.log("아이디작성하면작동");
-			} else {
-			}
-		}
-		setTimeout("sendId();", 500);
-	}
-
-	function displayResult(data) {
-				var listView = document.getElementById('checkMsg');
-				/* document.getElementById('checkMsg') */
-				if (data == 0) {
-					console.log("사용가능");
-					listView.innerHTML = "사용할 수 있는 ID에요";
-					listView.style.color = "#4a76b2";
-					$('#signup_fin').prop('disabled',false);
-				} else {
-					console.log("사용불가");
-					listView.innerHTML = "이미 다른분이 사용중인 ID에요";
-					listView.style.color = "#ce375f";
-					$('#signup_fin').prop('disabled',true);
-				}
-			} 
+	
 </script>
 </head>
 <body>
@@ -89,8 +23,8 @@
 				</div>
 				<form action="login.jsp" name="loginForm" method="post"
 					onsubmit="return chk()">
-					<input type="text" name="member_id" value=""
-						class="field-input" />
+					<input type="text" name="member_id" value="" class="field-input"
+						id="login_inputId" autofocus="autofocus" />
 					<div class="input-name input-margin">
 						<h2>Password</h2>
 					</div>
@@ -123,8 +57,8 @@
 						<h2>ID</h2>
 					</div>
 					<input type="text" name="member_id1" value=""
-						class="field-input signup_id" id="member_id" onkeyup="checkId()"/>
-						<div id="checkMsg">아이디를 입력하세요</div>
+						class="field-input signup_id" id="member_id" onkeyup="checkId()" />
+					<div id="checkMsg">아이디를 입력하세요</div>
 					<div class="input-name input-margin">
 						<h2>Password</h2>
 					</div>
@@ -140,7 +74,8 @@
 					</div>
 					<input type="email" name="email" value=""
 						class="field-input signup_mail" id="email" />
-					<button class="submit-btn sub-before" id="signup_fin" disabled="disabled">Enter</button>
+					<button class="submit-btn sub-before" id="signup_fin"
+						disabled="disabled">Enter</button>
 				</form>
 				<button class="submit-btn sub-before" id="login-btn">Login</button>
 			</div>

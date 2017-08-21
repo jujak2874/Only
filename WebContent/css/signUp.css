@@ -23,9 +23,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 body {
 	line-height: 1;
 	overflow-x: hidden;
-	background-image: url("img_all/background_1.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	-webkit-text-size-adjust: none;
+	overflow: hidden;
 }
 
 ol, ul {
@@ -253,4 +255,5 @@ div.rememberme {
 
 #checkMsg {
 	margin-top: 5px;
+	color: #4a76b2;
 }

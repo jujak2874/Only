@@ -15,6 +15,8 @@
 		SignUpDao dao = SignUpDao.getInstance();
 		int result = dao.checkId(member_id);
 	%>
-	<li><%=result %></li>
+	<ul>
+		<li><%=result %></li>
+	</ul>
 </body>
 </html>

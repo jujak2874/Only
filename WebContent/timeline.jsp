@@ -125,15 +125,12 @@
 						<div class="write_type_choice">
 							<a class="choice_type"><img alt=""
 								src="img_timeline/photography-landscape-mode.svg"
-								class="img_hide img_hidden type_photo" width="40px">
-							</a> 
-							<a class="choice_type">
-							<img src='img_timeline/film-roll.svg'
-								class="img_hide img_hidden img_video" width="40px"
-								border='0'
-								onclick='document.all.file1.click();'>
-								<input type="file" name="file1" style='display: none;'> 
-							</a> 
+								class="img_hide img_hidden type_photo" width="40px"> </a> <a
+								class="choice_type"> <img src='img_timeline/film-roll.svg'
+								class="img_hide img_hidden img_video" width="40px" border='0'
+								onclick='document.all.file1.click();'> <input type="file"
+								name="file1" style='display: none;'>
+							</a>
 						</div>
 						<button type="submit" class="post_submit_btn">작성</button>
 					</form>
@@ -172,7 +169,7 @@
 			</div>
 			<div class="aside_interested">
 				<h3>내 관심사 테스트</h3>
-				<hr>R
+				<hr>
 				내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
 			</div>
 		</div>
