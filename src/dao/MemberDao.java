@@ -192,6 +192,8 @@ public class MemberDao {
 					member.setUsername(rs.getString("username"));
 					member.setTel(rs.getString("tel"));
 					member.setEmail(rs.getString("email"));
+					member.setBirth(rs.getDate("birth"));
+					member.setProfile_image(rs.getString("profile_image"));
 					list.add(member);
 				} else {
 					break;

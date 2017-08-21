@@ -19,7 +19,6 @@ public class SignUp implements CommandProcess {
 		member.setUsername(request.getParameter("nickname"));
 		member.setPassword(request.getParameter("password"));
 		member.setEmail(request.getParameter("email"));
-
 		MemberDao dao = MemberDao.getInstance();
 		int result = dao.insert(member);
 		if(result>0){

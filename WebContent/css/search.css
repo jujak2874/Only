@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.search_view_box {
+	list-style-type: none;
+}
+
 .search_main {
 	width: 100%;
 	display: block;
@@ -7,9 +11,37 @@
 	overflow: auto;
 }
 
-.search_result {
+.search_post {
 	width: 40%;
 	display: block;
 	float: left;
 	margin-left: 18%;
+}
+
+.search_view_box {
+	list-style-type: none;
+}
+
+.search_result {
+	background-color: #FFF;
+	border-radius: 5px;
+	padding: 20px;
+	padding-top: 20px;
+	margin-bottom: 25px;
+	width: 90%;
+	padding-top: 5px;
+}
+
+.search_result .search_profile{
+	display: block;
+}
+
+.search_result .search_profile img{
+	height:100%;
+	width: 40px;
+	float:left;
+	vertical-align: middle;
+}
+.search_result .search_profile h3{
+	vertical-align: middle;
 }

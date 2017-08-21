@@ -5,6 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function searchChk() {
+		if(document.frm.searchTerm.value==""){
+			alert("검색어를 입력하세요");
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 <%
@@ -23,7 +31,7 @@ System.out.println("header");
 	<!-- 로고 끝 -->
 	<!-- 상단고정바 서치 -->
 	<div class="search">
-		<form class="form-wrapper cf" action="search.do" method="post" >
+		<form class="form-wrapper cf" name="frm" action="search.do" method="post" onsubmit="return searchChk()">
 			<input type="text" class="searchTerm" name="searchTerm" placeholder="Search">
 			<button type="submit">Search</button>
 		</form>
