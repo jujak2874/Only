@@ -1,0 +1,1 @@
+select * from MEMBER where userid like '%test%' or username like '%test%'

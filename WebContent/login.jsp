@@ -9,35 +9,28 @@
 </head>
 <body>
 	<%
-		request.setCharacterEncoding("utf-8");
-
-		String id = request.getParameter("member_id");
-		String pwd = request.getParameter("password");
-
-		SignUpDao dao = SignUpDao.getInstance();
-		int result = dao.login(id, pwd);
-
+		int result = (int) request.getAttribute("result");
 		if (result == 1) {
-			session.setAttribute("sessionId", id);
+			session.setAttribute("sessionId", request.getAttribute("id"));
 			System.out.println("세션넘어감");
 	%>
 	<script type="text/javascript">
 		alert("로그인 성공");
-		location.href="timeline.jsp";
+		location.href = "timeline.jsp";
 	</script>
 	<%
 		} else if (result == 0) {
 	%>
 	<script type="text/javascript">
 		alert("로그인 실패 비밀번호를 확인하세요");
-		location.href="signUpForm.jsp";
+		location.href = "signUpForm.jsp";
 	</script>
 	<%
 		} else {
 	%>
 	<script type="text/javascript">
 		alert("로그인 실패 아이디를 확인하세요");
-		location.href="signUpForm.jsp";
+		location.href = "signUpForm.jsp";
 	</script>
 	<%
 		}

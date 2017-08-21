@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.search_main {
+	width: 100%;
+	display: block;
+	background-color: #3f5068;
+	overflow: auto;
+}
+
+.search_result {
+	width: 40%;
+	display: block;
+	float: left;
+	margin-left: 18%;
+}
