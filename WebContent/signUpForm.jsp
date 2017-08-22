@@ -58,7 +58,7 @@
 					<div class="input-name">
 						<h2>ID</h2>
 					</div>
-					<input type="text" name="member_id1" value=""
+					<input type="text" name="member_id" value=""
 						class="field-input signup_id" id="member_id" onkeyup="checkId()" />
 					<div id="checkMsg">아이디를 입력하세요</div>
 					<div class="input-name input-margin">

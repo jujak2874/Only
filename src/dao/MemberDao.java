@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +33,9 @@ public class MemberDao {
 			Context ctx = new InitialContext();
 			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/OracleDB");
 			con = ds.getConnection();
-			System.out.println("DB¿¬°á¼º°ø");
+			System.out.println("DBì—°ê²°ì„±ê³µ");
 		} catch (Exception e) {
-			System.out.println("DB¿¬°á½ÇÆĞ");
+			System.out.println("DBì—°ê²°ì‹¤íŒ¨");
 			System.out.println(e.getMessage());
 		}
 		return con;
@@ -44,9 +45,9 @@ public class MemberDao {
 		int result = -1;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		// Å»ÅğÀÏ, ÀüÈ­¹øÈ£ , »ıÀÏÀº °¡ÀÔ½Ã ¼öÁıÇÏÁö ¾ÊÀ½. = null
-		// ±âº»ÀÌ¹ÌÁö = 0(img url ³ÖÀ» °Í)
-		// status 0 = Å»Åğ, 1 = »ç¿ëÁß, 2 = ÀÏ½ÃÁ¤Áö(ºñÈ°¼ºÈ­)
+		// íƒˆí‡´ì¼, ì „í™”ë²ˆí˜¸ , ìƒì¼ì€ ê°€ì…ì‹œ ìˆ˜ì§‘í•˜ì§€ ì•ŠìŒ. = null
+		// ê¸°ë³¸ì´ë¯¸ì§€ = 0(img url ë„£ì„ ê²ƒ)
+		// status 0 = íƒˆí‡´, 1 = ì‚¬ìš©ì¤‘, 2 = ì¼ì‹œì •ì§€(ë¹„í™œì„±í™”)
 		String sql = "insert into MEMBER values (?,?,?,?,1,sysdate,sysdate,'../img_all/default_profile.png',null,null)";
 		try {
 			con = getConnection();
@@ -57,10 +58,10 @@ public class MemberDao {
 			pstmt.setString(4, member.getEmail());
 			result = pstmt.executeUpdate();
 			if (result > 0) {
-				System.out.println("°¡ÀÔ¼º°ø..");
+				System.out.println("ê°€ì…ì„±ê³µ..");
 			}
 		} catch (Exception e) {
-			System.out.println("°¡ÀÔ½ÇÆĞ..");
+			System.out.println("ê°€ì…ì‹¤íŒ¨..");
 			System.out.println(e.getMessage());
 		} finally {
 			try {
@@ -91,26 +92,26 @@ public class MemberDao {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 
-			// ¾ÆÀÌµğ¿Í ÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÏ´ÂÁö °Ë»ç
+			// ì•„ì´ë””ì™€ íŒ¨ìŠ¤ì›Œë“œê°€ ì¼ì¹˜í•˜ëŠ”ì§€ ê²€ì‚¬
 			if (rs.next()) {
 				dbPass = rs.getString("password");
 				if (dbPass.equals(pwd)) {
 					result = 1;
-					System.out.println("·Î±×ÀÎ ¼º°ø");
-					// ·Î±×ÀÎ ¼º°ø = 1
+					System.out.println("ë¡œê·¸ì¸ ì„±ê³µ");
+					// ë¡œê·¸ì¸ ì„±ê³µ = 1
 				} else {
 					result = 0;
-					System.out.println("·Î±×ÀÎ ½ÇÆĞ ºñ¹Ğ¹øÈ£ Æ²¸²");
-					// ÆĞ½º¿öµå°¡ ´Ù¸¦¶§ = 0
+					System.out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨ ë¹„ë°€ë²ˆí˜¸ í‹€ë¦¼");
+					// íŒ¨ìŠ¤ì›Œë“œê°€ ë‹¤ë¥¼ë•Œ = 0
 				}
 			} else {
 				result = -1;
-				System.out.println("·Î±×ÀÎ ½ÇÆĞ ¾ÆÀÌµğ ¾øÀ½");
-				// ¾ÆÀÌµğ°¡ ´Ù¸¦¶§ = -1
+				System.out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨ ì•„ì´ë”” ì—†ìŒ");
+				// ì•„ì´ë””ê°€ ë‹¤ë¥¼ë•Œ = -1
 			}
 			return result;
 		} catch (Exception e) {
-			System.out.println("·Î±×ÀÎ ½ÇÆĞ");
+			System.out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨");
 			System.out.println(e.getMessage());
 		} finally {
 			try {
@@ -150,11 +151,11 @@ public class MemberDao {
 				member.setModifed(rs.getDate("modified"));
 				member.setPassword(rs.getString("password"));
 			} else {
-				System.out.println("¸â¹ö ºÒ·¯¿À±â ½ÇÆĞ");
-				// ¾ÆÀÌµğ°¡ ´Ù¸¦¶§ = -1
+				System.out.println("ë©¤ë²„ ë¶ˆëŸ¬ì˜¤ê¸° ì‹¤íŒ¨");
+				// ì•„ì´ë””ê°€ ë‹¤ë¥¼ë•Œ = -1
 			}
 		} catch (Exception e) {
-			System.out.println("¸â¹ö ºÒ·¯¿À±â ½ÇÆĞ");
+			System.out.println("ë©¤ë²„ ë¶ˆëŸ¬ì˜¤ê¸° ì‹¤íŒ¨");
 			System.out.println(e.getMessage());
 		} finally {
 			try {
@@ -200,7 +201,7 @@ public class MemberDao {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("°Ë»ö ½ÇÆĞÇßÀ½");
+			System.out.println("ê²€ìƒ‰ ì‹¤íŒ¨í–ˆìŒ");
 			System.out.println(e.getMessage());
 		} finally {
 			try {
@@ -214,5 +215,32 @@ public class MemberDao {
 			}
 		}
 		return list;
+	}
+	
+	public int checkId(String member_id) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			System.out.println("DBì—°ê²°");
+			String sql = "select * from member where userid = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member_id);
+			rs = pstmt.executeQuery();
+			System.out.println("DBê²€ìƒ‰");
+			if (rs.next()) {
+				result = 1;
+			}
+		} catch (SQLException e) {
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch (SQLException e) {
+			}
+		}
+		return result;
 	}
 }
