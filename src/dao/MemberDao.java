@@ -48,7 +48,7 @@ public class MemberDao {
 		// 탈퇴일, 전화번호 , 생일은 가입시 수집하지 않음. = null
 		// 기본이미지 = 0(img url 넣을 것)
 		// status 0 = 탈퇴, 1 = 사용중, 2 = 일시정지(비활성화)
-		String sql = "insert into MEMBER values (?,?,?,?,1,sysdate,sysdate,'../img_all/default_profile.png',null,null)";
+		String sql = "insert into MEMBER values (?,?,?,?,1,sysdate,sysdate,'/img_all/default_profile.png',null,null)";
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);

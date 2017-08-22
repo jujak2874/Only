@@ -31,7 +31,8 @@
 	
 		
 </script>
-<link rel="stylesheet" type="text/css" href="css/timeline.css">
+<link rel="stylesheet" type="text/css" href="css/timelineFull.css">
+<link rel="stylesheet" type="text/css" href="css/timelineMobile.css">
 <link rel="stylesheet" type="text/css" href="css/search.css">
 </head>
 <body>
