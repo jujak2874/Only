@@ -49,26 +49,7 @@
 		</div>
 	</div>
 	<!-- 상단고정바 시작 -->
-	<div class="header">
-		<!-- 상단고정바 로고 -->
-		<div class="head_logo">
-			<h1 class="head_logo">
-				<a id="logo_href" href="#"> <img id="logo_top" alt=""
-					src="img_all/logo3.png">
-				</a>
-			</h1>
-		</div>
-		<!-- 로고 끝 -->
-		<!-- 상단고정바 서치 -->
-		<div class="search">
-			<form class="form-wrapper cf">
-				<input type="text" class="searchTerm" placeholder="Search">
-				<button type="submit">Search</button>
-			</form>
-		</div>
-		<!-- 서치 끝 -->
-	</div>
-	<!-- 상단고정바 끝 -->
+	<div id="header"><jsp:include page="header.jsp"></jsp:include></div>
 	<div class="header_hidden"></div>
 	<!-- 내용 들어갈 부분 -->
 	<div class="timeline_main">
