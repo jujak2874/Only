@@ -48,7 +48,7 @@ public class SignUpDao {
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, signUp.getMember_id());
+			pstmt.setString(1, signUp.getMember_id1());
 			pstmt.setString(2, signUp.getNickname());
 			pstmt.setString(3, signUp.getPassword());
 			pstmt.setString(4, signUp.getEmail());
@@ -121,17 +121,19 @@ public class SignUpDao {
 		return result;
 	}
 
-	public int chkId(String id) {
+	public int checkId(String member_id) {
 		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = getConnection();
-			String sql = "select mid from member where mid=?";
+			System.out.println("DB연결");
+			String sql = "select * from member where mid = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, member_id);
 			rs = pstmt.executeQuery();
+			System.out.println("DB검색");
 			if (rs.next()) {
 				result = 1;
 			}

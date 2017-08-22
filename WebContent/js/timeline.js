@@ -1,37 +1,3 @@
-// 타입선택 각 버튼 누를시 글쓰기 폼 열림/닫힘
-/*$(function() {
- $('.img_text_prev').on('click', function() {
- $('#next').removeClass('choice_box_next');
- $('#next').addClass('choice_box_prev');
- $('#prev').removeClass('choice_box_prev');
- $('#prev').addClass('choice_box_next');
- });
- });
- $(function() {
- $('.img_text_next').on('click', function() {
- $('#next').removeClass('choice_box_prev');
- $('#next').addClass('choice_box_next');
- $('#prev').removeClass('choice_box_next');
- $('#prev').addClass('choice_box_prev');
- });
- });
- $(function() {
- $('.img_img_prev').on('click', function() {
- $('#next').removeClass('choice_box_next');
- $('#next').addClass('choice_box_prev');
- $('#prev').removeClass('choice_box_prev');
- $('#prev').addClass('choice_box_next');
- });
- });
- $(function() {
- $('.img_img_next').on('click', function() {
- $('#next').removeClass('choice_box_prev');
- $('#next').addClass('choice_box_next');
- $('#prev').removeClass('choice_box_next');
- $('#prev').addClass('choice_box_prev');
- });
- });*/
-// 타입선택 각 버튼 누를시 글쓰기 폼 열림/닫힘 끝
 // textarea focus일 때 작성폼 열기
 $(function() {
 	$('.type_choice_textarea').on('focus', function() {
@@ -47,20 +13,76 @@ $(function() {
 });
 // textarea focus일 때 작성폼 열기 끝
 // infinite scroll 구현
-var page = 5;
+var page = 4;
 $(window)
 		.scroll(
 				function() {
-					if ($(window).scrollTop() == $(document).height()
-							- $(window).height()) {
+					if ($(window).scrollTop()+$(window).height() == $(document).height()) {
+						for(var z=0; z<6; z++){
 						$('.post_view_box')
 								.append(
 										'<li class="infinite_scroll">'
-												+ '<h3>'
-												+ page++
-												+ '번포스트</h3>'
-												+ '<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>'
-												+ '</li>')
+										+'<h3>'
+										+ page++
+										+'번포스트</h3>'
+										+'<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>'
+										+'<hr>'
+										+'<div class="reactBtn">'
+										+"<div class='heart'></div>"
+										+'<div class="share_out" onclick="openLayer("layerPop",200,18)"></div>'
+										+'</div>'
+										+'<div class="commentForm">'
+										+'<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기" class="comment_textarea"></textarea>'
+										+'</div>'
+										+'</li>'
+										)}
 					}
 				});
 // infinite scroll 끝
+// Like 버튼 활성화
+$(function(){
+$(".heart").on('click', function(){
+	  $(this).toggleClass('is_animating');
+	});
+	$(".heart").on('animationend', function(){
+	  $(this).toggleClass('is_animating');
+		$(this).toggleClass('bg-position');
+	});
+});
+// Like 버튼 활성화 끝
+// DimLayer 
+function dEI(elementID){
+	return document.getElementById(elementID);
+}
+// 레이어 팝업 열기
+function openLayer(IdName, tpos, lpos){
+	var pop = dEI(IdName);
+	pop.style.top = tpos + "px";
+	pop.style.left = lpos + "%";
+	pop.style.display = "block";
+
+	var wrap = dEI("wrapper");
+	var reservation = document.createElement("div");
+	reservation.setAttribute("id", "deemed");
+	wrap.appendChild(reservation);
+}
+// 레이어 팝업 닫기
+function closeLayer( IdName ){
+	var pop = dEI(IdName);
+	pop.style.display = "none";
+	var clearEl=parent.dEI("deemed");
+	var momEl = parent.dEI("wrapper");
+	momEl.removeChild(clearEl);
+}
+// DimLayer 끝
+// 글 내용 없을 때 작성버튼 비활성화
+$(function(){
+	if($('.type_choice_textarea').val()==''){
+		$('post_submit_btn').prop('disabled',true);
+		$('post_submit_btn').css('opacity',0.5); 
+	}else{
+		$('post_submit_btn').prop('disabled',false);
+		$('post_submit_btn').css('opacity',1); 
+	}
+});
+// 글 내용 없을 때 작성버튼 비활성화 끝

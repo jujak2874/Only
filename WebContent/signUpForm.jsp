@@ -5,24 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-<link rel="stylesheet" type="text/css" href="css/signUp.css">
+<link rel="stylesheet" type="text/css" href="css/signUpFull.css">
+<link rel="stylesheet" type="text/css" href="css/signUpMobile.css">
 <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/signUp.js"></script>
 <script type="text/javascript">
-	function chk() {
-		inputLogin = eval("document.loginForm");
-		if (!inputLogin.member_id.value) {
-			alert("아이디를 입력하세요");
-			inputLogin.member_id.focus();
-			return false;
-		}
-		if (!inputLogin.password.value) {
-			alert("비밀번호를 입력하세요");
-			inputLogin.password.focus();
-			return false;
-		}
-	}
+	
 </script>
 </head>
 <body>
@@ -36,7 +24,8 @@
 				</div>
 				<form action="login.do" name="loginForm" method="post"
 					onsubmit="return chk()">
-					<input type="text" name="member_id" value="" class="field-input" />
+					<input type="text" name="member_id" value="" class="field-input"
+						id="login_inputId" autofocus="autofocus" />
 					<div class="input-name input-margin">
 						<h2>Password</h2>
 					</div>
@@ -51,9 +40,9 @@
 							<label for="remember-me-2">Remember Me</label>
 						</div>
 					</div>
-					<button class="submit-btn">Enter</button>
+					<button class="submit-btn sub-before">Enter</button>
 				</form>
-				<button type="submit" class="submit-btn" id="signup-btn">SignUp</button>
+				<button type="submit" class="submit-btn sub-before" id="signup-btn">SignUp</button>
 				<div class="forgot-pass">
 					<a href="#">Forgot Password?</a>
 				</div>
@@ -69,8 +58,9 @@
 					<div class="input-name">
 						<h2>ID</h2>
 					</div>
-					<input type="text" name="member_id" value=""
-						class="field-input signup_id" id="member_id" />
+					<input type="text" name="member_id1" value=""
+						class="field-input signup_id" id="member_id" onkeyup="checkId()" />
+					<div id="checkMsg">아이디를 입력하세요</div>
 					<div class="input-name input-margin">
 						<h2>Password</h2>
 					</div>
@@ -87,9 +77,10 @@
 
 					<input type="email" name="email" value=""
 						class="field-input signup_mail" id="email" />
-					<button class="submit-btn" id="signup_fin">Enter</button>
+					<button class="submit-btn sub-before" id="signup_fin"
+						disabled="disabled">Enter</button>
 				</form>
-				<button class="submit-btn" id="login-btn">Login</button>
+				<button class="submit-btn sub-before" id="login-btn">Login</button>
 			</div>
 		</div>
 		<!-- 회원가입 폼 끝 -->

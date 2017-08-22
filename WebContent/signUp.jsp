@@ -32,12 +32,5 @@
 	<%
 		}
 	%>
-
-	<%
-		String id = request.getParameter("mem_id");
-		SignUpDao dao2 = SignUpDao.getInstance();
-		int result2 = dao2.chkId(id);
-	%>
-	<%=result2 %>
 </body>
 </html>

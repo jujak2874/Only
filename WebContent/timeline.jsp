@@ -1,6 +1,17 @@
+<%@page import="post.PostDao"%>
+<%@page import="post.Post"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="sessionChk.jsp" %>
+<%!boolean isset(String str) {
+		if (str == null) {
+			return false;
+		}
+		if (str.equals("")) {
+			return false;
+		}
+		return true;
+	}%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,10 +23,52 @@
 	/* 검색창 focus 상태에서 검색이력 view */
 	/* 검색창 focus 상태에서 검색이력 view 끝 */
 </script>
-<link rel="stylesheet" type="text/css" href="css/timeline.css">
+<link rel="stylesheet" type="text/css" href="css/timelineFull.css">
+<link rel="stylesheet" type="text/css" href="css/timelineMobile.css">
 </head>
+<%
+	if (!isset((String) session.getAttribute("sessionId"))) {
+%>
+<script type="text/javascript">
+	console.log("세션불러오기실패");
+	location.href = "signUpForm.jsp";
+</script>
+<%
+	} else {
+		System.out.println("세션받아옴");
+%>
 <body>
-	<div id="header"><jsp:include page="header.jsp"></jsp:include></div>
+	<div id="wrapper">
+		<div id="layerPop">
+			<h3>공유하기</h3>
+			<hr>
+			테스트
+			<hr>
+			테스트
+			<a href="#" onclick="closeLayer('layerPop')" class="close">close</a>
+		</div>
+	</div>
+	<!-- 상단고정바 시작 -->
+	<div class="header">
+		<!-- 상단고정바 로고 -->
+		<div class="head_logo">
+			<h1 class="head_logo">
+				<a id="logo_href" href="#"> <img id="logo_top" alt=""
+					src="img_all/logo3.png">
+				</a>
+			</h1>
+		</div>
+		<!-- 로고 끝 -->
+		<!-- 상단고정바 서치 -->
+		<div class="search">
+			<form class="form-wrapper cf">
+				<input type="text" class="searchTerm" placeholder="Search">
+				<button type="submit">Search</button>
+			</form>
+		</div>
+		<!-- 서치 끝 -->
+	</div>
+	<!-- 상단고정바 끝 -->
 	<div class="header_hidden"></div>
 	<!-- 내용 들어갈 부분 -->
 	<div class="timeline_main">
@@ -25,75 +78,21 @@
 			<!-- 테스트 -->
 			<!--  -->
 			<ol class="post_view_box">
-				<!-- 포스트 작성 타입 선택 전-->
-				<!-- <li class="type_choice_box choice_box_prev" id="prev"><a
-					href="#" class="type_choice img_text_prev"> <i
-						class="type_choice_img"> <img alt=""
-							src="img_timeline/pencil-edit-button.svg" width="35px">
-					</i> <br> <span class="type_choice_name">텍스트</span>
-				</a> <a href="#" class="type_choice img_img_prev"> <i
-						class="type_choice_img"> <img alt=""
-							src="img_timeline/photography-landscape-mode.svg" width="35px">
-					</i> <br> <span class="type_choice_name">이미지</span>
-				</a> <a href="#" class="type_choice img_video_prev"> <i
-						class="type_choice_img"> <img alt=""
-							src="img_timeline/film-roll.svg" width="35px">
-					</i> <br> <span class="type_choice_name">비디오</span>
-				</a> <a href="#" class="type_choice img_audio_prev"> <i
-						class="type_choice_img"> <img alt=""
-							src="img_timeline/sound-button.svg" width="35px">
-					</i> <br> <span class="type_choice_name">오디오</span>
-				</a> <a href="#" class="type_choice img_qna_prev"> <i
-						class="type_choice_img"> <img alt=""
-							src="img_timeline/question.svg" width="35px">
-					</i> <br> <span class="type_choice_name">Q&A</span>
-				</a></li>
-				타입 선택 전 끝
-				타입 선택 후
-				<li class="type_choice_box choice_box_next" id="next"><a
-					href="#" class="type_choice img_text_next"> <i
-						class="type_choice_img"> <img alt=""
-							src="img_timeline/pencil-edit-button.svg" width="35px">
-					</i> <br> <span class="type_choice_name">텍스트</span>
-				</a> <a href="#" class="type_choice img_img_next"> <i
-						class="type_choice_img"> <img alt=""
-							src="img_timeline/photography-landscape-mode.svg" width="35px">
-					</i> <br> <span class="type_choice_name">이미지</span>
-				</a> <a href="#" class="type_choice img_video_next"> <i
-						class="type_choice_img"> <img alt=""
-							src="img_timeline/film-roll.svg" width="35px">
-					</i> <br> <span class="type_choice_name">비디오</span>
-				</a> <a href="#" class="type_choice img_audio_next"> <i
-						class="type_choice_img"> <img alt=""
-							src="img_timeline/sound-button.svg" width="35px">
-					</i> <br> <span class="type_choice_name">오디오</span>
-				</a> <a href="#" class="type_choice img_qna_next"> <i
-						class="type_choice_img"> <img alt=""
-							src="img_timeline/question.svg" width="35px">
-					</i> <br> <span class="type_choice_name">Q&A</span>
-				</a> 
-				<form action="post.jsp">
-				<textarea rows="10" cols="80" class="type_choice_textarea"></textarea>
-						<button type="submit" class="post_submit_btn">작성</button>
-					</form>
-				</li> -->
-
-				<li class="type_choice_box">
+				<li class="type_choice_box" id="infinite_container">
 					<form action="post.jsp">
 						<textarea rows="1" cols="1" class="type_choice_textarea"
 							name="text" placeholder="오늘은 무슨일이 있었나요?"></textarea>
 						<div class="write_type_choice">
-							<a class="choice_type"><img alt=""
-								src="img_timeline/photography-landscape-mode.svg"
-								class="img_hide img_hidden type_photo" width="40px">
-							</a> 
 							<a class="choice_type">
-							<img src='img_timeline/film-roll.svg'
-								class="img_hide img_hidden img_video" width="40px"
-								border='0'
-								onclick='document.all.file1.click();'>
-								<input type="file" name="file1" style='display: none;'> 
+								<img alt="" src="img_timeline/picture.svg" class="img_hide img_hidden type_photo" 
+								width="30px" border='0' onclick='document.all.imageUpload.click();'>
+								<input type="file" name="imageUpload" style='display: none;'>
 							</a> 
+							<a class="choice_type"> 
+								<img src='img_timeline/video-camera.svg' class="img_hide img_hidden img_video" 
+								width="30px" border='0' onclick='document.all.videoUpload.click();'> 
+								<input type="file" name="videoUpload" style='display: none;'>
+							</a>
 						</div>
 						<button type="submit" class="post_submit_btn">작성</button>
 					</form>
@@ -109,14 +108,26 @@
 				<li class="infinite_scroll">
 					<h3>2번포스트</h3>
 					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+					<hr>
+					<div class="reactBtn">
+						<div class='heart'></div>
+						<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
+					</div>
+					<div class="commentForm">
+						<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기" class="comment_textarea"></textarea>
+					</div>
 				</li>
 				<li class="infinite_scroll">
 					<h3>3번포스트</h3>
 					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-				</li>
-				<li class="infinite_scroll">
-					<h3>4번포스트</h3>
-					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+					<hr>
+					<div class="reactBtn">
+						<div class='heart'></div>
+						<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
+					</div>
+					<div class="commentForm">
+						<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기" class="comment_textarea"></textarea>
+					</div>
 				</li>
 			</ol>
 			<!-- 포스트 뷰 끝 -->
@@ -139,5 +150,9 @@
 		<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
 	</div>
 	<!-- 내용 들어갈 부분 끝 -->
+	<%
+		}
+	%>
 </body>
+>>>>>>> branch 'master' of https://github.com/jujak2874/Only.git
 </html>

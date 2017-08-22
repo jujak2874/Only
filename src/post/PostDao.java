@@ -2,7 +2,10 @@ package post;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -39,7 +42,7 @@ public class PostDao {
 
 	public int insertPost(HttpServletRequest request, Post post) {
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("sessionId");
+		String id = (String) session.getAttribute("sessionId");
 		String text = (String) request.getAttribute("text");
 		int result = 0;
 		Connection con = null;
@@ -79,5 +82,40 @@ public class PostDao {
 			}
 		}
 		return result;
+	}
+
+	public ArrayList<Post> viewPost() {
+		ArrayList<Post> list = new ArrayList<>();
+		ResultSet rs = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "select mid,text,created from post where pid=40";
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Post post = new Post();
+				post.setMember_id(rs.getString("mid"));
+				post.setText(rs.getString("text"));
+				post.setWrite_date(rs.getDate("created"));
+				list.add(post);
+			}
+		} catch (Exception e) {
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (con != null) {
+					con.close();
+				}
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (Exception e) {
+			}
+		}
+		return list;
 	}
 }
