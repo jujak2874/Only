@@ -234,6 +234,7 @@
 	}
 	.choice_type {
 		cursor: pointer;
+		margin-right: 10px;
 	}
 	ul, li {
 		list-style-type: none;
