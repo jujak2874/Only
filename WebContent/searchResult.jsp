@@ -1,3 +1,4 @@
+<%@page import="service.Follow"%>
 <%@page import="java.util.List"%>
 <%@page import="dto.Member"%>
 <%@page import="java.util.ArrayList"%>
@@ -11,8 +12,24 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/timeline.js"></script>
+<script type="text/javascript" src="js/search.js"></script>
 <script type="text/javascript">
+	$(function() {
+		$('#follow').click(function() {
+			//var userid =  $(this).data("followid");
+			//var followid =  $(this).attr("data-followid");
+			alert(userid);
+			var sendData = "userid2="+userid;
+			console.log(userid);
+			$.post('follow.jsp', sendData, function(data) {
+				//$('#disp').html(data);
+			});
+		});
+	});
 	
+	
+	
+		
 </script>
 <link rel="stylesheet" type="text/css" href="css/timeline.css">
 <link rel="stylesheet" type="text/css" href="css/search.css">
@@ -44,44 +61,58 @@
 				%>
 				<li class="search_result">
 					<div class="search_profile">
-						<table>
+						<table width=100%>
 							<tr>
-								<td valign="middle">
-								<img alt=''
-									src='<%=application.getContextPath() + "/" + (member.getProfile_image())%>'>
+								<td valign="middle" width="10%"><img alt=''
+									src='<%=application.getContextPath() + (member.getProfile_image())%>'>
 								</td>
-								<td valign="middle"><h3><%=member.getUsername()%></h3></td>
+								<td valign="middle" align="left">
+								<a href="#" class="test" data-userid="<%=member.getUserid()%>"><h3><%=member.getUsername()%></h3>
+									<div class="hide" id="rmenu">
+										<ul>
+											<li><a href="#" id="chat">Visit</a></li>
+											<li><a href="#" id="follow" data-followid="<%=member.getUserid()%>"><span id="followText">Follow</span></a></li>
+											<li><a href="#" id="chat">Send Message</a></li>
+										</ul>
+									</div>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<hr><%=member.getEmail()%><br> 
+									<%=member.getProfile_image()%><br>
+									<%=member.getBirth()%><br>
+									<hr>
+								</td>
 							</tr>
 						</table>
-					<hr><%=member.getEmail()%><br>
-					<hr><%=member.getProfile_image()%><br> <%=member.getBirth()%><br>
-					<hr>
-		</div>
-		</li>
+					</div>
+				</li>
 
-		<%
-			}
-			}
-		%>
-		</ol>
-		<!-- 포스트 뷰 끝 -->
-	</div>
-	<!-- 포스트작성 / 뷰 끝 -->
-	<!-- aside 부분 / *팔로우 추천, 광고등 -->
-	<div class="timeline_aside">
-		<div class="page_margin"></div>
-		<div class="aside_follow">
-			<h3>팔로우 추천 테스트</h3>
-			<hr>
-			내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
+				<%
+					}
+					}
+				%>
+			</ol>
+			<!-- 포스트 뷰 끝 -->
 		</div>
-		<div class="aside_interested">
-			<h3>내 관심사 테스트</h3>
-			<hr>
-			내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
+		<!-- 포스트작성 / 뷰 끝 -->
+		<!-- aside 부분 / *팔로우 추천, 광고등 -->
+		<div class="timeline_aside">
+			<div class="page_margin"></div>
+			<div class="aside_follow">
+				<h3>팔로우 추천 테스트</h3>
+				<hr>
+				내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
+			</div>
+			<div class="aside_interested">
+				<h3>내 관심사 테스트</h3>
+				<hr>
+				내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
+			</div>
 		</div>
-	</div>
-	<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
+		<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
 	</div>
 	<!-- 내용 들어갈 부분 끝 -->
 </body>

@@ -32,16 +32,51 @@
 	padding-top: 5px;
 }
 
-.search_result .search_profile{
+.search_result .search_profile {
 	display: block;
 }
 
-.search_result .search_profile img{
-	height:100%;
+.search_result .search_profile img {
+	/* height:100%; */
 	width: 40px;
-	float:left;
+	float: left;
+	vertical-align: middle;
+	visibility: visible;
+}
+
+.search_result .search_profile h3 {
 	vertical-align: middle;
 }
-.search_result .search_profile h3{
-	vertical-align: middle;
+
+.show {
+	z-index: 1000;
+	position: absolute;
+	background-color: #ffffff;
+	border: 1px solid #c0c0c0;
+	/* padding: 2px; */
+	display: block;
+	margin: 0;
+	list-style-type: none;
+	list-style: none;
+}
+
+.hide {
+	display: none;
+}
+
+.show ul {
+	-webkit-padding-start: 2em;
+}
+
+.show li {
+	list-style: none;
+}
+
+.show a {
+	border: 0 !important;
+	text-decoration: none;
+}
+
+.show a:hover {
+	text-decoration: underline !important;
 }
