@@ -1,3 +1,4 @@
+<%@page import="dao.MemberDao"%>
 <%@page import="signup.SignUpDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -12,11 +13,11 @@
 		request.setCharacterEncoding("utf-8");
 		String member_id = request.getParameter("id");
 		System.out.println(member_id);
-		SignUpDao dao = SignUpDao.getInstance();
+		MemberDao dao = MemberDao.getInstance();
 		int result = dao.checkId(member_id);
 	%>
 	<ul>
-		<li><%=result %></li>
+		<li><%=result%></li>
 	</ul>
 </body>
 </html>

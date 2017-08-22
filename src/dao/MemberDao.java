@@ -32,9 +32,9 @@ public class MemberDao {
 			Context ctx = new InitialContext();
 			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/OracleDB");
 			con = ds.getConnection();
-			System.out.println("DB¿¬°á¼º°ø");
+			System.out.println("DBï¿½ï¿½ï¿½á¼ºï¿½ï¿½");
 		} catch (Exception e) {
-			System.out.println("DB¿¬°á½ÇÆÐ");
+			System.out.println("DBï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			System.out.println(e.getMessage());
 		}
 		return con;
@@ -44,9 +44,9 @@ public class MemberDao {
 		int result = -1;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		// Å»ÅðÀÏ, ÀüÈ­¹øÈ£ , »ýÀÏÀº °¡ÀÔ½Ã ¼öÁýÇÏÁö ¾ÊÀ½. = null
-		// ±âº»ÀÌ¹ÌÁö = 0(img url ³ÖÀ» °Í)
-		// status 0 = Å»Åð, 1 = »ç¿ëÁß, 2 = ÀÏ½ÃÁ¤Áö(ºñÈ°¼ºÈ­)
+		// Å»ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½È­ï¿½ï¿½È£ , ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. = null
+		// ï¿½âº»ï¿½Ì¹ï¿½ï¿½ï¿½ = 0(img url ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
+		// status 0 = Å»ï¿½ï¿½, 1 = ï¿½ï¿½ï¿½ï¿½ï¿½, 2 = ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½È°ï¿½ï¿½È­)
 		String sql = "insert into MEMBER values (?,?,?,?,1,sysdate,sysdate,'../img_all/default_profile.png',null,null)";
 		try {
 			con = getConnection();
@@ -57,10 +57,10 @@ public class MemberDao {
 			pstmt.setString(4, member.getEmail());
 			result = pstmt.executeUpdate();
 			if (result > 0) {
-				System.out.println("°¡ÀÔ¼º°ø..");
+				System.out.println("ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½..");
 			}
 		} catch (Exception e) {
-			System.out.println("°¡ÀÔ½ÇÆÐ..");
+			System.out.println("ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½..");
 			System.out.println(e.getMessage());
 		} finally {
 			try {
@@ -91,26 +91,26 @@ public class MemberDao {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 
-			// ¾ÆÀÌµð¿Í ÆÐ½º¿öµå°¡ ÀÏÄ¡ÇÏ´ÂÁö °Ë»ç
+			// ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½å°¡ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 			if (rs.next()) {
 				dbPass = rs.getString("password");
 				if (dbPass.equals(pwd)) {
 					result = 1;
-					System.out.println("·Î±×ÀÎ ¼º°ø");
-					// ·Î±×ÀÎ ¼º°ø = 1
+					System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+					// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ = 1
 				} else {
 					result = 0;
-					System.out.println("·Î±×ÀÎ ½ÇÆÐ ºñ¹Ð¹øÈ£ Æ²¸²");
-					// ÆÐ½º¿öµå°¡ ´Ù¸¦¶§ = 0
+					System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ Æ²ï¿½ï¿½");
+					// ï¿½Ð½ï¿½ï¿½ï¿½ï¿½å°¡ ï¿½Ù¸ï¿½ï¿½ï¿½ = 0
 				}
 			} else {
 				result = -1;
-				System.out.println("·Î±×ÀÎ ½ÇÆÐ ¾ÆÀÌµð ¾øÀ½");
-				// ¾ÆÀÌµð°¡ ´Ù¸¦¶§ = -1
+				System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½");
+				// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ = -1
 			}
 			return result;
 		} catch (Exception e) {
-			System.out.println("·Î±×ÀÎ ½ÇÆÐ");
+			System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			System.out.println(e.getMessage());
 		} finally {
 			try {
@@ -150,11 +150,11 @@ public class MemberDao {
 				member.setModifed(rs.getDate("modified"));
 				member.setPassword(rs.getString("password"));
 			} else {
-				System.out.println("¸â¹ö ºÒ·¯¿À±â ½ÇÆÐ");
-				// ¾ÆÀÌµð°¡ ´Ù¸¦¶§ = -1
+				System.out.println("ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+				// ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ = -1
 			}
 		} catch (Exception e) {
-			System.out.println("¸â¹ö ºÒ·¯¿À±â ½ÇÆÐ");
+			System.out.println("ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			System.out.println(e.getMessage());
 		} finally {
 			try {
@@ -200,7 +200,7 @@ public class MemberDao {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("°Ë»ö ½ÇÆÐÇßÀ½");
+			System.out.println("ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			System.out.println(e.getMessage());
 		} finally {
 			try {
