@@ -84,27 +84,22 @@ public class PostDao {
 		return result;
 	}
 
-	public String viewPost(HttpServletRequest request, Post post) {
-//		List<Post> list = new ArrayList<>();
+	public ArrayList<Post> viewPost() {
+		ArrayList<Post> list = new ArrayList<>();
 		ResultSet rs = null;
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("sessionId");
-		String pid = (String) request.getAttribute("pid");
-		String text = (String) request.getAttribute("text");
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "select mid,text,created from post where pid=?";
+		String sql = "select mid,text,created from post where pid=40";
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, pid);
-			System.out.println(pid);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
+				Post post = new Post();
 				post.setMember_id(rs.getString("mid"));
 				post.setText(rs.getString("text"));
 				post.setWrite_date(rs.getDate("created"));
-//				list.add(post);
+				list.add(post);
 			}
 		} catch (Exception e) {
 		} finally {
@@ -121,6 +116,6 @@ public class PostDao {
 			} catch (Exception e) {
 			}
 		}
-		return pid+text;
+		return list;
 	}
 }

@@ -47,11 +47,11 @@ $(function() {
 });
 // textarea focus일 때 작성폼 열기 끝
 // infinite scroll 구현
-var page = 7;
+var page = 4;
 $(window)
 		.scroll(
 				function() {
-					if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+					if ($(window).scrollTop()+$(window).height() == $(document).height()) {
 						$('.post_view_box')
 								.append(
 										'<li class="infinite_scroll">'
@@ -63,3 +63,39 @@ $(window)
 					}
 				});
 // infinite scroll 끝
+$(function(){
+	
+$(".heart").on('click', function(){
+	  $(this).toggleClass('is_animating');
+	});
+	$(".heart").on('animationend', function(){
+	  $(this).toggleClass('is_animating');
+		$(this).toggleClass('bg-position');
+	});
+});
+
+function dEI(elementID){
+	return document.getElementById(elementID);
+}
+
+function openLayer(IdName, tpos, lpos){
+	var pop = dEI(IdName);
+	pop.style.top = tpos + "px";
+	pop.style.left = lpos + "%";
+	pop.style.display = "block";
+
+	var wrap = dEI("wrapper");
+	var reservation = document.createElement("div");
+	reservation.setAttribute("id", "deemed");
+	wrap.appendChild(reservation);
+}
+
+//레이어 팝엽 닫기
+function closeLayer( IdName ){
+	var pop = dEI(IdName);
+	pop.style.display = "none";
+	var clearEl=parent.dEI("deemed");
+	var momEl = parent.dEI("wrapper");
+	momEl.removeChild(clearEl);
+}
+

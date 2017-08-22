@@ -1,3 +1,5 @@
+<%@page import="post.Post"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="post.PostDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -15,7 +17,9 @@
 	<jsp:setProperty property="*" name="post" />
 	<%
 		String text = request.getParameter("text");
+		String mid = request.getParameter("member_id");
 		request.setAttribute("text", text);
+		request.setAttribute("mid", mid);
 		String sessionId = (String) session.getAttribute("sessionId");
 		System.out.println("세션아이디는" + sessionId);
 		PostDao dao = PostDao.getInstance();
@@ -37,9 +41,6 @@
 	</script>
 	<%
 		}
-	%>
-	<%
-		post.
 	%>
 </body>
 </html>

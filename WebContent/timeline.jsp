@@ -1,4 +1,6 @@
 <%@page import="post.PostDao"%>
+<%@page import="post.Post"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%!boolean isset(String str) {
@@ -21,7 +23,8 @@
 	/* 검색창 focus 상태에서 검색이력 view */
 	/* 검색창 focus 상태에서 검색이력 view 끝 */
 </script>
-<link rel="stylesheet" type="text/css" href="css/timeline.css">
+<link rel="stylesheet" type="text/css" href="css/timelineFull.css">
+<link rel="stylesheet" type="text/css" href="css/timelineMobile.css">
 </head>
 <%
 	if (!isset((String) session.getAttribute("sessionId"))) {
@@ -35,6 +38,16 @@
 		System.out.println("세션받아옴");
 %>
 <body>
+	<div id="wrapper">
+		<div id="layerPop">
+			<h3>공유하기</h3>
+			<hr>
+			테스트
+			<hr>
+			테스트
+			<a href="#" onclick="closeLayer('layerPop')" class="close">close</a>
+		</div>
+	</div>
 	<!-- 상단고정바 시작 -->
 	<div class="header">
 		<!-- 상단고정바 로고 -->
@@ -144,24 +157,28 @@
 					<h3>답변입니다</h3>
 				</li>
 				<li class="infinite_scroll">
-					<h3><%=mid%></h3>
+					<h3>2번포스트</h3>
 					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+					<hr>
+					<div class="reactBtn">
+						<div class='heart'></div>
+						<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
+					</div>
+					<div class="commentForm">
+						<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기" class="comment_textarea"></textarea>
+					</div>
 				</li>
 				<li class="infinite_scroll">
 					<h3>3번포스트</h3>
 					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-				</li>
-				<li class="infinite_scroll">
-					<h3>4번포스트</h3>
-					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-				</li>
-				<li class="infinite_scroll">
-					<h3>5번포스트</h3>
-					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-				</li>
-				<li class="infinite_scroll">
-					<h3>6번포스트</h3>
-					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+					<hr>
+					<div class="reactBtn">
+						<div class='heart'></div>
+						<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
+					</div>
+					<div class="commentForm">
+						<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기" class="comment_textarea"></textarea>
+					</div>
 				</li>
 			</ol>
 			<!-- 포스트 뷰 끝 -->
@@ -184,8 +201,8 @@
 		<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
 	</div>
 	<!-- 내용 들어갈 부분 끝 -->
+	<%
+		}
+	%>
 </body>
-<%
-	}
-%>
 </html>
