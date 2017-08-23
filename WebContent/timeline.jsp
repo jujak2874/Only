@@ -25,6 +25,7 @@
 </script>
 <link rel="stylesheet" type="text/css" href="css/timelineFull.css">
 <link rel="stylesheet" type="text/css" href="css/timelineMobile.css">
+<script type="text/javascript" src="js/search.js"></script>
 </head>
 <%
 	if (!isset((String) session.getAttribute("sessionId"))) {
@@ -58,6 +59,7 @@
 			<div class="page_margin"></div>
 			<!-- 테스트 -->
 			<!--  -->
+			<div id="main_container">
 			<ol class="post_view_box">
 				<li class="type_choice_box" id="infinite_container">
 					<form action="post.jsp">
@@ -111,6 +113,7 @@
 					</div>
 				</li>
 			</ol>
+			</div>
 			<!-- 포스트 뷰 끝 -->
 		</div>
 		<!-- 포스트작성 / 뷰 끝 -->
@@ -135,5 +138,4 @@
 		}
 	%>
 </body>
->>>>>>> branch 'master' of https://github.com/jujak2874/Only.git
 </html>
