@@ -25,7 +25,7 @@
 </script>
 <link rel="stylesheet" type="text/css" href="css/timelineFull.css">
 <link rel="stylesheet" type="text/css" href="css/timelineMobile.css">
-<script type="text/javascript" src="js/search.js"></script>
+<link rel="stylesheet" type="text/css" href="css/search.css">
 </head>
 <%
 	if (!isset((String) session.getAttribute("sessionId"))) {

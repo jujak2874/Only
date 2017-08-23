@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +41,14 @@ System.out.println("header");
 		</form>
 	</div>
 	<!-- 서치 끝 -->
+	<div class="header_profile">
+			<div class="header_profile_wraper" data-click="profile_icon">
+				<a id="user_profile_url" href="${sessionId }"> 
+				<img style="vertical-align:middle" src=".${profile_img }">
+  				<span>${name }</span> 
+				</a>
+			</div>
+		</div>
 </div>
 <!-- 상단고정바 끝 -->
 </body></html>
