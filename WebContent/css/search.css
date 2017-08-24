@@ -80,3 +80,41 @@
 .show a:hover {
 	text-decoration: underline !important;
 }
+
+.header_profile {
+	width: 40%;
+	display: inline-block;
+	float: right;
+	left: 80px;
+	top: 10px;
+}
+
+.header_profile .header_profile_wraper {
+	margin: 7px 0 8px 0;
+}
+
+.header_profile a {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: transparent;
+	color: #ffffff;
+	display: inline-block;
+	font-size: 17px;
+	-moz-osx-font-smoothing: grayscale;
+	font-weight: bold;
+	height: 27px;
+	line-height: 28px;
+	padding: 0 10px 1px;
+	position: relative;
+	text-decoration: none;
+	vertical-align: top;
+	white-space: nowrap;
+}
+
+.header_profile a img {
+	height: 40px;
+}
+
+span {
+    font-family: inherit;
+}
+

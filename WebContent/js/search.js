@@ -1,6 +1,7 @@
 var userid = 0;
 
 $(document).ready(function() {
+
 	/* 검색결과 오른쪽 마우스 이벤트 등록 */
 	if ($("#test").addEventListener) {
 		$("#test").addEventListener('contextmenu', function(e) {
@@ -19,18 +20,18 @@ $(document).ready(function() {
 			// alert("contextmenu"+event)
 
 			userid = $(this).data("userid");
-			
+
 			console.log(userid);
 			var sendData = "userid2=" + userid;
 			$.post('followChk.jsp', sendData, function(data) {
 				console.log("data true: " + data.indexOf("true"));
 				console.log("data false: " + data.indexOf("false"));
 
-				if (data.indexOf("true")>0) {
+				if (data.indexOf("true") > 0) {
 					console.log("unfollow");
 					$('#followText').text("Unfollow");
 
-				} else if (data.indexOf("false")>0) {
+				} else if (data.indexOf("false") > 0) {
 					console.log("follow");
 					$('#followText').text("Follow");
 				}
@@ -91,3 +92,49 @@ function mouseY(evt) {
 		return null;
 	}
 }
+
+// 검색 자동완성
+var check = false;
+var lastKeyword = '';
+var loopSearchKeyword = false;
+function runSearch() {
+	if (check == false) {
+		setTimeout("sendSearch();", 200);
+		loopSearchKeyword = true;
+	}
+	check = true;
+}
+function sendSearch() {
+	if (loopSearchKeyword == false) {
+		return;
+	}
+	var keyword = $('.searchTerm').val();
+	if (keyword == '') {
+		lastKeyword = '';
+	} else if (keyword != lastKeyword) {
+		lastKeyword = keyword;
+		if (keyword != '') {
+			var params = "searchTerm=" + encodeURIComponent(keyword);
+			console.log(params);
+			
+			$.ajax({ url:"search.jsp",
+		          type:"POST",
+		          data: params,
+		          success:function(data){
+		        	  var start = data.indexOf('<body>');
+		        	  var end = data.indexOf('</body>');
+		        	  var searchReturn = data.slice(start + 6, end);
+		        	  console.log(data);
+						$("#searchResult").html( data );
+						
+					},
+					error: function() {
+						console.log("자동완성기능 에러");
+					}
+			});
+		} else {
+		}
+	}
+	setTimeout("sendSearch();", 200);
+}
+
