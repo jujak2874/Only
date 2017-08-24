@@ -30,7 +30,7 @@
 
 		}
 
-		String fullpath = folder + "\\" + fileName;
+		String fullpath = folder + "" + fileName;
 	%>
 </body>
 </html>
