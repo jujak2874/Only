@@ -41,10 +41,10 @@ $(window)
 // infinite scroll 끝
 // Like 버튼 활성화
 $(function(){
-$(".heart").on('click', function(){
+$("ol").on('click','.heart', function(){
 	  $(this).toggleClass('is_animating');
 	});
-	$(".heart").on('animationend', function(){
+	$("ol").on('animationend','.heart', function(){
 	  $(this).toggleClass('is_animating');
 		$(this).toggleClass('bg-position');
 	});

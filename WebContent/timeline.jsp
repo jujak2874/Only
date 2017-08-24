@@ -1,5 +1,3 @@
-<%@page import="post.PostDao"%>
-<%@page import="post.Post"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -59,64 +57,66 @@
 			<!-- 테스트 -->
 			<!--  -->
 			<div id="main_container">
-			<ol class="post_view_box">
-				<li class="type_choice_box" id="infinite_container">
-					<form action="" method="post" enctype="multipart/form-data">
-						<input type="file" name="imageUpload" style='display: none;'>
-						<input type="file" name="videoUpload" style='display: none;'>
-					</form>
-					<form action="post.jsp">
-						<textarea rows="1" cols="1" class="type_choice_textarea"
-							name="text" placeholder="오늘은 무슨일이 있었나요?"></textarea>
-						<div class="write_type_choice">
-							<a class="choice_type"> <img alt=""
-								src="img_timeline/picture.svg"
-								class="img_hide img_hidden type_photo" width="30px" border='0'
-								onclick='document.all.imageUpload.click();'>
-							</a> <a class="choice_type"> <img
-								src='img_timeline/video-camera.svg'
-								class="img_hide img_hidden img_video" width="30px" border='0'
-								onclick='document.all.videoUpload.click();'>
-							</a>
+				<ol class="post_view_box">
+					<li class="type_choice_box" id="infinite_container">
+						<form action="postWrite.do" method="post"
+							enctype="multipart/form-data">
+							<input type="hidden"
+								value="<%=(String) session.getAttribute("sessionId")%>"
+								name="member_id">
+							<textarea rows="1" cols="1" class="type_choice_textarea"
+								name="text" placeholder="오늘은 무슨일이 있었나요?"></textarea>
+							<div class="write_type_choice">
+								<a class="choice_type"> <img alt=""
+									src="img_timeline/picture.svg"
+									class="img_hide img_hidden type_photo" width="30px" border='0'
+									onclick='document.all.imageUpload.click();'> <input
+									type="file" name="imageUpload" style='display: none;' accept="image/*">
+								</a> <a class="choice_type"> <img
+									src='img_timeline/video-camera.svg'
+									class="img_hide img_hidden img_video" width="30px" border='0'
+									onclick='document.all.videoUpload.click();'> <input
+									type="file" name="videoUpload" style='display: none;' accept="video/*">
+								</a>
+							</div>
+							<button type="submit" class="post_submit_btn">작성</button>
+						</form>
+					</li>
+					<!-- 타입 선택 후 끝 -->
+					<!-- 포스트 뷰 시작 -->
+					<li class="infinite_scroll">
+						<h3>1번포스트</h3>
+						<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+						<hr>
+						<h3>답변입니다</h3>
+					</li>
+					<li class="infinite_scroll">
+						<h3>2번포스트</h3>
+						<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+						<hr>
+						<div class="reactBtn">
+							<div class='heart'></div>
+							<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
 						</div>
-						<button type="submit" class="post_submit_btn">작성</button>
-					</form>
-				</li>
-				<!-- 타입 선택 후 끝 -->
-				<!-- 포스트 뷰 시작 -->
-				<li class="infinite_scroll">
-					<h3>1번포스트</h3>
-					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-					<hr>
-					<h3>답변입니다</h3>
-				</li>
-				<li class="infinite_scroll">
-					<h3>2번포스트</h3>
-					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-					<hr>
-					<div class="reactBtn">
-						<div class='heart'></div>
-						<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
-					</div>
-					<div class="commentForm">
-						<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
-							class="comment_textarea"></textarea>
-					</div>
-				</li>
-				<li class="infinite_scroll">
-					<h3>3번포스트</h3>
-					<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-					<hr>
-					<div class="reactBtn">
-						<div class='heart'></div>
-						<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
-					</div>
-					<div class="commentForm">
-						<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
-							class="comment_textarea"></textarea>
-					</div>
-				</li>
-			</ol>
+						<div class="commentForm">
+							<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
+								class="comment_textarea"></textarea>
+						</div>
+					</li>
+					<li class="infinite_scroll">
+						<h3>3번포스트</h3>
+						<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+						<hr>
+						<div class="reactBtn">
+							<div class='heart'></div>
+							<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
+						</div>
+						<div class="commentForm">
+							<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
+								class="comment_textarea"></textarea>
+						</div>
+					</li>
+				</ol>
 			</div>
 			<!-- 포스트 뷰 끝 -->
 		</div>
