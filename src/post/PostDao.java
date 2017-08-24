@@ -47,7 +47,7 @@ public class PostDao {
 		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into POST " + "values(seq_pid.nextval,sysdate,0,?,?,?,?,?,?,null,0,null)";
+		String sql = "insert into POST " + "values(seq_pid.nextval,sysdate,0,?,?,?,?,null,0)";
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -55,14 +55,10 @@ public class PostDao {
 			pstmt.setString(1, null);
 			// text
 			pstmt.setString(2, text);
-			// videoURL
+			// URL
 			pstmt.setString(3, null);
-			// imageURL
-			pstmt.setString(4, null);
-			// audioURL
-			pstmt.setString(5, null);
 			// mid
-			pstmt.setString(6, id);
+			pstmt.setString(4, id);
 			result = pstmt.executeUpdate();
 			System.out.println(id);
 			System.out.println(text);

@@ -44,8 +44,7 @@
 			<hr>
 			테스트
 			<hr>
-			테스트
-			<a href="#" onclick="closeLayer('layerPop')" class="close">close</a>
+			테스트 <a href="#" onclick="closeLayer('layerPop')" class="close">close</a>
 		</div>
 	</div>
 	<!-- 상단고정바 시작 -->
@@ -60,19 +59,22 @@
 			<!--  -->
 			<ol class="post_view_box">
 				<li class="type_choice_box" id="infinite_container">
+					<form action="" method="post" enctype="multipart/form-data">
+						<input type="file" name="imageUpload" style='display: none;'>
+						<input type="file" name="videoUpload" style='display: none;'>
+					</form>
 					<form action="post.jsp">
 						<textarea rows="1" cols="1" class="type_choice_textarea"
 							name="text" placeholder="오늘은 무슨일이 있었나요?"></textarea>
 						<div class="write_type_choice">
-							<a class="choice_type">
-								<img alt="" src="img_timeline/picture.svg" class="img_hide img_hidden type_photo" 
-								width="30px" border='0' onclick='document.all.imageUpload.click();'>
-								<input type="file" name="imageUpload" style='display: none;'>
-							</a> 
-							<a class="choice_type"> 
-								<img src='img_timeline/video-camera.svg' class="img_hide img_hidden img_video" 
-								width="30px" border='0' onclick='document.all.videoUpload.click();'> 
-								<input type="file" name="videoUpload" style='display: none;'>
+							<a class="choice_type"> <img alt=""
+								src="img_timeline/picture.svg"
+								class="img_hide img_hidden type_photo" width="30px" border='0'
+								onclick='document.all.imageUpload.click();'>
+							</a> <a class="choice_type"> <img
+								src='img_timeline/video-camera.svg'
+								class="img_hide img_hidden img_video" width="30px" border='0'
+								onclick='document.all.videoUpload.click();'>
 							</a>
 						</div>
 						<button type="submit" class="post_submit_btn">작성</button>
@@ -95,7 +97,8 @@
 						<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
 					</div>
 					<div class="commentForm">
-						<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기" class="comment_textarea"></textarea>
+						<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
+							class="comment_textarea"></textarea>
 					</div>
 				</li>
 				<li class="infinite_scroll">
@@ -107,7 +110,8 @@
 						<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
 					</div>
 					<div class="commentForm">
-						<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기" class="comment_textarea"></textarea>
+						<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
+							class="comment_textarea"></textarea>
 					</div>
 				</li>
 			</ol>
