@@ -25,7 +25,7 @@
       <!-- 상단고정바 로고 -->
       <div class="head_logo">
          <h1 class="head_logo">
-            <a id="logo_href" href="#"> <img id="logo_top" alt=""
+            <a id="logo_href" href="postView.do"> <img id="logo_top" alt=""
                src="img_all/logo3.png">
             </a>
          </h1>
