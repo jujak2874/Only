@@ -19,7 +19,7 @@ public class PostView implements CommandProcess {
 		String pid = request.getParameter("pid");
 		String url = request.getParameter("url");
 		String text = request.getParameter("text");
-
+		
 		System.out.println("mid : " + mid + ", pid : " + pid + ", url : " + url);
 		if (result.size() > 0) {
 			request.setAttribute("pid", pid);
