@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+body{
+	background-color: #3f5068;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: center;
+}
+
 .search_view_box {
 	list-style-type: none;
 }
@@ -7,7 +17,7 @@
 .search_main {
 	width: 100%;
 	display: block;
-	background-color: #3f5068;
+	/* background-color: #3f5068; */
 	overflow: auto;
 }
 

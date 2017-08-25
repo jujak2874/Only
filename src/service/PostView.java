@@ -12,14 +12,14 @@ public class PostView implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-		String postView = request.getParameter("postView");
+		Post post = new Post();
 		PostDao dao = PostDao.getInstance();
-		List<Post> result = dao.postView(postView);
+		List<Post> result = dao.postView(post);
 		String mid = request.getParameter("member_id");
 		String pid = request.getParameter("pid");
 		String url = request.getParameter("url");
 		String text = request.getParameter("text");
-
+		
 		System.out.println("mid : " + mid + ", pid : " + pid + ", url : " + url);
 		if (result.size() > 0) {
 			request.setAttribute("pid", pid);

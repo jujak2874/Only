@@ -1,3 +1,33 @@
+<!--                                                                                                     
+                                                                                                    
+                                                                      
+                                                                      
+                                                                      
+                                                                      
+                                                                      
+         KeeeeD                             eee                       
+       eeeeeeeeeee                         Xee                        
+     eeeK       eee                        eee                        
+    eee          eeD                       ee                         
+   ee#           eeE    ee     yee        9e9        ee      Xee      
+  eee            ee     ee   #eeee        ee        ee5      ee       
+  ee            eee     ee  eeW ee       eee       Ee#      ,ee       
+ eee           eee     5e  ee   ee     9eeee       ee       ee        
+ eee          eee      ee,ee    ee   Eee  ee     zeee    GeeeX        
+  eey      zeee        eeeK     eeeeeeW   ee   Xee eeeeeee ee         
+   eeeeeeeeee          ee                 eeeeeeD   Xeeu   e#         
+    yeeee9                                 5zD            ee          
+                                                         ee,          
+                                                         ee           
+                                                        eeE           
+                                                                      
+                                                                      
+                                                                      
+         
+                                                                                                    
+                                                                                                    
+
+ -->
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="dto.Post"%>
 <%@page import="java.util.ArrayList"%>
@@ -95,8 +125,11 @@
 						<h3>답변입니다</h3>
 					</li>
 					<li class="infinite_scroll">
-						<h3></h3>
-						<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+						<h3>자민</h3>
+						<hr>
+						<br>테스트 하려고 한번 써봤어요~
+						<br>
+						<br>
 						<hr>
 						<div class="reactBtn">
 							<div class='heart'></div>
@@ -108,8 +141,16 @@
 						</div>
 					</li>
 					<li class="infinite_scroll">
-						<h3>3번포스트</h3>
-						<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
+						<h3>민규</h3>
+						<hr> 나도 테스트 한번 해보자~ <br><br> 
+							<img alt="" src="img_all/mainbg8.jpg"
+							style="height: 200px; width: 50%; display: inline;"><img
+							alt="" src="img_all/mainbg7.jpg"
+							style="height: 200px; width: 50%; display: inline;"><img
+							alt="" src="img_all/mainbg4.jpg"
+							style="height: 200px; width: 50%; display: inline;"><img
+							alt="" src="img_all/mainbg2.jpg"
+							style="height: 200px; width: 50%; display: inline;">
 						<hr>
 						<div class="reactBtn">
 							<div class='heart'></div>
