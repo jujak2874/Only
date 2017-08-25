@@ -32,7 +32,11 @@ public class PostWrite implements CommandProcess {
 			Post post = new Post();
 			post.setMember_id(member_id);
 			post.setText(text);
-			post.setUrl(fileFullPath);
+			if(fileName==null) {
+				post.setUrl(null);
+			}else {
+				post.setUrl(fileFullPath);
+			}
 			int result = dao.insertPost(post);
 			if (result > 0) {
 				System.out.println("작성성공");

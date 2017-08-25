@@ -75,19 +75,18 @@ public class PostDao {
 		return result;
 	}
 
-	public List<Post> postView(String pid) {
+	public List<Post> postView(Post post) {
 		List<Post> list = new ArrayList<Post>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from post where pid=?";
+		String sql = "select * from post, follow where userid1 = ? and userid = userid2 and status = y order by pid desc";
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, pid);
+			pstmt.setString(1, post.getMember_id());
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				Post post = new Post();
 				post.setPost_id(rs.getString("pid"));
 				post.setMember_id(rs.getString("member_id"));
 				post.setWrite_date(rs.getDate("created"));
