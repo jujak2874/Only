@@ -97,6 +97,12 @@
 		width: 100%;
 		display: block;
 		background-color: #3f5068;
+		background-repeat: no-repeat;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		background-position: center;
 		overflow: auto;
 	}
 	.timeline_post {
@@ -247,7 +253,7 @@
 		font-size: 14px;
 		vertical-align: middle;
 	}
-	.comment_textarea{
+	.comment_textarea {
 		margin-top: 0px;
 		resize: none;
 		color: black;
@@ -267,7 +273,7 @@
 		overflow: hidden;
 		margin-bottom: 0;
 	}
-	.comment_textarea:focus{
+	.comment_textarea:focus {
 		border: 3px solid #adbed8;
 		box-sizing: border-box;
 		font-color: #6c7f9b;
@@ -291,7 +297,7 @@
 		display: inline-block;
 		float: left;
 	}
-	.comments{
+	.comments {
 		position: relative;
 		cursor: pointer;
 		background-image: url("../img_timeline/chat.svg");
@@ -302,23 +308,24 @@
 		margin-bottom: 15px;
 		float: left;
 	}
-	.share{ 	
+	.share {
 		position: relative;
 		cursor: pointer;
 		height: 20px;
 		width: 20px;
 		display: inline-block;
 	}
-	.share_out{
-		background-image: url("https://cdn3.iconfinder.com/data/icons/essentials-vol-1-1/512/Link-256.png");
+	.share_out {
+		background-image:
+			url("https://cdn3.iconfinder.com/data/icons/essentials-vol-1-1/512/Link-256.png");
 		background-repeat: no-repeat;
-		background-size:25px;
-		background-position:center;
-		position:relative;
-		cursor:pointer;
-		display:inline-block;
-		height:40px;
-		width:40px;
+		background-size: 25px;
+		background-position: center;
+		position: relative;
+		cursor: pointer;
+		display: inline-block;
+		height: 40px;
+		width: 40px;
 		float: left;
 	}
 	.is_animating {
@@ -327,44 +334,44 @@
 	.bg-position {
 		background-position: right;
 	}
-	#layerPop{
-		width:36.3%; 
-		height:200px;
-		position:fixed; 
-		padding:10px; 
-		background:#fff; 
-		display:none; 
-		z-index:100; 
-		margin-left:40px; 
+	#layerPop {
+		width: 36.3%;
+		height: 200px;
+		position: fixed;
+		padding: 10px;
+		background: #fff;
+		display: none;
+		z-index: 100;
+		margin-left: 40px;
 		box-sizing: border-box;
 	}
-	#layerPop .close{
-		position:absolute; 
-		bottom:5px;
-		right:5px;
+	#layerPop .close {
+		position: absolute;
+		bottom: 5px;
+		right: 5px;
 	}
-	#deemed{
-		width:100%; 
-		height:100%; 
-		position:fixed; 
-		top:0; 
-		left:0; 
-		filter:Alpha(opacity=50);
-		opacity:0.5; 
-		background:#000; 
-		z-index:1;
+	#deemed {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		filter: Alpha(opacity = 50);
+		opacity: 0.5;
+		background: #000;
+		z-index: 1;
 	}
-	hr{
-	margin-bottom: 3px;
+	hr {
+		margin-bottom: 3px;
 	}
 	/* .heart:hover {
  background-position:right;
 } */
-	@keyframes heart-burst {
-		from {
-			background-position: left;
-		}
-		to {
-			background-position: right;
-		}
+	@
+	keyframes heart-burst {from { background-position:left;
+		
 	}
+	to {
+		background-position: right;
+	}
+}
