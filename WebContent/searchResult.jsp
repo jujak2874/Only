@@ -50,7 +50,7 @@
 			<!--  -->
 			<ol class="search_view_box">
 				<!-- 타입 선택 후 끝 -->
-				<!-- 포스트 뷰 시작 -->
+				<li><span style="color: #ffffff; font-weight: bold;">Search Result</span><hr></li>
 				<%
 					if (request.getAttribute("searchResult") == null) {
 				%>
