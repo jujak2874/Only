@@ -58,14 +58,14 @@ public class FollowDao {
 
 			// Follow 이력이 존재하는지 검사
 			if (rs.next()) {
-				System.out.println(userid1+", " + userid2 + "팔로잉 이력 존재");
+				System.out.println(userid1 + ", " + userid2 + "팔로잉 이력 존재");
 				status = rs.getString("status");
 				if (status.equals("y")) {
 					result = 1;
 					// 로그인 성공 = 1
 				} else {
 					result = 0;
-					//System.out.println("언팔중입니다");
+					// System.out.println("언팔중입니다");
 					// 패스워드가 다를때 = 0
 				}
 			} else {
@@ -96,16 +96,16 @@ public class FollowDao {
 		String sql = null;
 		System.out.println("follow.. 실행");
 		int status = getFollowStatus(userid1, userid2);
-		if(status < 0){
+		if (status < 0) {
 			System.out.println("add new following");
 			sql = "insert into FOLLOW values (?,?,'y')";
-		} else if(status==0){
+		} else if (status == 0) {
 			System.out.println("change to follow");
 			sql = "update FOLLOW set status = 'y' where userid1 = ? and userid2 = ?";
-		} else if(status==1) { // 팔로잉 이력이 존재할 경우
+		} else if (status == 1) { // 팔로잉 이력이 존재할 경우
 			System.out.println("change to unfollow");
 			sql = "update FOLLOW set status = 'n' where userid1 = ? and userid2 = ?";
-		} 
+		}
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -129,5 +129,93 @@ public class FollowDao {
 			}
 		}
 		return result;
+	}
+
+	public List<Member> getFollowees(String id) {
+		List<Member> list = new ArrayList<Member>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		System.out.println("getFollowees.. 실행: " + id);
+
+		sql = "select * from member where userid in (select userid1 from follow where userid2 = ?)";
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				do {
+					System.out.println(rs.getString("username"));
+					Member member = new Member();
+					member.setUserid(rs.getString("userid"));
+					member.setUsername(rs.getString("username"));
+					member.setProfile_image(rs.getString("profile_image"));
+					member.setEmail(rs.getString("email"));
+					list.add(member);
+				} while (rs.next());
+			} else {
+				System.out.println("followee 없음");
+			}
+		} catch (Exception e) {
+			System.out.println("Followee 가져오기 실패..");
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return list;
+	}
+
+	public List<Member> getFollowers(String id) {
+		List<Member> list = new ArrayList<Member>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		System.out.println("getFollowers.. 실행: " + id);
+
+		sql = "select * from Member where userid in (select userid2 from follow where userid1 = ?)";
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				do {
+					System.out.println(rs.getString("username"));
+					Member member = new Member();
+					member.setUserid(rs.getString("userid"));
+					member.setUsername(rs.getString("username"));
+					member.setProfile_image(rs.getString("profile_image"));
+					member.setEmail(rs.getString("email"));
+					list.add(member);
+				} while (rs.next());
+			} else {
+				System.out.println("follower 없음");
+			}
+		} catch (Exception e) {
+			System.out.println("Follower 가져오기 실패..");
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return list;
 	}
 }
