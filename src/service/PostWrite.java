@@ -21,9 +21,10 @@ public class PostWrite implements CommandProcess {
 			MultipartRequest multi = new MultipartRequest(request, savePath, size, "utf-8", new DefaultFileRenamePolicy());
 			String text = multi.getParameter("text");
 			String member_id = multi.getParameter("member_id");
+			// 파일이름, 중복되는 파일이름은 뒤에 숫자가 늘어남
 			String fileName = multi.getFilesystemName("imageUpload");
+			// 파일 URL
 			String fileFullPath = savePath + "/" + fileName;
-
 			System.out.println("text : " + text);
 			System.out.println("member_id : " + member_id);
 			System.out.println("url : " + fileFullPath);

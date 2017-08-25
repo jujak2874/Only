@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="dto.Post"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -71,12 +73,14 @@
 									src="img_timeline/picture.svg"
 									class="img_hide img_hidden type_photo" width="30px" border='0'
 									onclick='document.all.imageUpload.click();'> <input
-									type="file" name="imageUpload" style='display: none;' accept="image/*">
+									type="file" name="imageUpload" style='display: none;'
+									accept="image/*">
 								</a> <a class="choice_type"> <img
 									src='img_timeline/video-camera.svg'
 									class="img_hide img_hidden img_video" width="30px" border='0'
 									onclick='document.all.videoUpload.click();'> <input
-									type="file" name="videoUpload" style='display: none;' accept="video/*">
+									type="file" name="videoUpload" style='display: none;'
+									accept="video/*">
 								</a>
 							</div>
 							<button type="submit" class="post_submit_btn">작성</button>
@@ -91,7 +95,7 @@
 						<h3>답변입니다</h3>
 					</li>
 					<li class="infinite_scroll">
-						<h3>2번포스트</h3>
+						<h3></h3>
 						<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
 						<hr>
 						<div class="reactBtn">

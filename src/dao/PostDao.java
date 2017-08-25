@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -51,7 +53,7 @@ public class PostDao {
 			// text
 			pstmt.setString(2, post.getText());
 			// URL
-			pstmt.setString(3, null);
+			pstmt.setString(3, post.getUrl());
 			// mid
 			pstmt.setString(4, post.getMember_id());
 			result = pstmt.executeUpdate();
@@ -73,36 +75,33 @@ public class PostDao {
 		return result;
 	}
 
-	public ArrayList<Post> viewPost() {
-		ArrayList<Post> list = new ArrayList<>();
-		ResultSet rs = null;
+	public List<Post> postView(String pid) {
+		List<Post> list = new ArrayList<Post>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "select mid,text,created from post where pid=40";
+		ResultSet rs = null;
+		String sql = "select * from post where pid=?";
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pid);
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 				Post post = new Post();
-				post.setMember_id(rs.getString("mid"));
-				post.setText(rs.getString("text"));
+				post.setPost_id(rs.getString("pid"));
+				post.setMember_id(rs.getString("member_id"));
 				post.setWrite_date(rs.getDate("created"));
-				list.add(post);
+				post.setUrl(rs.getString("url"));
+				post.setText(rs.getString("text"));
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 		} finally {
 			try {
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				if (con != null) {
-					con.close();
-				}
-				if (rs != null) {
-					rs.close();
-				}
-			} catch (Exception e) {
+				con.close();
+				pstmt.close();
+				rs.close();
+			} catch (Exception e2) {
 			}
 		}
 		return list;
