@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-body{
+body {
 	background-color: #3f5068;
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
@@ -110,8 +110,7 @@ body{
 }
 
 .header_profile .header_wraper .nav_icon .friend_list, .header_profile .header_wraper .nav_icon .alarm_list
-	.
-.header_profile .header_wraper .nav_icon .message_list {
+	 . .header_profile .header_wraper .nav_icon .message_list {
 	float: none;
 	margin: 5px 0 6px 0;
 	position: relative;
@@ -250,7 +249,6 @@ span {
 	width: 1px;
 }
 
-
 #displayChatList span {
 	padding: 5px;
 	display: block;
@@ -265,4 +263,58 @@ span {
 
 .chatListToggle {
 	display: none;
+}
+
+.placeI {
+	overflow: auto;
+	overflow-x: hidden;
+	width: 100%;
+	height: 85%;
+	margin-bottom: 0px;
+	background-color: white;
+}
+
+#placeI #chatRoomDisplay{
+	height: 80%;
+	overflow:scroll;
+}
+#placeI #chatRoomInput{
+	height: 20%;
+}
+#chatRoomDisplay .sentMsg {
+	text-align: right;
+	overflow-wrap: break-word;
+	display: block;
+	padding: 2px 5px;
+	margin: 5px;
+	background-color: rgba(255, 0, 0, 0.4);
+	border-radius: 10px;
+}
+
+#chatRoomDisplay .chatSender {
+	
+}
+
+#chatRoomDisplay .chatMessage {
+	display: inline;
+}
+
+#chatRoomDisplay .sentMsg .chatMessage {
+	
+}
+
+#chatRoomDisplay .chatCreated {
+	
+}
+
+#chatRoomDisplay .receivedMsg {
+	/* background-color: grey; */
+	text-alight: left;
+	overflow-wrap: break-word;
+}
+
+#chatRoomDisplay .receivedMsg img {
+	float: left;
+	width: 20px;
+	margin-right: 10px;
 }

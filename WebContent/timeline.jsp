@@ -49,6 +49,7 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/timeline.js"></script>
+<script type="text/javascript" src="js/chat.js"></script>
 <script type="text/javascript">
 	/* 검색창 focus 상태에서 검색이력 view */
 	/* 검색창 focus 상태에서 검색이력 view 끝 */
@@ -60,10 +61,6 @@
 <%
 	if (!isset((String) session.getAttribute("sessionId"))) {
 %>
-<script type="text/javascript">
-	console.log("세션불러오기실패");
-	location.href = "signUpForm.jsp";
-</script>
 <%
 	} else {
 		System.out.println("세션받아옴");
@@ -126,10 +123,7 @@
 					</li>
 					<li class="infinite_scroll">
 						<h3>자민</h3>
-						<hr>
-						<br>테스트 하려고 한번 써봤어요~
-						<br>
-						<br>
+						<hr> <br>테스트 하려고 한번 써봤어요~ <br> <br>
 						<hr>
 						<div class="reactBtn">
 							<div class='heart'></div>
@@ -142,15 +136,15 @@
 					</li>
 					<li class="infinite_scroll">
 						<h3>민규</h3>
-						<hr> 나도 테스트 한번 해보자~ <br><br> 
-							<img alt="" src="img_all/mainbg8.jpg"
-							style="height: 200px; width: 50%; display: inline;"><img
-							alt="" src="img_all/mainbg7.jpg"
-							style="height: 200px; width: 50%; display: inline;"><img
-							alt="" src="img_all/mainbg4.jpg"
-							style="height: 200px; width: 50%; display: inline;"><img
-							alt="" src="img_all/mainbg2.jpg"
-							style="height: 200px; width: 50%; display: inline;">
+						<hr> 나도 테스트 한번 해보자~ <br> <br> <img alt=""
+						src="img_all/mainbg8.jpg"
+						style="height: 200px; width: 50%; display: inline;"><img
+						alt="" src="img_all/mainbg7.jpg"
+						style="height: 200px; width: 50%; display: inline;"><img
+						alt="" src="img_all/mainbg4.jpg"
+						style="height: 200px; width: 50%; display: inline;"><img
+						alt="" src="img_all/mainbg2.jpg"
+						style="height: 200px; width: 50%; display: inline;">
 						<hr>
 						<div class="reactBtn">
 							<div class='heart'></div>
@@ -180,12 +174,31 @@
 				내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
 			</div>
 		</div>
+
+		<div class="timeline_aside">
+			<div class="page_margin"></div>
+			<div id="placeI" class="chatListToggle">
+				<div class="aside_chat">
+					<div id="chatRoomDisplay" ></div>
+					<div id="chatRoomInput">
+						<input id="chat" type="text" name="chat"
+							style="float: left; width: 225px; height: 20px;"> 
+						<input
+							id="send" type="submit" value="보내기" data-chatRoom="" data-sendT="" data-getT=""
+							style="float: left; height: 26px; width: 113px;"> 
+						<input
+							id="FKKK" type="submit" value="나가기"
+							style="width: 112px; float: left; height: 26px;">
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
 	</div>
 	<!-- 내용 들어갈 부분 끝 -->
 	<%
 		}
 	%>
-	
+
 </body>
 </html>

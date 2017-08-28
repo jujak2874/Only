@@ -13,7 +13,7 @@
 			alert("검색어를 입력하세요");
 			return false;
 		}
-	}
+	}	
 
 	$(function() {
 		$("#chatList").click(function(e) {
@@ -30,6 +30,19 @@
 			});
 		});
 	});
+	
+/* 	$(function() {
+ 		$(".chatStart").click(function() {
+			alert("test");
+			var sendData = "chatRoom=" + chatroomid;
+			$.post("getChat.jsp", sendData, function(data) {
+				
+				console.log("chat" + data);
+				$("#chatRoomDisplay").html(data);
+			}); 
+		});
+	}); */
+	
 </script>
 </head>
 <body>
@@ -95,8 +108,8 @@
 							<div class='navImage'>
 								<span>Message</span>
 							</div>
-							<div id="displayChatList" class="chatListToggle"></div>
 						</a>
+						<div id="displayChatList" class="chatListToggle"></div>
 					</div>
 				</div>
 

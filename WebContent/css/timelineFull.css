@@ -146,6 +146,17 @@
 		margin-bottom: 25px;
 		width: 90%;
 	}
+	
+	.aside_chat {
+		background-color: #FFF;
+		/* border-radius: 5px; */
+		padding: 10px;
+		padding-top: 5px;
+		margin-bottom: 25px;
+		width: 90%;
+		height: 350px;
+	}
+	
 	.type_choice_box {
 		background-color: #FFF;
 		border-radius: 5px;

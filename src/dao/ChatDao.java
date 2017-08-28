@@ -38,25 +38,25 @@ public class ChatDao {
 	// 채팅방 있는지 확인
 	// 있으면 그 채팅방에 메시지 저장, 없으면 채팅방을 만든 후 저장
 	// ChatService(채팅메시지, 받는사람, 보내는사람)
-	public void ChatService(String chatT, String getT, String sendT) {
+	public void ChatService(String chatMessage, String getT, String sendT) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+
+		System.out.println("ChatService() called.." + chatMessage + ", " + getT + ", " + sendT);
 		String chatroom = ChkCR(getT, sendT); // 채팅방 아이디를 받아옴
 		if (chatroom == null) {
 			System.out.println("없음 ==> 채팅방 생성");
 			chatroom = CreateChat(getT, sendT); // 채팅방 생성
 		} else {
-			System.out.println("있음");
+			System.out.println("있음 ==> " +chatroom);
 		}
-		String sql = "insert into chat_message " + "values(?,?,sysdate,mid_seq.nextval,?,?,?)";
+		String sql = "insert into chat_message values(?,?,sysdate,mid_seq.nextval,?,0)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, getT);
-			pstmt.setString(2, chatT);
+			pstmt.setString(1, sendT);
+			pstmt.setString(2, chatMessage);
 			pstmt.setString(3, chatroom);
-			pstmt.setInt(4, 0);
-			pstmt.setString(5, sendT);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -111,8 +111,10 @@ public class ChatDao {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			if (getT.compareTo(sendT) > 0) {
+				System.out.println("ChkCR:" + getT + ":" + sendT);
 				pstmt.setString(1, getT + ":" + sendT);
 			} else {
+				System.out.println("ChkCR:" + sendT + ":" + getT);
 				pstmt.setString(1, sendT + ":" + getT);
 			}
 			rs = pstmt.executeQuery();
@@ -139,6 +141,7 @@ public class ChatDao {
 	public List<ChatMessage> chatload(String chatroom) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		System.out.println("chatLoad called.. " + chatroom);
 		String sql = "select * from chat_message where cid=? order by mid asc";
 		ResultSet rs = null;
 		List<ChatMessage> chathistory = new ArrayList<ChatMessage>();
@@ -149,6 +152,7 @@ public class ChatDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				ChatMessage cm = new ChatMessage();
+				cm.setCid(rs.getString("cid"));
 				cm.setMessage(rs.getString("message"));
 				cm.setUserid(rs.getString("userid"));
 				cm.setCreated(rs.getDate("created"));
@@ -178,14 +182,19 @@ public class ChatDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<ChatMessage> messageList = new ArrayList<>();
-		//String sql = "select * from chat_message where mid in (select max(mid) from CHAT_MESSAGE where cid in (SELECT cid FROM chat where cid like ('%' || ? || '%')) group by cid) order by created";
 		String sql = "select * from chat_message where mid in (select max(mid) from CHAT_MESSAGE where cid in (SELECT cid FROM chat where cid like ('%' || ? || '%')) group by cid) order by created";
+		sql = "select * from chat_message, (select max(mid) mid, cid from chat_message where cid in (SELECT cid FROM chat where cid like ('%' || ? || '%') group by cid) group by cid) temp where temp.cid = chat_message.cid and temp.mid = chat_message.mid";
+		/*
+		 * sql =
+		 * "select * from chat_message where mid in (select mid from chat)";
+		 */
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
+				System.out.println(rs.getString("cid"));
 				do {
 					System.out.println(rs.getString("message"));
 					ChatMessage cm = new ChatMessage();
@@ -197,7 +206,7 @@ public class ChatDao {
 					cm.setCid(rs.getString("cid"));
 					messageList.add(cm);
 				} while (rs.next());
-			} else{
+			} else {
 				System.out.println("메시지 기록 없음");
 			}
 		} catch (Exception e) {
