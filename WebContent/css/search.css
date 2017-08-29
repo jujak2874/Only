@@ -265,36 +265,45 @@ span {
 	display: none;
 }
 
-#placeI {
+#placeI{
 	background-color: #FFF;
 	border-radius: 5px;
-	padding: 10px;
-	padding-top: 5px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
 	margin-bottom: 25px;
 	width: 18%;
-	overflow: auto;
+	overflow: hidden;
 	overflow-x: hidden;
 	margin-bottom: 0px;
 	position: fixed;
-	bottom: 0px;
-	height: 350px;
+	bottom: 0;
+	height: 40%;
+	line-height: 25px;
+	box-sizing: border-box;
 }
 
-#placeI #chatRoomDisplay{
+#placeI #chatRoomDisplay {
 	height: 80%;
-	overflow:scroll;
+	overflow: scroll;
 }
-#placeI #chatRoomInput{
-	height: 20%;
+
+#placeI #chatRoomInput {
+	height: 10%;
 }
+
 #chatRoomDisplay .sentMsg {
+	float: right;
+	width: 60%;
 	text-align: right;
 	overflow-wrap: break-word;
 	display: block;
 	padding: 2px 5px;
 	margin: 5px;
-	background-color: rgba(255, 0, 0, 0.4);
-	border-radius: 10px;
+	background-color: rgba(255, 140, 140, 0.4);
+	border-bottom-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
 }
 
 #chatRoomDisplay .chatSender {
@@ -317,6 +326,15 @@ span {
 	/* background-color: grey; */
 	text-alight: left;
 	overflow-wrap: break-word;
+	float: left;
+	width: 60%;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	background-color: rgba(140, 201, 255, 0.4);
+	display: block;
+	padding: 2px 5px;
+	margin: 5px;
 }
 
 #chatRoomDisplay .receivedMsg img {

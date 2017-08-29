@@ -58,6 +58,7 @@
 <link rel="stylesheet" type="text/css" href="css/timelineFull.css">
 <link rel="stylesheet" type="text/css" href="css/timelineMobile.css">
 <link rel="stylesheet" type="text/css" href="css/search.css">
+<link rel="stylesheet" type="text/css" href="css/chat.css">
 </head>
 <%
 	if (!isset((String) session.getAttribute("sessionId"))) {
@@ -177,14 +178,12 @@
 			</div>
 			<div class="page_margin"></div>
 			<div id="placeI" class="chatListToggle">
+			
 				<div id="chatRoomDisplay"></div>
 				<div id="chatRoomInput">
-					<input id="chat" type="text" name="chat"
-						style="float: left; width: 225px; height: 20px;"> <input
-						id="send" type="submit" value="보내기" data-chatRoom="" data-sendT=""
-						data-getT="" style="float: left; height: 26px; width: 113px;">
-					<input id="FKKK" type="submit" value="나가기"
-						style="width: 112px; float: left; height: 26px;">
+					<input class="chatBtn" id="chat" type="text" name="chat" style="float: left; width: 225px; height: 20px;"> 
+					<input class="chatBtn" id="send" type="submit" value="보내기" data-chatRoom="" data-sendT="" data-getT="" style="float: left; height: 26px; width: 113px;">
+					<!-- <input id="FKKK" type="submit" value="나가기" style="width: 112px; float: left; height: 26px;"> -->
 				</div>
 			</div>
 		</div> -->

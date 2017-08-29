@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.chat {
+	float: left;
+	width: 80%;
+	height: 27px;
+	box-sizing: border-box;
+	border-radius: 10px;
+	border: 1px solid #adbed8;
+}
+
+.send {
+	float: left;
+	height: 27px;
+	width: 20%;
+	box-sizing: border-box;
+	background: #adbed8;
+	border-radius: 5px;
+	border: 0;
+	cursor: pointer;
+	color: white;
+}
+
+.FKKK {
+	width: 40%;
+	float: left;
+	height: 26px;
+}
+
+.chatBtn{
+	display: inline-block;
+}
+
+.chatProfile{
+	position: relative;
+	height: 10%;
+	box-sizing: border-box;
+	border-bottom: 2px solid #c6c6c6;
+	padding-top: 10px;
+}
+
+.chatProfileImg{
+	width: 18%;
+	height: 18%;
+}
