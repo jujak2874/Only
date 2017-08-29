@@ -8,6 +8,20 @@ $(function() {
 					var end = data.indexOf('</span>');
 					var result = data.slice(start + 6, end);
 					console.log("chat" + result);
+					
+					var sendData2 = "member_id=" + e.target.getAttribute("data-getT");
+					$.post("getMember.jsp", sendData2, function(data2){
+						var start2 = data2.indexOf('<body>');
+						var end2 = data2.indexOf('</body>');
+						var result2 = data2.slice(start2+6, end2);
+						var memberid = result2.substr(0, result2.indexOf(":"));
+						var profileImgUrl = "."+result2.substr(result2.indexOf(":")+1);
+						$(".chatProfileImg").attr("src", profileImgUrl);
+						$(".chatProfile .half h2").text(memberid);
+						alert(profileImgUrl);
+												
+					});
+					
 					$(".chat").attr("id", "chat-" + chatroomid);
 					$(".send").attr("id", "send-" + chatroomid);
 					$(".send").attr("data-chatRoom", chatroomid)
