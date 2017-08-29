@@ -18,7 +18,6 @@ $(function() {
 						var profileImgUrl = "."+result2.substr(result2.indexOf(":")+1);
 						$(".chatProfileImg").attr("src", profileImgUrl);
 						$(".chatProfile .half h2").text(memberid);
-						alert(profileImgUrl);
 												
 					});
 					
