@@ -38,7 +38,7 @@
 					}
 			%><li><a class="chatStart <%=cm.getCid() %>" id="<%=cm.getCid() %>"
 				data-sendT="<%=session.getAttribute("sessionId") %>" data-getT="<%=getT%>"><%=cm.getCid()%>||
-					<%=cm.getMessage()%></a>
+					<%=cm.getMessage()%></a></li>
 
 			<%
 				}

@@ -33,6 +33,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="sessionChk.jsp" %>
 <%!boolean isset(String str) {
 		if (str == null) {
 			return false;
@@ -159,9 +160,10 @@
 			</div>
 			<!-- 포스트 뷰 끝 -->
 		</div>
+		<jsp:include page="timelineAside.jsp"></jsp:include>
 		<!-- 포스트작성 / 뷰 끝 -->
 		<!-- aside 부분 / *팔로우 추천, 광고등 -->
-		<div class="timeline_aside">
+		<!-- <div class="timeline_aside">
 			<div class="page_margin"></div>
 			<div class="aside_follow">
 				<h3>팔로우 추천 테스트</h3>
@@ -185,7 +187,7 @@
 						style="width: 112px; float: left; height: 26px;">
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
 	</div>

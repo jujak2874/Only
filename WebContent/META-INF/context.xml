@@ -1,4 +1,4 @@
-<!-- <Context> 
+<Context> 
 <Resource 
 	name="jdbc/OracleDB" 
 	auth="Container" 
@@ -10,9 +10,9 @@
 	url="jdbc:oracle:thin:@192.168.50.8:1521:orcl1" 
 	maxActive="10" 
 	maxIdle="2"/> 	
-</Context> -->
+</Context>
 
-<Context>
+<!-- <Context>
 <Resource 
 	name="jdbc/OracleDB" 
 	auth="Container" 
@@ -25,4 +25,4 @@
 	driverClassName="oracle.jdbc.driver.OracleDriver"
 	url="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
 
-</Context>
+</Context> -->

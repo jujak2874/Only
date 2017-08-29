@@ -14,9 +14,9 @@
 <script type="text/javascript" src="js/timeline.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
 <script type="text/javascript" src="js/chat.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(function() {
-		$('#follow').click(function() {
+		$('.follow').click(function() {
 			//var userid =  $(this).data("followid");
 			//var followid =  $(this).attr("data-followid");
 			alert(userid);
@@ -27,12 +27,13 @@
 			});
 		});
 	});
-</script>
+</script> -->
 <link rel="stylesheet" type="text/css" href="css/timelineFull.css">
 <link rel="stylesheet" type="text/css" href="css/timelineMobile.css">
 <link rel="stylesheet" type="text/css" href="css/search.css">
 </head>
 <body>
+	
 	<!-- 상단고정바 시작 -->
 	<div id="header"><jsp:include page="header.jsp"></jsp:include></div>
 	<!-- 상단고정바 끝 -->
@@ -48,7 +49,7 @@
 			<ol class="search_view_box">
 				<li><span style="color: #ffffff; font-weight: bold;">Following
 						List</span>
-				<hr></li>
+					<hr></li>
 
 				<%
 					if (request.getAttribute("followees") == null) {
@@ -66,6 +67,7 @@
 							} else {
 								chatroom = sendT + ":" + getT;
 							}
+							System.out.println(chatroom);
 				%>
 				<li class="search_result">
 					<div class="search_profile">
@@ -75,16 +77,19 @@
 									src='<%=application.getContextPath() + (member.getProfile_image())%>'>
 								</td>
 								<td valign="middle" align="left"><a href="#" class="test"
-									data-userid="<%=member.getUserid()%>"><h3><%=member.getUsername()%></h3>
-										<div class="hide" id="rmenu">
+									id="test-<%=member.getUserid()%>"><h3><%=member.getUsername()%></h3>
+
+										<div class="hide" id="rmenu-<%=member.getUserid()%>"
+											name="rmenu">
 											<ul>
 												<li><a href="#" id="chat">Visit</a></li>
 												<li><a href="#" id="follow"
 													data-followid="<%=member.getUserid()%>"><span
 														id="followText">Follow</span></a></li>
-												<li><a class="chatStart <%=chatroom%>"
+												<li><a href="#" class="chatStart <%=chatroom%>"
 													id="<%=chatroom%>" data-sendT="<%=sendT%>"
 													data-getT="<%=getT%>">Send Message</a></li>
+
 											</ul>
 										</div> </a></td>
 							</tr>
@@ -104,7 +109,7 @@
 				%>
 				<li><span style="color: #ffffff; font-weight: bold;">Follower
 						List</span>
-				<hr></li>
+					<hr></li>
 				<!-- 팔로우어 리스트 -->
 				<%
 					if (request.getAttribute("followers") == null) {
@@ -122,6 +127,7 @@
 							} else {
 								chatroom = sendT + ":" + getT;
 							}
+							System.out.println(chatroom);
 				%>
 				<li class="search_result">
 					<div class="search_profile">
@@ -131,14 +137,19 @@
 									src='<%=application.getContextPath() + (member.getProfile_image())%>'>
 								</td>
 								<td valign="middle" align="left"><a href="#" class="test"
-									data-userid="<%=member.getUserid()%>"><h3><%=member.getUsername()%></h3>
-										<div class="hide" id="rmenu">
+									id="test-<%=member.getUserid()%>"><h3><%=member.getUsername()%></h3>
+
+										<div class="hide" id="rmenu-<%=member.getUserid()%>"
+											name="rmenu">
 											<ul>
 												<li><a href="#" id="chat">Visit</a></li>
 												<li><a href="#" id="follow"
 													data-followid="<%=member.getUserid()%>"><span
 														id="followText">Follow</span></a></li>
-												<li><a class="chatStart <%=chatroom %>" id="<%=chatroom %>" data-sendT="<%=sendT %>" data-getT="<%=getT%>">Send Message</a></li>
+												<li><a href="#" class="chatStart <%=chatroom%>"
+													id="<%=chatroom%>" data-sendT="<%=sendT%>"
+													data-getT="<%=getT%>">Send Message</a></li>
+
 											</ul>
 										</div> </a></td>
 							</tr>
