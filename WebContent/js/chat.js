@@ -26,5 +26,8 @@ $(function() {
 			});
 		});
 	});
+	$('#send').on('click',function(){
+		$('#chat').val('');
+	});
 });
 
