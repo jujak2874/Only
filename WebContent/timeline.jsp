@@ -58,6 +58,7 @@
 <link rel="stylesheet" type="text/css" href="css/timelineFull.css">
 <link rel="stylesheet" type="text/css" href="css/timelineMobile.css">
 <link rel="stylesheet" type="text/css" href="css/search.css">
+<link rel="stylesheet" type="text/css" href="css/chat.css">
 </head>
 <%
 	if (!isset((String) session.getAttribute("sessionId"))) {
@@ -177,9 +178,7 @@
 			</div>
 			<div class="page_margin"></div>
 			<div id="placeI" class="chatListToggle">
-			<div class="chatProfile">
-				<img alt="" src="img_all/logo.png" class="chatProfileImg">
-			</div>
+			
 				<div id="chatRoomDisplay"></div>
 				<div id="chatRoomInput">
 					<input class="chatBtn" id="chat" type="text" name="chat" style="float: left; width: 225px; height: 20px;"> 

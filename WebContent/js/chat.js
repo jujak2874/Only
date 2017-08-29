@@ -13,6 +13,8 @@ $(function() {
 					$(".send").attr("data-chatRoom", chatroomid)
 					$(".send").attr("data-getT",
 							e.target.getAttribute("data-getT"));
+					console.log($(".send").attr("data-getT",
+							e.target.getAttribute("data-getT")));
 					$(".send").attr("data-sendT",
 							e.target.getAttribute("data-sendT"));
 					$(".FKKK").attr("id", "FKKK-" + chatroomid);
