@@ -265,13 +265,19 @@ span {
 	display: none;
 }
 
-.placeI {
+#placeI {
+	background-color: #FFF;
+	border-radius: 5px;
+	padding: 10px;
+	padding-top: 5px;
+	margin-bottom: 25px;
+	width: 18%;
 	overflow: auto;
 	overflow-x: hidden;
-	width: 100%;
-	height: 85%;
 	margin-bottom: 0px;
-	background-color: white;
+	position: fixed;
+	bottom: 0px;
+	height: 350px;
 }
 
 #placeI #chatRoomDisplay{
