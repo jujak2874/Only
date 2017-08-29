@@ -47,17 +47,17 @@
 			<!-- 테스트 -->
 			<!--  -->
 			<ol class="search_view_box">
-				<li><span style="color: #ffffff; font-weight: bold;">Following
-						List</span>
-					<hr></li>
-
+				<li><span style="color: #ffffff; font-weight: bold;">Follower
+						List
 				<%
 					if (request.getAttribute("followees") == null) {
-				%>
-				<li class="infinite_scroll"><h3>팔로우 중인 회원이 없습니다</h3></li>
-				<%
+						%>0명</span>	<hr></li><li class="search_result">회원님을 팔로잉 중인 회원이 없습니다</li><%
 					} else {
 						List<Member> followees = (ArrayList) request.getAttribute("followees");
+						%><%=followees.size() %></span>	<hr></li><%
+						if(followees.size()==0){
+							%><li class="search_result">회원님을 팔로잉 중인 회원이 없습니다</li><%
+						}
 						for (Member member : followees) {
 							String chatroom = "";
 							String sendT = (String) session.getAttribute("sessionId");
@@ -107,17 +107,17 @@
 					}
 					}
 				%>
-				<li><span style="color: #ffffff; font-weight: bold;">Follower
-						List</span>
-					<hr></li>
+				<li><span style="color: #ffffff; font-weight: bold;">Following List
 				<!-- 팔로우어 리스트 -->
 				<%
 					if (request.getAttribute("followers") == null) {
-				%>
-				<li class="infinite_scroll"><h3>Follower가 없습니다</h3></li>
-				<%
+						%>0명</span>	<hr></li><li class="search_result">회원님이 팔로잉 중인 회원이 없습니다</li><%
 					} else {
 						List<Member> followers = (ArrayList) request.getAttribute("followers");
+						%><%=followers.size() %>명</span><hr></li><%
+						if(followers.size()==0){
+							%><li class="search_result">회원님이 팔로잉 중인 회원이 없습니다</li><%
+						}
 						for (Member member : followers) {
 							String chatroom = "";
 							String sendT = (String) session.getAttribute("sessionId");

@@ -1,85 +1,49 @@
 var userid = 0;
 
-$(document)
-		.ready(
-				function() {
-
-					/* 검색결과 오른쪽 마우스 이벤트 등록 */
-					if ($(".test").addEventListener) {
-						/*
-						 * $(".test").addEventListener('contextmenu',
-						 * function(e) { e.preventDefault(); alert("You've tried
-						 * to open context menu"); var userid =
-						 * $(".test").attr("data-userid");
-						 * document.getElementById("rmenu"+userid).className =
-						 * "show";
-						 * document.getElementById("rmenu"+userid).style.top =
-						 * mouseY(event) + 'px';
-						 * document.getElementById("rmenu"+userid).style.left =
-						 * mouseX(event) + 'px'; }, false);
-						 */
-					} else {
-						// document.getElementById("test").attachEvent('oncontextmenu',
-						// function() {
-						$(".test")
-								.bind(
-										'contextmenu',
-										function(e) {
-											var _target = e.currentTarget.text
-													.trim();
-											var sendData = "userid2=" + _target;
-
-											$
-													.post(
-															'followChk.jsp',
-															sendData,
-															function(data) {
-																console
-																		.log("data true: "
-																				+ data
-																						.indexOf("true"));
-																console
-																		.log("data false: "
-																				+ data
-																						.indexOf("false"));
-																if (data
-																		.indexOf("true") > 0) {
-																	console
-																			.log("unfollow");
-																	$(
-																			'#followText')
-																			.text(
-																					"Unfollow");
-
-																} else if (data
-																		.indexOf("false") > 0) {
-																	console
-																			.log("follow");
-																	$(
-																			'#followText')
-																			.text(
-																					"Follow");
-																}
-
-															});
-											e.preventDefault();
-											/*var rmenu = document
-													.getElementsByName("rmenu");
-											var i;
-											for (i = 0; i < rmenu.length; i++) {
-												// alert(rmenu[i].id);
-												rmenu[i].className = "hide";
-											}*/
-											document.getElementById("rmenu-"
-													+ _target).className = "show";
-											document.getElementById("rmenu-"
-													+ _target).style.top = mouseY(event)
-													+ 'px';
-											document.getElementById("rmenu-"
-													+ _target).style.left = mouseX(event)
-													+ 'px';
-
-										});
+$(document).ready(
+		function() {
+			/* 검색결과 오른쪽 마우스 이벤트 등록 */
+			if ($(".test").addEventListener) {
+			/*
+			 * $(".test").addEventListener('contextmenu',
+			 * function(e) { e.preventDefault(); alert("You've tried
+			 * to open context menu"); var userid =
+			 * $(".test").attr("data-userid");
+			 * document.getElementById("rmenu"+userid).className =
+			 * "show";
+			 * document.getElementById("rmenu"+userid).style.top =
+			 * mouseY(event) + 'px';
+			 * document.getElementById("rmenu"+userid).style.left =
+			 * mouseX(event) + 'px'; }, false);
+			 */
+				} else {
+					// document.getElementById("test").attachEvent('oncontextmenu',
+					// function() {
+					$(".test").bind('contextmenu',function(e) {
+						var _target = e.currentTarget.text.trim();
+						var sendData = "userid2=" + _target;
+						$.post('followChk.jsp', sendData, function(data) {
+							console.log("data true: "+ data.indexOf("true"));
+							console.log("data false: "+ data.indexOf("false"));
+							if (data.indexOf("true") > 0) {
+								console.log("unfollow");
+								$('#followText').text("Unfollow");
+								} else if (data.indexOf("false") > 0) {
+									console.log("follow");
+									$('#followText').text("Follow");
+									}
+							});
+						e.preventDefault();
+						var rmenu = document.getElementsByName("rmenu");
+						var i;
+						for (i = 0; i < rmenu.length; i++) {
+							// alert(rmenu[i].id);
+							rmenu[i].className = "hide";
+							}
+						document.getElementById("rmenu-"+ _target).className = "show";
+						document.getElementById("rmenu-"+ _target).style.top = mouseY(event)+ 'px';
+						document.getElementById("rmenu-"+ _target).style.left = mouseX(event)+ 'px';
+						});
 					}
 
 					/*
@@ -102,12 +66,11 @@ $(document)
 					 * $('#signup_fin').prop('disabled', true);
 					 * $('#signup_fin').css('background-color', '#ff7070'); } }
 					 */
-
-				});
+			});
 
 // this is from another SO post...
 $(document).bind("click", function(event) {
-	/*document.getElementById("rmenu").className = "hide";*/
+	/* document.getElementById("rmenu").className = "hide"; */
 	var rmenu = document.getElementsByName("rmenu");
 	var i;
 	for (i = 0; i < rmenu.length; i++) {
