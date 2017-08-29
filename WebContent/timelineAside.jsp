@@ -23,7 +23,8 @@
 		<div class="chatProfile">
 			<div class="half">
 				<img alt="" src=".${profile_img }" class="chatProfileImg">
-				<h2>${user }</h2>
+				<h2 class="chatUserName">test</h2>
+				<button class="FKKK chatBtn" id="" type="submit">X</button>
 			</div>
 		</div>
 		<div id="chatRoomDisplay"></div>
@@ -31,7 +32,6 @@
 			<input class="chat chatBtn" id="" type="text" name="chat"
 				onkeypress="if(event.keyCode==13) {enterKeyPressed(); return false;}">
 			<button type="submit" class="send chatBtn" id="" data-chatRoom="" data-sendT="" data-getT="">보내기</button>
-			<!-- <input class="FKKK chatBtn" id="" type="submit" value="나가기"> -->
 		</div>
 	</div>
 </div>

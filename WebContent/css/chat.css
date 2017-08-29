@@ -22,24 +22,40 @@
 }
 
 .FKKK {
-	width: 40%;
-	float: left;
-	height: 26px;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	top: 0;
+	float: right;
+	border: 0;
+	background-color: #FFF;
+	color: #adbed8;
+	cursor: pointer;
 }
 
-.chatBtn{
+.chatBtn {
 	display: inline-block;
 }
 
-.chatProfile{
+.chatProfile {
 	position: relative;
 	height: 10%;
+	min-height: 40px;
 	box-sizing: border-box;
 	border-bottom: 2px solid #c6c6c6;
 	padding-top: 10px;
 }
 
-.chatProfileImg{
+.chatProfileImg {
 	width: 18%;
 	height: 18%;
+	display: inline-block;
+	float: left;
+}
+
+.chatUserName {
+	float: left;
+	display: inline-block;
+	margin: 0;
+	top: 0;
 }
