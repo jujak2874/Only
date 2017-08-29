@@ -100,6 +100,30 @@ public class ChatDao {
 		}
 		return chatroom;
 	}
+	
+	private int CreateChat(String chatroom) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "insert into chat " + " values(?)";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, chatroom);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return result;
+	}
 
 	private String ChkCR(String getT, String sendT) {
 		Connection conn = null;
@@ -138,11 +162,48 @@ public class ChatDao {
 		return chatRoom;
 	}
 
+	private int ChkCR(String chatroom) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "select cid from chat where cid = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, chatroom);
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+			}
+		}
+		return result;
+	}
 	public List<ChatMessage> chatload(String chatroom) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		System.out.println("chatLoad called.. " + chatroom);
-		String sql = "select * from chat_message where cid=? order by mid asc";
+
+		int isRoomExist = ChkCR(chatroom);
+		if(isRoomExist<=0){
+			if(CreateChat(chatroom)>0){
+				System.out.println("채팅방 새로 개설");
+			} else{
+				System.out.println("채팅방 개설 실패");
+			}
+		}
+		
+		String sql = "select * from chat_message where cid=? order by cast(mid as int) asc";
 		ResultSet rs = null;
 		List<ChatMessage> chathistory = new ArrayList<ChatMessage>();
 		try {
@@ -151,6 +212,7 @@ public class ChatDao {
 			pstmt.setString(1, chatroom);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
+				System.out.println("mid:" + rs.getInt("mid") + ": " + rs.getString("message"));
 				ChatMessage cm = new ChatMessage();
 				cm.setCid(rs.getString("cid"));
 				cm.setMessage(rs.getString("message"));

@@ -25,9 +25,9 @@
 			MemberDao md = MemberDao.getInstance();
 			String revcProfileImage = "."+md.getMember(recvT).getProfile_image();
 			if (chatMessages.size() == 0) {
+				System.out.println("보여줄 채팅내용 없음");
 			} else{
 				for (ChatMessage cm : chatMessages) {
-
 					if(cm.getUserid().equals((String) session.getAttribute("sessionId"))){
 						%>
 						<div class="sentMsg">

@@ -33,6 +33,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="sessionChk.jsp" %>
 <%!boolean isset(String str) {
 		if (str == null) {
 			return false;
@@ -160,40 +161,7 @@
 			<!-- 포스트 뷰 끝 -->
 		</div>
 		<!-- 포스트작성 / 뷰 끝 -->
-		<!-- aside 부분 / *팔로우 추천, 광고등 -->
-		<div class="timeline_aside">
-			<div class="page_margin"></div>
-			<div class="aside_follow">
-				<h3>팔로우 추천 테스트</h3>
-				<hr>
-				내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
-			</div>
-			<div class="aside_interested">
-				<h3>내 관심사 테스트</h3>
-				<hr>
-				내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
-			</div>
-		</div>
-
-		<div class="timeline_aside">
-			<div class="page_margin"></div>
-			<div id="placeI" class="chatListToggle">
-				<div class="aside_chat">
-					<div id="chatRoomDisplay" ></div>
-					<div id="chatRoomInput">
-						<input id="chat" type="text" name="chat"
-							style="float: left; width: 225px; height: 20px;"> 
-						<input
-							id="send" type="submit" value="보내기" data-chatRoom="" data-sendT="" data-getT=""
-							style="float: left; height: 26px; width: 113px;"> 
-						<input
-							id="FKKK" type="submit" value="나가기"
-							style="width: 112px; float: left; height: 26px;">
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
+		<jsp:include page="timelineAside.jsp"></jsp:include>
 	</div>
 	<!-- 내용 들어갈 부분 끝 -->
 	<%

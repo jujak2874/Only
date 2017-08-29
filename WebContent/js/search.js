@@ -3,25 +3,23 @@ var userid = 0;
 $(document).ready(function() {
 
 	/* 검색결과 오른쪽 마우스 이벤트 등록 */
-	if ($("#test").addEventListener) {
-		$("#test").addEventListener('contextmenu', function(e) {
+	if ($(".test").addEventListener) {
+		$(".test").addEventListener('contextmenu', function(e) {
 			e.preventDefault();
 			alert("You've tried to open context menu");
-			document.getElementById("rmenu").className = "show";
-			document.getElementById("rmenu").style.top = mouseY(event) + 'px';
-			document.getElementById("rmenu").style.left = mouseX(event) + 'px';
+			var userid = $(".test").attr("data-userid");
+			document.getElementById("rmenu"+userid).className = "show";
+			document.getElementById("rmenu"+userid).style.top = mouseY(event) + 'px';
+			document.getElementById("rmenu"+userid).style.left = mouseX(event) + 'px';
 
 		}, false);
 	} else {
 		// document.getElementById("test").attachEvent('oncontextmenu',
 		// function() {
 		$(".test").bind('contextmenu', function(event) {
-			// $('body').on('contextmenu', 'a.test', function() {
-			// alert("contextmenu"+event)
-
-			userid = $(this).data("userid");
-
-			console.log(userid);
+			var userid = event;
+			alert(event);
+			console.log(event.currentTarget.id);
 			var sendData = "userid2=" + userid;
 			$.post('followChk.jsp', sendData, function(data) {
 				console.log("data true: " + data.indexOf("true"));
@@ -38,9 +36,9 @@ $(document).ready(function() {
 
 			});
 
-			document.getElementById("rmenu").className = "show";
-			document.getElementById("rmenu").style.top = mouseY(event) + 'px';
-			document.getElementById("rmenu").style.left = mouseX(event) + 'px';
+			document.getElementById("rmenu"+userid).className = "show";
+			document.getElementById("rmenu"+userid).style.top = mouseY(event) + 'px';
+			document.getElementById("rmenu"+userid).style.left = mouseX(event) + 'px';
 			event.preventDefault();
 		});
 	}
