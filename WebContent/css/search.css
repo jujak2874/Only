@@ -286,6 +286,9 @@ span {
 #placeI #chatRoomDisplay {
 	height: 80%;
 	overflow: scroll;
+	/* display: inline-block;
+	float: left; */
+	width: 100%;
 }
 
 #placeI #chatRoomInput {
