@@ -13,8 +13,6 @@ $(function() {
 					$(".send").attr("data-chatRoom", chatroomid)
 					$(".send").attr("data-getT",
 							e.target.getAttribute("data-getT"));
-					console.log($(".send").attr("data-getT",
-							e.target.getAttribute("data-getT")));
 					$(".send").attr("data-sendT",
 							e.target.getAttribute("data-sendT"));
 					$(".FKKK").attr("id", "FKKK-" + chatroomid);
@@ -44,12 +42,17 @@ $(function() {
 	$('#follow').click(function() {
 		var userid = $(this).data("followid");
 		var followid = $(this).attr("data-followid");
-		alert(userid);
 		var sendData = "userid2=" + userid;
-		console.log(userid);
 		$.post('follow.jsp', sendData, function(data) {
-			$('#disp').html(data);
+			var start = data.indexOf('<body>');
+			var end = data.indexOf('</body>');
+			var followReturn = data.slice(start + 6, end).trim();
+			alert(followReturn + " " + userid);
+			if(window.location.href.indexOf('friendList.do')>=0){
+				location.reload();
+			}
 		});
+		
 	});
 
 	$(".send").click(

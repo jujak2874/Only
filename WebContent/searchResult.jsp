@@ -110,12 +110,16 @@
 											name="rmenu">
 											<ul>
 												<li><a href="#" id="chat">Visit</a></li>
+												<%if(sendT.equals("") || sendT==null || sendT.equals(getT)){
+													System.out.println("본인 생략");
+												} else{%>
 												<li><a href="#" id="follow"
 													data-followid="<%=member.getUserid()%>"><span
 														id="followText">Follow</span></a></li>
 												<li><a href="#" class="chatStart <%=chatroom%>"
 													id="<%=chatroom%>" data-sendT="<%=sendT%>"
 													data-getT="<%=getT%>">Send Message</a></li>
+												<%} %>
 
 											</ul>
 										</div> </a></td>

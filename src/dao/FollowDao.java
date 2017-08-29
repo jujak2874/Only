@@ -49,7 +49,7 @@ public class FollowDao {
 
 		try {
 			StringBuffer sql = new StringBuffer();
-			sql.append("select status from FOLLOW where userid1 = ? and userid2 = ?");
+			sql.append("select del_status from FOLLOW where userid1 = ? and userid2 = ?");
 			con = getConnection();
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, userid1);
@@ -59,14 +59,12 @@ public class FollowDao {
 			// Follow 이력이 존재하는지 검사
 			if (rs.next()) {
 				System.out.println(userid1 + ", " + userid2 + "팔로잉 이력 존재");
-				status = rs.getString("status");
-				if (status.equals("y")) {
+				status = rs.getString("del_status");
+				if (status.equals("n")) {
 					result = 1;
-					// 로그인 성공 = 1
 				} else {
 					result = 0;
 					// System.out.println("언팔중입니다");
-					// 패스워드가 다를때 = 0
 				}
 			} else {
 				System.out.println("팔로잉 이력 없음");
@@ -91,6 +89,7 @@ public class FollowDao {
 
 	public int follow(String userid1, String userid2) {
 		int result = -1;
+		int followingStatus = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -98,13 +97,15 @@ public class FollowDao {
 		int status = getFollowStatus(userid1, userid2);
 		if (status < 0) {
 			System.out.println("add new following");
-			sql = "insert into FOLLOW values (?,?,'y')";
+			sql = "insert into FOLLOW values (?,?,'n')";
+			followingStatus = 1;
 		} else if (status == 0) {
 			System.out.println("change to follow");
-			sql = "update FOLLOW set status = 'y' where userid1 = ? and userid2 = ?";
+			sql = "update FOLLOW set del_status = 'n' where userid1 = ? and userid2 = ?";
+			followingStatus = 1;
 		} else if (status == 1) { // 팔로잉 이력이 존재할 경우
 			System.out.println("change to unfollow");
-			sql = "update FOLLOW set status = 'n' where userid1 = ? and userid2 = ?";
+			sql = "update FOLLOW set del_status = 'y' where userid1 = ? and userid2 = ?";
 		}
 		try {
 			con = getConnection();
@@ -128,7 +129,7 @@ public class FollowDao {
 				System.out.println(e.getMessage());
 			}
 		}
-		return result;
+		return followingStatus;
 	}
 
 	public List<Member> getFollowees(String id) {
@@ -140,7 +141,7 @@ public class FollowDao {
 		String sql = null;
 		System.out.println("getFollowees.. 실행: " + id);
 
-		sql = "select * from member where userid in (select userid1 from follow where userid2 = ?)";
+		sql = "select * from member where userid in (select userid1 from follow where userid2 = ? and del_status='n')";
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -184,7 +185,7 @@ public class FollowDao {
 		String sql = null;
 		System.out.println("getFollowers.. 실행: " + id);
 
-		sql = "select * from Member where userid in (select userid2 from follow where userid1 = ?)";
+		sql = "select * from Member where userid in (select userid2 from follow where userid1 = ? and del_status='n')";
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
