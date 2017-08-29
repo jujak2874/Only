@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/search.js"></script>
+
 <script type="text/javascript">
 	function searchChk() {
 		if (document.frm.searchTerm.value == "") {
@@ -29,6 +30,10 @@
 				$("#displayChatList").toggleClass("chatListToggle");
 			});
 		});
+	});
+	
+	$("#friendList").click(function(e){
+		
 	});
 	
 /* 	$(function() {
@@ -82,13 +87,11 @@
 			<div class="header_wraper">
 				<div class="nav_icon">
 					<div class="friend_list">
-						<form action="friendList.do" method="post">
-							<a class="info" href="javascript:;"
-								onclick="parentNode.submit();">
+							<a id="friendList" href="friendList.do?userid=${sessionId }" data-userid="${sessionId }">
 								<div class='navImage'>
 									<span>Friend List</span>
 								</div>
-							</a> <input type="hidden" name="member_id" value="${sessionId }">
+							</a>
 						</form>
 					</div>
 				</div>

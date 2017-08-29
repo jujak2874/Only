@@ -11,3 +11,18 @@
 	maxActive="10" 
 	maxIdle="2"/> 	
 </Context>
+
+<!-- <Context>
+<Resource 
+	name="jdbc/OracleDB" 
+	auth="Container" 
+	type="javax.sql.DataSource"
+	maxTotal="100" 
+	maxIdle="30" 
+	maxWaitMillis="10000" 
+	username="chloe"
+	password="chloe" 
+	driverClassName="oracle.jdbc.driver.OracleDriver"
+	url="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
+
+</Context> -->

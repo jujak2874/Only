@@ -1,72 +1,119 @@
 var userid = 0;
 
-$(document).ready(function() {
+$(document)
+		.ready(
+				function() {
 
-	/* 검색결과 오른쪽 마우스 이벤트 등록 */
-	if ($("#test").addEventListener) {
-		$("#test").addEventListener('contextmenu', function(e) {
-			e.preventDefault();
-			alert("You've tried to open context menu");
-			document.getElementById("rmenu").className = "show";
-			document.getElementById("rmenu").style.top = mouseY(event) + 'px';
-			document.getElementById("rmenu").style.left = mouseX(event) + 'px';
+					/* 검색결과 오른쪽 마우스 이벤트 등록 */
+					if ($(".test").addEventListener) {
+						/*
+						 * $(".test").addEventListener('contextmenu',
+						 * function(e) { e.preventDefault(); alert("You've tried
+						 * to open context menu"); var userid =
+						 * $(".test").attr("data-userid");
+						 * document.getElementById("rmenu"+userid).className =
+						 * "show";
+						 * document.getElementById("rmenu"+userid).style.top =
+						 * mouseY(event) + 'px';
+						 * document.getElementById("rmenu"+userid).style.left =
+						 * mouseX(event) + 'px'; }, false);
+						 */
+					} else {
+						// document.getElementById("test").attachEvent('oncontextmenu',
+						// function() {
+						$(".test")
+								.bind(
+										'contextmenu',
+										function(e) {
+											var _target = e.currentTarget.text
+													.trim();
+											var sendData = "userid2=" + _target;
 
-		}, false);
-	} else {
-		// document.getElementById("test").attachEvent('oncontextmenu',
-		// function() {
-		$(".test").bind('contextmenu', function(event) {
-			// $('body').on('contextmenu', 'a.test', function() {
-			// alert("contextmenu"+event)
+											$
+													.post(
+															'followChk.jsp',
+															sendData,
+															function(data) {
+																console
+																		.log("data true: "
+																				+ data
+																						.indexOf("true"));
+																console
+																		.log("data false: "
+																				+ data
+																						.indexOf("false"));
+																if (data
+																		.indexOf("true") > 0) {
+																	console
+																			.log("unfollow");
+																	$(
+																			'#followText')
+																			.text(
+																					"Unfollow");
 
-			userid = $(this).data("userid");
+																} else if (data
+																		.indexOf("false") > 0) {
+																	console
+																			.log("follow");
+																	$(
+																			'#followText')
+																			.text(
+																					"Follow");
+																}
 
-			console.log(userid);
-			var sendData = "userid2=" + userid;
-			$.post('followChk.jsp', sendData, function(data) {
-				console.log("data true: " + data.indexOf("true"));
-				console.log("data false: " + data.indexOf("false"));
+															});
+											e.preventDefault();
+											/*var rmenu = document
+													.getElementsByName("rmenu");
+											var i;
+											for (i = 0; i < rmenu.length; i++) {
+												// alert(rmenu[i].id);
+												rmenu[i].className = "hide";
+											}*/
+											document.getElementById("rmenu-"
+													+ _target).className = "show";
+											document.getElementById("rmenu-"
+													+ _target).style.top = mouseY(event)
+													+ 'px';
+											document.getElementById("rmenu-"
+													+ _target).style.left = mouseX(event)
+													+ 'px';
 
-				if (data.indexOf("true") > 0) {
-					console.log("unfollow");
-					$('#followText').text("Unfollow");
+										});
+					}
 
-				} else if (data.indexOf("false") > 0) {
-					console.log("follow");
-					$('#followText').text("Follow");
-				}
+					/*
+					 * function sendId() {
+					 * 
+					 * 
+					 * function displayResult(data) { var listView =
+					 * document.getElementById('checkMsg'); if (data == 0) {
+					 * console.log("사용가능"); listView.innerHTML = "사용할 수 있는
+					 * ID에요"; listView.style.color = "#4a76b2";
+					 * $('#signup_fin').prop('disabled', false);
+					 * $('#signup_fin').css('background-color', '#97a6bf');
+					 * $('#signup_fin').mouseover(function() {
+					 * $(this).css('background-color', '#3f5068'); });
+					 * $('#signup_fin').mouseout(function() {
+					 * $(this).css('background-color', '#97a6bf'); });
+					 * btnDisabled(); } else { console.log("사용불가");
+					 * listView.innerHTML = "이미 다른분이 사용중인 ID에요";
+					 * listView.style.color = "#ff4242";
+					 * $('#signup_fin').prop('disabled', true);
+					 * $('#signup_fin').css('background-color', '#ff7070'); } }
+					 */
 
-			});
-
-			document.getElementById("rmenu").className = "show";
-			document.getElementById("rmenu").style.top = mouseY(event) + 'px';
-			document.getElementById("rmenu").style.left = mouseX(event) + 'px';
-			event.preventDefault();
-		});
-	}
-
-	/*
-	 * function sendId() {
-	 * 
-	 * 
-	 * function displayResult(data) { var listView =
-	 * document.getElementById('checkMsg'); if (data == 0) {
-	 * console.log("사용가능"); listView.innerHTML = "사용할 수 있는 ID에요";
-	 * listView.style.color = "#4a76b2"; $('#signup_fin').prop('disabled',
-	 * false); $('#signup_fin').css('background-color', '#97a6bf');
-	 * $('#signup_fin').mouseover(function() { $(this).css('background-color',
-	 * '#3f5068'); }); $('#signup_fin').mouseout(function() {
-	 * $(this).css('background-color', '#97a6bf'); }); btnDisabled(); } else {
-	 * console.log("사용불가"); listView.innerHTML = "이미 다른분이 사용중인 ID에요";
-	 * listView.style.color = "#ff4242"; $('#signup_fin').prop('disabled',
-	 * true); $('#signup_fin').css('background-color', '#ff7070'); } }
-	 */
-
-});
+				});
 
 // this is from another SO post...
 $(document).bind("click", function(event) {
-	document.getElementById("rmenu").className = "hide";
+	/*document.getElementById("rmenu").className = "hide";*/
+	var rmenu = document.getElementsByName("rmenu");
+	var i;
+	for (i = 0; i < rmenu.length; i++) {
+		// alert(rmenu[i].id);
+		rmenu[i].className = "hide";
+	}
 });
 
 function mouseX(evt) {
@@ -116,25 +163,25 @@ function sendSearch() {
 		if (keyword != '') {
 			var params = "searchTerm=" + encodeURIComponent(keyword);
 			console.log(params);
-			
-			$.ajax({ url:"search.jsp",
-		          type:"POST",
-		          data: params,
-		          success:function(data){
-		        	  var start = data.indexOf('<body>');
-		        	  var end = data.indexOf('</body>');
-		        	  var searchReturn = data.slice(start + 6, end);
-		        	  console.log(data);
-						$("#searchResult").html( data );
-						
-					},
-					error: function() {
-						console.log("자동완성기능 에러");
-					}
+
+			$.ajax({
+				url : "search.jsp",
+				type : "POST",
+				data : params,
+				success : function(data) {
+					var start = data.indexOf('<body>');
+					var end = data.indexOf('</body>');
+					var searchReturn = data.slice(start + 6, end);
+					console.log(data);
+					$("#searchResult").html(data);
+
+				},
+				error : function() {
+					console.log("자동완성기능 에러");
+				}
 			});
 		} else {
 		}
 	}
 	setTimeout("sendSearch();", 200);
 }
-

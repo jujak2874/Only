@@ -11,29 +11,9 @@
 <link rel="stylesheet" href="jquery-ui.css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 </head>
 <body>
-	<script type="text/javascript">
-		$(function() {
-			$(".chatStart").click(function(e) {
-				alert("chatroomid: " + e.target.id);
-				var chatroomid = e.target.id;
-				var sendData = "chatRoom=" + chatroomid;
-				$.post("getChat.jsp", sendData, function(data) {
-					var start = data.indexOf('<span>');
-					var end = data.indexOf('</span>');
-					var result = data.slice(start + 6, end);
-					console.log("chat" + result);
-					$("#send").attr("data-chatRoom", chatroomid)
-					$("#send").attr("data-getT", e.target.getAttribute("data-getT"));
-					$("#send").attr("data-sendT", e.target.getAttribute("data-sendT"));
-					$("#placeI").show();
-					$("#chatRoomDisplay").html(result);
-				});
-			});
-		});
-	</script>
+	<script type="text/javascript" src="js/chat.js"></script>
 	<span> <%
  	List<ChatMessage> chatRoomList = new ArrayList<>();
 	String memberId = (String) session.getAttribute("sessionId");
@@ -58,7 +38,7 @@
 					}
 			%><li><a class="chatStart <%=cm.getCid() %>" id="<%=cm.getCid() %>"
 				data-sendT="<%=session.getAttribute("sessionId") %>" data-getT="<%=getT%>"><%=cm.getCid()%>||
-					<%=cm.getMessage()%></a>
+					<%=cm.getMessage()%></a></li>
 
 			<%
 				}

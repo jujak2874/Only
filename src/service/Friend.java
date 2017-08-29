@@ -12,7 +12,7 @@ public class Friend implements CommandProcess {
    @Override
    public String requestPro(HttpServletRequest request, HttpServletResponse response) {
       System.out.println("Friend ½ÇÇà.");
-      String id = request.getParameter("member_id");
+      String id = request.getParameter("userid");
 
       FollowDao dao = FollowDao.getInstance();
       List<Member> followees = dao.getFollowees(id);
@@ -24,7 +24,6 @@ public class Friend implements CommandProcess {
          request.setAttribute("followers", followers);
       if(followees.size()>0)
          request.setAttribute("followees", followees);
-      
       
       return "friendList.jsp";
    }
