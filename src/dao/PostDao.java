@@ -6,11 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.Hashtag;
 import dto.Post;
 
 public class PostDao {
@@ -104,5 +106,99 @@ public class PostDao {
 			}
 		}
 		return list;
+	}
+
+	public int getPostCurrId() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int postId = 0;
+
+		String sql = "select nvl(max(PID),0) as currPID from post";
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()){ 
+				postId = (int)rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try{if (pstmt != null) pstmt.close();
+			if (con != null) con.close();
+			if(rs!=null) rs.close();
+		}catch(Exception e) { System.out.println(e.getMessage());}
+	}
+		return postId;
+	}
+
+	public int insertHashtag(Hashtag ht) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into hash_tag values (seq_hid.nextval , ?, ?)";
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ht.getTag_id());
+			pstmt.setInt(2, ht.getPost_id());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try{if (pstmt != null) pstmt.close();
+			if (con != null) con.close();
+		}catch(Exception e) { System.out.println(e.getMessage());}
+	}
+		return result;
+	}
+
+	public String memberExist(String memberTag) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String userId=null;
+		String sql="select userid from member where exists(select userid from member where userid=?) and userid=?";
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberTag);
+			pstmt.setString(2, memberTag);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				userId=rs.getString(1);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try{if (pstmt != null) pstmt.close();
+			if (con != null) con.close();
+			if(rs!=null) rs.close();
+		}catch(Exception e) { System.out.println(e.getMessage());}
+	}
+		return userId;
+	}
+
+	public int insertMembertag(String memberTag, int postCurrId) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into member_tag values (?,?)";
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberTag);
+			pstmt.setInt(2, postCurrId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try{if (pstmt != null) pstmt.close();
+				if (con != null) con.close();
+			}catch(Exception e) { System.out.println(e.getMessage());}
+		}
+		
+		return result;
 	}
 }
