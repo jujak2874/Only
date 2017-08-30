@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/chat.css">
+
 <script type="text/javascript" src="js/search.js"></script>
 
 <script type="text/javascript">
@@ -25,10 +27,15 @@
 				var start = data.indexOf('<body>');
 				var end = data.indexOf('</body>');
 				var messageReturn = data.slice(start + 6, end);
-				console.log(messageReturn);
+				console.log("출력: "+messageReturn);
 				$("#displayChatList").html(messageReturn);
-				$("#displayChatList").toggleClass("chatListToggle");
+				$("#displayChatList").removeClass("chatListToggle");
+				$('#displayChatList').addClass('onChatList');
 			});
+		});
+		$('body').on('click',function(){
+			$('#displayChatList').addClass('chatListToggle');
+			$('#displayChatLIst').removeClass('onChatList');
 		});
 	});
 	

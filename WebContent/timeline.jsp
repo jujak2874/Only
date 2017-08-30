@@ -28,6 +28,7 @@
                                                                                                     
 
  -->
+<%@page import="dao.PostDao"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="dto.Post"%>
 <%@page import="java.util.ArrayList"%>

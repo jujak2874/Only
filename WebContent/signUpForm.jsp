@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/signUpFull.css">
 <link rel="stylesheet" type="text/css" href="css/signUpMobile.css">
+
 <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/signUp.js"></script>
 <script type="text/javascript">

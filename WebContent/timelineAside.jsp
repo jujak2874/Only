@@ -23,7 +23,7 @@
 		<div class="chatProfile">
 			<div class="half">
 				<img alt="" src=".${profile_img }" class="chatProfileImg">
-				<h2 class="chatUserName">test</h2>
+				<h2 class="chatUserName"></h2>
 				<button class="FKKK chatBtn" id="" type="submit">X</button>
 			</div>
 		</div>

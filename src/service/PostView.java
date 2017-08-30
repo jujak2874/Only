@@ -30,6 +30,7 @@ public class PostView implements CommandProcess {
 			System.out.println("실패");
 		}
 		request.setAttribute("postResult", result);
+		
 		return "timeline.jsp";
 	}
 }

@@ -103,7 +103,7 @@ $(function() {
 			});
 
 	$(".FKKK").click(function(e) {
-		$("#placeI").hide();
+		$("#placeI").css('display','none');
 	});
 });
 
@@ -137,3 +137,4 @@ function enterKeyPressed() {
 		});
 	});
 }
+

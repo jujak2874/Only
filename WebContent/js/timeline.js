@@ -41,11 +41,11 @@ $(window)
 // infinite scroll 끝
 // Like 버튼 활성화
 $(function(){
-$("ol").on('click','.heart', function(){
-	  $(this).toggleClass('is_animating');
+	$("ol").on('click','.heart', function(){
+		$(this).toggleClass('is_animating');
 	});
 	$("ol").on('animationend','.heart', function(){
-	  $(this).toggleClass('is_animating');
+		$(this).toggleClass('is_animating');
 		$(this).toggleClass('bg-position');
 	});
 });
