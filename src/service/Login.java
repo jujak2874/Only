@@ -10,23 +10,23 @@ import dto.Member;
 public class Login implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("Login ½ÇÇà.");
+		System.out.println("Login ï¿½ï¿½ï¿½ï¿½.");
 		String id = request.getParameter("member_id");
 		String pwd = request.getParameter("password");
-
+		System.out.println("ê³ ì³¤ì–´ í…ŒìŠ¤íŠ¸");
 		MemberDao dao = MemberDao.getInstance();
 		int result = dao.login(id, pwd);
 		Member member = dao.getMember(id);
 		System.out.println(id + ", " + pwd);
 		if(result>0){
-			System.out.println("Login ¼º°ø  by " + id);
+			System.out.println("Login ï¿½ï¿½ï¿½ï¿½  by " + id);
 			request.setAttribute("id", id);
 			request.setAttribute("name", member.getUsername());
 			request.setAttribute("profile_img", member.getProfile_image());
 		} else if(result==0){
-			System.out.println("ºñ¹Ð¹øÈ£°¡ ¸ÂÁö ¾Ê½À´Ï´Ù");
+			System.out.println("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½");
 		}else{
-			System.out.println("ÇØ´ç ID°¡ ¾øÀ½");
+			System.out.println("ï¿½Ø´ï¿½ IDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 		request.setAttribute("result", result);
 		return "login.jsp";
