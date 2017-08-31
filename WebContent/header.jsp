@@ -81,7 +81,7 @@
 		<!-- 서치 끝 -->
 		<div class="header_profile">
 			<div class="header_wraper" data-click="profile_icon">
-				<a id="user_profile_url" href="blog/${sessionId }"> <img
+				<a id="user_profile_url" href="${sessionId }.blog"> <img
 					style="vertical-align: middle" src=".${profile_img }"> <span>${name }</span>
 				</a>
 			</div>

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns={"/blog"})
+@WebServlet(urlPatterns={"*.blog"})
 public class BlogController extends HttpServlet {
 
 	 private static final long serialVersionUID = 1L;   
@@ -25,9 +25,10 @@ public class BlogController extends HttpServlet {
 	     */
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 	                      throws ServletException, IOException {
-	    	String param = request.getPathInfo();
-	    	request.setAttribute("bloguser", param.substring(1));
-	    	System.out.println(param.substring(1));
+	    	String[] param = request.getServletPath().split("/");
+	    	String userid = param[param.length-1].substring(0, param[param.length-1].indexOf('.'));
+	    	request.setAttribute("blogowner", userid);
+	    	System.out.println("getPathInfo" + userid);
 	    	request.getRequestDispatcher("/blog.jsp").forward(request, response);
 	    }
 
@@ -36,6 +37,7 @@ public class BlogController extends HttpServlet {
 	     */
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 	                throws ServletException, IOException {
-	        doGet(request, response);
+	    	request.setCharacterEncoding("utf-8");
+    		doGet(request, response);
 	    }
 }

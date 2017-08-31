@@ -245,74 +245,12 @@
 						}
 							}
 					%>
-					<!-- 포스트 뷰 시작 -->
-					<!-- <li class="infinite_scroll">
-						<h3>자민</h3>
-						<hr> <br>테스트 하려고 한번 써봤어요~ <br> <br>
-						<hr>
-						<div class="reactBtn">
-							<div class='heart'></div>
-							<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
-						</div>
-						<div class="commentForm">
-							<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
-								class="comment_textarea"></textarea>
-						</div>
-					</li> -->
-					<!-- <li class="infinite_scroll">
-						<h3>민규</h3>
-						<hr> 나도 테스트 한번 해보자~ <br> <br> <img alt=""
-						src="img_all/mainbg8.jpg"
-						style="height: 200px; width: 50%; display: inline;"><img
-						alt="" src="img_all/mainbg7.jpg"
-						style="height: 200px; width: 50%; display: inline;"><img
-						alt="" src="img_all/mainbg4.jpg"
-						style="height: 200px; width: 50%; display: inline;"><img
-						alt="" src="img_all/mainbg2.jpg"
-						style="height: 200px; width: 50%; display: inline;">
-						<hr>
-						<div class="reactBtn">
-							<div class='heart'></div>
-							<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
-						</div>
-						<div class="commentForm">
-							<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
-								class="comment_textarea"></textarea>
-						</div>
-					</li> -->
 				</ol>
 			</div>
 			<!-- 포스트 뷰 끝 -->
 		</div>
 		<jsp:include page="timelineAside.jsp"></jsp:include>
-		<!-- 포스트작성 / 뷰 끝 -->
-		<!-- aside 부분 / *팔로우 추천, 광고등 -->
-		<!-- <div class="timeline_aside">
-			<div class="page_margin"></div>
-			<div class="aside_follow">
-				<h3>팔로우 추천 테스트</h3>
-				<hr>
-				내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
-			</div>
-			<div class="aside_interested">
-				<h3>내 관심사 테스트</h3>
-				<hr>
-				내용 테스트<br> 내용 테스트<br> 내용 테스트<br>
-			</div>
-			<div class="page_margin"></div>
-			<div id="placeI" class="chatListToggle">
-			
-				<div id="chatRoomDisplay"></div>
-				<div id="chatRoomInput">
-					<input class="chatBtn" id="chat" type="text" name="chat" style="float: left; width: 225px; height: 20px;"> 
-					<input class="chatBtn" id="send" type="submit" value="보내기" data-chatRoom="" data-sendT="" data-getT="" style="float: left; height: 26px; width: 113px;">
-					<!-- <input id="FKKK" type="submit" value="나가기" style="width: 112px; float: left; height: 26px;"> -->
-	</div>
-	</div>
-	</div>
-	-->
-
-	<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
+						<!-- <input id="FKKK" type="submit" value="나가기" style="width: 112px; float: left; height: 26px;"> -->
 	</div>
 	<!-- 내용 들어갈 부분 끝 -->
 	<%

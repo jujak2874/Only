@@ -263,5 +263,52 @@ public class PostDao {
 			System.out.println(postList.size() + "개 포스트 리턴");
 		return postList;
 	}
+	
+	
+	public List<Post> getBlogPostList(String userid) {
+		System.out.println("getBlogPostList called.." + userid);
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Post> postList = new ArrayList<Post>();
+		String sql = "select * from post where userid = ? order by pid desc";
+		//String sql = "select * from post";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			System.out.println("리턴값이 있는지 확인");
+			if (rs.next()) {
+				do {
+						Post post = new Post();
+						post.setPid(rs.getInt("pid"));
+						post.setText(rs.getString("text"));
+						post.setUrl(rs.getString("url"));
+						post.setUserid(rs.getString("userid"));
+						post.setType(rs.getInt("type"));
+						post.setCreated(rs.getDate("created"));
+						// post.setModifi_date(rs.getDate("modifi_date"));
+						// post.setDelete_chk(rs.getInt("delete_chk"));
+						postList.add(post);
+				} while (rs.next());
+			}
+		} catch (Exception e) {
+			System.out.println("error:");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+				System.out.println("error2: " + e.getMessage());
+			}
+		}
+		return postList;
+	}
 
 }

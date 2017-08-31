@@ -14,16 +14,4 @@
 		<welcome-file>signUpForm.jsp</welcome-file>
 	</welcome-file-list>
 
-	<servlet>
-		<!-- class name -->
-		<servlet-name>BlogController</servlet-name>
-		<!-- package -->
-		<servlet-class>controller.BlogController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>BlogController</servlet-name>
-		<!-- address -->
-		<url-pattern>/blog/*</url-pattern>
-	</servlet-mapping>
-
 </web-app>

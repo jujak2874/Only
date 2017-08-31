@@ -141,11 +141,30 @@ flat(ctrl++shift+f) 절대로 금지 */
 		margin-left: 18%;
 	}
 	.timeline_aside {
+		position: fixed;
 		width: 20%;
 		height: 1000px;
+		right: 15%;
+		display: block;
+		margin-left: 2%;
+	}
+	
+	.blog_aside {
+		position: fixed;
+		background-color: #FFF;
+		width: 15%;
+		height: 100vh;
 		float: left;
 		display: block;
 		margin-left: 2%;
+	}
+	
+	
+	.blog_post {
+		width: 40%;
+		display: block;
+		float: left;
+		margin-left: 18%;
 	}
 	.infinite_scroll {
 		background-color: #FFF;
