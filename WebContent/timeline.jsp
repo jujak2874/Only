@@ -183,6 +183,8 @@
 									type="file" name="videoUpload" style='display: none;'
 									accept="video/*">
 								</a>
+								<label class="img_hide img_hidden"><br>해시태그</label><input class="img_hide img_hidden" type="text" name="hashtag"><br>
+								<label class="img_hide img_hidden">회원태그</label><input class="img_hide img_hidden" type="text" name="membertag"><br>
 							</div>
 							<button type="submit" class="post_submit_btn">작성</button>
 						</form>
