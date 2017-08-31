@@ -1,13 +1,14 @@
 $(function() {
 	$(".chatStart").click(function(e) {
-				console.log("chatroomid: " + $(".chatStart").attr("data-getT"));
+				//console.log("chatroomid: " + $(".chatStart").attr("data-getT"));
 				var chatroomid = e.target.id;
 				var sendData = "chatRoom=" + chatroomid;
+				$("#chatRoomDisplay").attr("data-currentroom", chatroomid);
 				$.post("getChat.jsp", sendData, function(data) {
 					var start = data.indexOf('<span>');
 					var end = data.indexOf('</span>');
 					var result = data.slice(start + 6, end);
-					console.log("chat" + result);
+					//console.log("chat" + result);
 					
 					var sendData2 = "member_id=" + e.target.getAttribute("data-getT");
 					$.post("getMember.jsp", sendData2, function(data2){
@@ -21,6 +22,12 @@ $(function() {
 												
 					});
 					
+					$.post("updateNotification.jsp", {
+						type : "chat"
+					}, function(data) {
+						updateMessageNotification(data.trim());
+					});
+					
 					$(".chat").attr("id", "chat-" + chatroomid);
 					$(".send").attr("id", "send-" + chatroomid);
 					$(".send").attr("data-chatRoom", chatroomid)
@@ -31,6 +38,8 @@ $(function() {
 					$(".FKKK").attr("id", "FKKK-" + chatroomid);
 					$("#placeI").show();
 					$("#chatRoomDisplay").html(result);
+					$("#placeI").scrollTop(
+							$("#placeI")[0].scrollHeight);
 					$("#chatRoomDisplay").scrollTop(
 							$("#chatRoomDisplay")[0].scrollHeight);
 
@@ -82,19 +91,28 @@ $(function() {
 				};
 
 				$.post("saveChat.jsp", sendData, function(data) {
+					sendChat(JSON.stringify({
+						type : "chat",
+						message : $(".send").attr("data-chatroom"),
+						from : $(".send").attr("data-sendT"),
+						to : $(".send").attr("data-getT")
+						}));
 					var sendData = "chatRoom="
 							+ $(".send").attr("data-chatroom");
 					$.post("getChat.jsp", sendData, function(data) {
 						var start = data.indexOf('<span>');
 						var end = data.indexOf('</span>');
 						var result = data.slice(start + 6, end);
-						console.log("chat" + result);
+						//console.log("chat" + result);
 						// $(".send").attr("data-getT",
 						// e.target.getAttribute("data-getT"));
 						// $(".send").attr("data-sendT",
 						// e.target.getAttribute("data-sendT"));
 						// $("#placeI").show();
 						$("#chatRoomDisplay").html(result);
+						$("#placeI").scrollTop(
+								$("#placeI")[0].scrollHeight);
+
 						$("#chatRoomDisplay").scrollTop(
 								$("#chatRoomDisplay")[0].scrollHeight);
 						$(".chat").val("");
@@ -125,7 +143,7 @@ function enterKeyPressed() {
 			var start = data.indexOf('<span>');
 			var end = data.indexOf('</span>');
 			var result = data.slice(start + 6, end);
-			console.log("chat" + result);
+			//console.log("chat" + result);
 			// $(".send").attr("data-getT", e.target.getAttribute("data-getT"));
 			// $(".send").attr("data-sendT",
 			// e.target.getAttribute("data-sendT"));
@@ -138,3 +156,19 @@ function enterKeyPressed() {
 	});
 }
 
+function chat_reload(chatroom){
+	//alert($('#chatRoomDisplay').attr('data-currentroom'));
+	if($("#chatRoomDisplay").attr("data-currentroom")==chatroom){
+		  // 해당 채팅창이 열려있으면
+		  var sendData = "chatRoom=" + chatroom;
+		  $.post("getChat.jsp", sendData, function(data) {
+				var start = data.indexOf('<span>');
+				var end = data.indexOf('</span>');
+				var result = data.slice(start + 6, end);
+				//$("#placeI").show();
+				$("#chatRoomDisplay").html(result);
+				$("#placeI").scrollTop($("#placeI")[0].scrollHeight);
+				$("#chatRoomDisplay").scrollTop($("#chatRoomDisplay")[0].scrollHeight);
+			});
+	}
+}

@@ -218,7 +218,7 @@ public class ChatDao {
 				cm.setMessage(rs.getString("message"));
 				cm.setUserid(rs.getString("userid"));
 				cm.setCreated(rs.getDate("created"));
-				cm.setDel_status(rs.getInt("del_status"));
+				cm.setStatus(rs.getInt("status"));
 				cm.setMid(rs.getInt("mid"));
 				chathistory.add(cm);
 			}
@@ -263,7 +263,7 @@ public class ChatDao {
 					cm.setMessage(rs.getString("message"));
 					cm.setUserid(rs.getString("userid"));
 					cm.setCreated(rs.getDate("created"));
-					cm.setDel_status(rs.getInt("del_status"));
+					cm.setStatus(rs.getInt("status"));
 					cm.setMid(rs.getInt("mid"));
 					cm.setCid(rs.getString("cid"));
 					messageList.add(cm);
@@ -285,5 +285,64 @@ public class ChatDao {
 			}
 		}
 		return messageList;
+	}
+	
+	public int readMessage(int mid) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "update chat_message set status=1 where mid=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mid);;
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+			}
+		}
+		return result;
+	}
+	
+	
+	public int checkUnreadMessage(String memberId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "select count(mid) from chat_message where cid like ('%' || ? || '%') and userid != ? and status=0";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, memberId);
+			rs = pstmt.executeQuery();
+			rs.next();
+			result = rs.getInt(1);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+			}
+		}
+		return result;
 	}
 }

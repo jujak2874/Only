@@ -1,3 +1,4 @@
+<%@page import="dao.ChatDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,51 +17,40 @@
 			alert("검색어를 입력하세요");
 			return false;
 		}
-	}	
+	}
 
 	$(function() {
+		$.post("updateNotification.jsp", {
+			type : "chat"
+		}, function(data) {
+			updateMessageNotification(data.trim());
+		});
+		
 		$("#chatList").click(function(e) {
 			var memberId = $("#chatList").attr('data-id');
-			console.log("getChatMessage of " + memberId);
 			var params = "member_id=" + encodeURIComponent(memberId);
 			$.post("roompl.jsp", params, function(data) {
 				var start = data.indexOf('<body>');
 				var end = data.indexOf('</body>');
 				var messageReturn = data.slice(start + 6, end);
-				console.log("출력: "+messageReturn);
+				console.log("출력: " + messageReturn);
 				$("#displayChatList").html(messageReturn);
 				$("#displayChatList").removeClass("chatListToggle");
 				$('#displayChatList').addClass('onChatList');
 			});
 		});
-		$('body').on('click',function(){
+		$('body').on('click', function() {
 			$('#displayChatList').addClass('chatListToggle');
 			$('#displayChatLIst').removeClass('onChatList');
 		});
 	});
-	
-	$("#friendList").click(function(e){
-		
+
+	$("#friendList").click(function(e) {
+
 	});
-	
-/* 	$(function() {
- 		$(".chatStart").click(function() {
-			alert("test");
-			var sendData = "chatRoom=" + chatroomid;
-			$.post("getChat.jsp", sendData, function(data) {
-				
-				console.log("chat" + data);
-				$("#chatRoomDisplay").html(data);
-			}); 
-		});
-	}); */
-	
 </script>
 </head>
 <body>
-	<%
-		System.out.println("header");
-	%>
 	<!-- 상단고정바 시작 -->
 	<div class="header">
 		<!-- 상단고정바 로고 -->
@@ -94,18 +84,19 @@
 			<div class="header_wraper">
 				<div class="nav_icon">
 					<div class="friend_list">
-							<a id="friendList" href="friendList.do?userid=${sessionId }" data-userid="${sessionId }">
-								<div class='navImage'>
-									<span>Friend List</span>
-								</div>
-							</a>
+						<a id="friendList" href="friendList.do?userid=${sessionId }"
+							data-userid="${sessionId }">
+							<div id="friend_notification">
+								<span>Friend List</span>
+							</div>
+						</a>
 						</form>
 					</div>
 				</div>
 				<div class="nav_icon">
 					<div class="alarm_list" data-click="alarm_list_icon">
 						<a href="alarm.do" class="info">
-							<div class='navImage'>
+							<div id="alarm_notification">
 								<span>Notifications</span>
 							</div>
 						</a>
@@ -115,7 +106,7 @@
 				<div class="nav_icon">
 					<div class="message_list" data-click="message_list_icon">
 						<a class="info" id="chatList" data-id="${sessionId }">
-							<div class='navImage'>
+							<div id="message_notification">
 								<span>Message</span>
 							</div>
 						</a>

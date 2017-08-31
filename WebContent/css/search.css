@@ -132,11 +132,15 @@ body {
 	
 }
 
-.navImage span {
+#alarm_notification span, #message_notification span, #friend_notification span{
 	display: none;
 }
 
-.navImage:hover span { /*the span will display just on :hover state*/
+.navImage:hover span,
+#friend_notification:hover span,
+#alarm_notification:hover span,
+#message_notification:hover span
+{ /*the span will display just on :hover state*/
 	padding: 5px;
 	display: block;
 	position: absolute;
@@ -148,7 +152,10 @@ body {
 	text-align: center;
 }
 
-.navImage:hover span:after {
+.navImage:hover span:after.
+#friend_notification:hover span:after,
+#alarm_notification:hover span:after,
+#message_notification:hover span:after {
 	/*the span will display just on :hover state*/
 	padding: 5px;
 	display: block;
@@ -176,6 +183,38 @@ body {
 	overflow: visible;
 }
 
+
+#friend_notification {
+	position: relative;
+	cursor: pointer;
+	height: 45px;
+	width: 45px;
+	background-image: url(../img_all/notification.png);
+	background-position: 0 -185px;
+	background-repeat: no-repeat;
+	background-size: 45px;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+	overflow: visible;
+}
+
+#friend_notification.alert {
+	position: relative;
+	cursor: pointer;
+	height: 45px;
+	width: 45px;
+	background-image: url(../img_all/notification.png);
+	background-position: 0 -227px;
+	background-repeat: no-repeat;
+	background-size: 45px;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+	overflow: visible;
+}
+
+
 .alarm_list .navImage {
 	position: relative;
 	cursor: pointer;
@@ -191,7 +230,38 @@ body {
 	overflow: visible;
 }
 
-.message_list .navImage {
+
+#alarm_notification {
+	position: relative;
+	cursor: pointer;
+	height: 45px;
+	width: 45px;
+	background-image: url(../img_all/notification.png);
+	background-position: 0 -142px;
+	background-repeat: no-repeat;
+	background-size: 45px;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+	overflow: visible;
+}
+
+#alarm_notification.alert {
+	position: relative;
+	cursor: pointer;
+	height: 45px;
+	width: 45px;
+	background-image: url(../img_all/notification.png);
+	background-position: 0 -100px;
+	background-repeat: no-repeat;
+	background-size: 45px;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+	overflow: visible;
+}
+
+#message_notification {
 	position: relative;
 	cursor: pointer;
 	height: 45px;
@@ -205,6 +275,23 @@ body {
 	float: left;
 	overflow: visible;
 }
+
+#message_notification.alert {
+	position: relative;
+	cursor: pointer;
+	height: 45px;
+	width: 45px;
+	background-image: url(../img_all/notification.png);
+	background-position: 0 -560px;
+	background-repeat: no-repeat;
+	background-size: 45px;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+	overflow: visible;
+}
+
+
 
 /* .header_profile .header_wraper .alarm_list {
    display: inline-block;
@@ -299,7 +386,7 @@ span {
 	padding-left: 10px;
 	padding-right: 10px;
 	width: 20%;
-	overflow: hidden;
+	overflow: scroll;
 	overflow-x: hidden;
 	position: fixed;
 	height: 45%;
@@ -311,8 +398,8 @@ span {
 
 #placeI #chatRoomDisplay {
 	height: 80%;
-	overflow: scroll;
-	/* display: inline-block;
+	/* overflow: scroll;
+	 *//* display: inline-block;
 	float: left; */
 	width: 100%;
 }

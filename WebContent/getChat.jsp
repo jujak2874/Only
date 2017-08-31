@@ -35,6 +35,9 @@
 						</div>
 	<%
 					}else{
+						if(cm.getStatus()==0){
+							dao.readMessage(cm.getMid());
+						}
 						%><div class="receivedMsg">
 						<img href="#"  src="<%=revcProfileImage %>"></a><div class="chatMessage" style="word-break:break-all"><%=cm.getMessage() %></div>
 						</div>

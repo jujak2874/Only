@@ -9,7 +9,7 @@ public class ChatMessage {
 	private Date created; 
 	private int mid; 
 	private String cid; 
-	private int del_status; 
+	private int status; 
 	
 	public String getUserid() {
 		return userid;
@@ -41,10 +41,10 @@ public class ChatMessage {
 	public void setCid(String cid) {
 		this.cid = cid;
 	}
-	public int getDel_status() {
-		return del_status;
+	public int getStatus() {
+		return status;
 	}
-	public void setDel_status(int del_status) {
-		this.del_status = del_status;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }
