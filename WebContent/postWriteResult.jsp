@@ -9,6 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+String id = (String) session.getAttribute("sessionId");
+%>
 	<c:if test="${postResult > 0 }">
 		<script type="text/javascript">
 			alert("작성성공");

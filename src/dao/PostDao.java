@@ -33,9 +33,9 @@ public class PostDao {
 			Context ctx = new InitialContext();
 			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/OracleDB");
 			con = ds.getConnection();
-			System.out.println("DB연결성공");
+			System.out.println("DB�뿰寃곗꽦怨�");
 		} catch (Exception e) {
-			System.out.println("DB연결실패");
+			System.out.println("DB�뿰寃곗떎�뙣");
 			System.out.println(e.getMessage());
 		}
 		return con;
@@ -45,9 +45,9 @@ public class PostDao {
 		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		// postID생성
+		// postID�깮�꽦
 		long myId = 0;
-		String sqlIdentifier = "select seq_pid.NEXTVAL from dual";
+		String sqlIdentifier = "select pid_seq.NEXTVAL from dual";
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sqlIdentifier);
@@ -55,16 +55,16 @@ public class PostDao {
 				ResultSet rs = pstmt.executeQuery();
 				if (rs.next()) {
 					myId = rs.getLong(1);
-					System.out.println("seq_pid: " + myId);
+					System.out.println("pid_seq: " + myId);
 				}
 			}
 		} catch (Exception e) {
 
 		}
 
-		String sql = "insert into POST values(?,sysdate,0,?,?,?,?,null,0)";
+		String sql = "insert into POST values(?,sysdate,0,?,?,?,?,null,?)";
 		try {
-			/*con = getConnection();*/
+			/* con = getConnection(); */
 			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, myId);
 			// question
@@ -74,12 +74,13 @@ public class PostDao {
 			// URL
 			pstmt.setString(4, post.getUrl());
 			// mid
-			pstmt.setString(5, post.getMember_id());
+			pstmt.setString(5, post.getUserid());
+			pstmt.setInt(6, post.getType());
 			result = pstmt.executeUpdate();
-			System.out.println("작성성공 from DAO");
+			System.out.println("�옉�꽦�꽦怨� from DAO");
 		} catch (Exception e) {
 			myId = 0;
-			System.out.println("작성실패 from DAO");
+			System.out.println("�옉�꽦�떎�뙣 from DAO");
 			System.out.println(e.getMessage());
 		} finally {
 			try {
@@ -104,12 +105,12 @@ public class PostDao {
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, post.getMember_id());
+			pstmt.setString(1, post.getUserid());
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				post.setPost_id(rs.getString("pid"));
-				post.setMember_id(rs.getString("member_id"));
-				post.setWrite_date(rs.getDate("created"));
+				post.setPid(rs.getInt("pid"));
+				post.setUserid(rs.getString("member_id"));
+				post.setCreated(rs.getDate("created"));
 				post.setUrl(rs.getString("url"));
 				post.setText(rs.getString("text"));
 			}
@@ -125,7 +126,7 @@ public class PostDao {
 		}
 		return list;
 	}
-	
+
 	public int insertHashtag(Hashtag ht) {
 		int result = 0;
 		Connection con = null;
@@ -139,37 +140,48 @@ public class PostDao {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}finally {
-			try{if (pstmt != null) pstmt.close();
-			if (con != null) con.close();
-		}catch(Exception e) { System.out.println(e.getMessage());}
-	}
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		return result;
 	}
-	
+
 	public String memberExist(String memberTag) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String userId=null;
-		String sql="select userid from member where exists(select userid from member where userid=?) and userid=?";
+		String userId = null;
+		String sql = "select userid from member where exists(select userid from member where userid=?) and userid=?";
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberTag);
 			pstmt.setString(2, memberTag);
 			rs = pstmt.executeQuery();
-			if(rs.next()){
-				userId=rs.getString(1);
+			if (rs.next()) {
+				userId = rs.getString(1);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}finally {
-			try{if (pstmt != null) pstmt.close();
-			if (con != null) con.close();
-			if(rs!=null) rs.close();
-		}catch(Exception e) { System.out.println(e.getMessage());}
-	}
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		return userId;
 	}
 
@@ -186,46 +198,55 @@ public class PostDao {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}finally {
-			try{if (pstmt != null) pstmt.close();
-				if (con != null) con.close();
-			}catch(Exception e) { System.out.println(e.getMessage());}
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
-		
+
 		return result;
 	}
-	
-	// 해당 유저가 팔로하는 유저의 post + 내 post
-	public List<Post> getTimelinePostList(String userid){
+
+	// �빐�떦 �쑀��媛� �뙏濡쒗븯�뒗 �쑀���쓽 post + �궡 post
+	public List<Post> getTimelinePostList(String userid) {
 		System.out.println("getTimelinePostList called.." + userid);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<Post> postList = null;
+		List<Post> postList = new ArrayList<Post>();
 		String sql = "select * from post where userid in"
-				+ "(select userid from member where userid in (select userid2 from follow where userid1 = ?) or userid = ?)";
+		 + "(select userid from member where userid in (select userid2 from follow where userid1 = ?) or userid = ?) order by pid desc";
+		//String sql = "select * from post";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userid);
 			pstmt.setString(2, userid);
 			rs = pstmt.executeQuery();
-			while(rs.next()){
-				System.out.println(rs.getString("pid"));
-				Post post = new Post();
-				post.setPost_id(rs.getString("pid"));
-				post.setText(rs.getString("text"));
-				post.setUrl(rs.getString("url"));
-				post.setMember_id(rs.getString("userid"));
-				//post.setQna(rs.getString("qna"));
-				post.setType(rs.getInt("type"));
-				//post.setWrite_date(rs.getDate("write_date"));
-				//post.setModifi_date(rs.getDate("modifi_date"));
-				//post.setDelete_chk(rs.getInt("delete_chk"));
-				postList.add(post);
+			System.out.println("리턴값이 있는지 확인");
+			if (rs.next()) {
+				do {
+					System.out.println("pid: " + rs.getInt("pid"));
+						Post post = new Post();
+						post.setPid(rs.getInt("pid"));
+						post.setText(rs.getString("text"));
+						post.setUrl(rs.getString("url"));
+						post.setUserid(rs.getString("userid"));
+						post.setType(rs.getInt("type"));
+						post.setCreated(rs.getDate("created"));
+						// post.setModifi_date(rs.getDate("modifi_date"));
+						// post.setDelete_chk(rs.getInt("delete_chk"));
+						postList.add(post);
+				} while (rs.next());
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("error:");
+			e.printStackTrace();
 		} finally {
 			try {
 				if (pstmt != null)
@@ -235,8 +256,11 @@ public class PostDao {
 				if (rs != null)
 					rs.close();
 			} catch (Exception e) {
+				System.out.println("error2: " + e.getMessage());
 			}
 		}
+		if (postList != null)
+			System.out.println(postList.size() + "개 포스트 리턴");
 		return postList;
 	}
 

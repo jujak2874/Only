@@ -91,4 +91,35 @@ public class AlertDao {
 		}
 		return result;
 	}
+	
+	public int markReadPost(String memberId, int pid) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		System.out.println("read post " + memberId + pid);
+		String sql = "update alert set status='y' where userid2 = ? and url=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, "post/"+pid);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+			}
+		}
+		return result;
+	}
+	
+	
 }

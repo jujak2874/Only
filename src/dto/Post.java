@@ -12,7 +12,7 @@ public class Post {
 	private String url; //"URL" VARCHAR2(1000 BYTE), 
 	private String userid; //"USERID" VARCHAR2(20 BYTE) NOT NULL ENABLE, 
 	private Date modified; //"MODIFIED" CHAR(18 BYTE), 
-	private String type; //"TYPE" CHAR(18 BYTE), 
+	private int type; //"TYPE" CHAR(18 BYTE), 
 	public int getPid() {
 		return pid;
 	}
@@ -61,10 +61,10 @@ public class Post {
 	public void setModified(Date modified) {
 		this.modified = modified;
 	}
-	public String getType() {
+	public int getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 	

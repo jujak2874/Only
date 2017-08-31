@@ -18,7 +18,9 @@ public class PostWrite implements CommandProcess {
 		try {
 			// 파일이 저장되는 경로
 			String savePath = request.getServletContext().getRealPath("upload");
-			int size = 1024 * 1024 * 15;
+			System.out.println("savepath:"+savePath);
+			/*int size = 1024 * 1024 * 15;*/
+			int size = 500 * 1024 * 1024; ;
 			MultipartRequest multi = new MultipartRequest(request, savePath, size, "utf-8", new DefaultFileRenamePolicy());
 			String text = multi.getParameter("text");
 			String member_id = multi.getParameter("member_id");
@@ -34,9 +36,10 @@ public class PostWrite implements CommandProcess {
 			String membertags=multi.getParameter("membertag");
 			System.out.println("해시태그 입력값들: "+ hashtags);
 			System.out.println("멤버태그 입력값들: "+ membertags);
-			String[] splitedHashTags=hashtags.split("#");
-			String[] splitedMemberTags=membertags.split(",");
-			//#으로 구분한 0번째 인덱스 해시태그는 공백이기 때문에 1번째 인덱스부터 불러온다. 
+			String[] splitedHashTags=hashtags.trim().split("#");
+			String[] splitedMemberTags=membertags.trim().split(",");
+			//#으로 구분한 0번째 인덱스 해시태그는 공백이기 때문에 1번째 인덱스부터 불러온다.
+			System.out.println(splitedHashTags.length + ", " + splitedMemberTags.length);
 			for(int i=1;i<splitedHashTags.length;i++){
 				System.out.println(i+"번째 해시태그 " + splitedHashTags[i]);
 			}
@@ -46,27 +49,30 @@ public class PostWrite implements CommandProcess {
 			
 			PostDao dao = PostDao.getInstance();
 			Post post = new Post();
-			post.setMember_id(member_id);
+			post.setUserid(member_id);
 			post.setText(text);
 			if(fileName==null) {
-				post.setUrl(null);
+				post.setType(0);
 			}else {
-				post.setUrl(fileFullPath);
+				post.setType(1);
 			}
+			post.setUrl(fileName);
 			long pid = dao.insertPost(post);
 			if (pid > 0) {
 				System.out.println("작성성공 from PostWrite");
 				// Alert 생성
 				AlertDao ad = AlertDao.getInstance();
 				FollowDao fd = FollowDao.getInstance();
-				List<Member> followers = fd.getFollowers(member_id);
-				for(Member mem : followers){
+				List<Member> followees = fd.getFollowees(member_id);
+				for(Member mem : followees){
 					Alert alert = new Alert();
 					alert.setType(0);
 					alert.setUserid1(member_id);
 					alert.setUserid2(mem.getUserid());
-					alert.setUrl(request.getContextPath()+pid);
-					ad.insert(alert);
+					alert.setUrl("post/"+pid);
+					int alertResult = ad.insert(alert);
+					if(alertResult>0) System.out.println("alert생성");
+					else System.out.println("alert생성 실패");
 				}
 			} else {
 				System.out.println("작성실패");
@@ -86,6 +92,7 @@ public class PostWrite implements CommandProcess {
 			//멤버태그에 포스트 아이디와 멤버아이디 입력
 			//존재하지 않는 아이디를 하나라도 입력하면 무결성 제약조건에 걸리기 때문에 브레이크 걸기
 			for(int i=0;i<splitedMemberTags.length;i++){
+				if(splitedMemberTags[i].equals("")) continue;
 				if(dao.memberExist(splitedMemberTags[i])==null){
 					System.out.println(i+1 +"번째 입력한 멤버아이디 "+ splitedMemberTags[i]+"가 존재하지 않습니다");
 					request.setAttribute("notExistingMemberOrder", i);

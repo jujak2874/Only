@@ -43,6 +43,7 @@
 				$('#displayChatList').addClass('onChatList');
 			});
 		});
+		
 		$('body').on('click', function() {
 			$('#displayChatList').addClass('chatListToggle');
 			$('#displayChatLIst').removeClass('onChatList');
@@ -60,7 +61,7 @@
 		<!-- 상단고정바 로고 -->
 		<div class="head_logo">
 			<h1 class="head_logo">
-				<a id="logo_href" href="postView.do"> <img id="logo_top" alt=""
+				<a id="logo_href" href="./timeline.jsp"> <img id="logo_top" alt=""
 					src="img_all/logo3.png">
 				</a>
 			</h1>
@@ -99,7 +100,7 @@
 				</div>
 				<div class="nav_icon">
 					<div class="alarm_list" data-click="alarm_list_icon">
-						<a href="alarm.do" class="info">
+						<a href="./timeline.jsp" id="alarmList" class="info">
 							<div id="alarm_notification">
 								<span>Notifications</span>
 							</div>

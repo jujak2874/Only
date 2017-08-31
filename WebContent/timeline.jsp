@@ -28,6 +28,7 @@
                                                                                                     
 
  -->
+<%@page import="dao.AlertDao"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.PostDao"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -86,26 +87,31 @@
 		
 		websocket.onmessage = function(event){
 			var notification = JSON.parse(event.data);
-			  if(notification.type=='chat'){
-				  if(notification.to=="<%=userid%>
-	") {
-				console.log("메시지 받음: " + notification.message);
-				console.log("현 메시지 창: "
-						+ $("#message_notification").attr("data-currentroom"));
-				chat_reload(notification.message);
-				setTimeout(function() {
-					$.post("updateNotification.jsp", {
-						type : "chat"
-					}, function(data) {
-						console.log("update notification");
-						updateMessageNotification(data.trim());
+			if(notification.type=='chat'){
+				if(notification.to == '<%=userid%>') {
+					console.log("메시지 받음: " + notification.message);
+					console.log("현 메시지 창: " + $("#message_notification").attr("data-currentroom"));
+					chat_reload(notification.message);
+					setTimeout(function() {
+						$.post("updateNotification.jsp", {type : "chat"}, function(data) {
+							console.log("update msg notification");
+							updateMessageNotification(data.trim());
+							});
+						}, 500);
+					}
+				} else if(notification.type=='post'){
+					$.post("followChk.jsp", "userid2="+notification.from, function(data){
+						if(data.indexOf("true")>0){
+							setTimeout(function(){
+							$.post("updateNotification.jsp", {type : "post"}, function(data) {
+								console.log("update post notification");
+								updateAlertNotification(data.trim());
+								});
+							}, 100);
+						}
 					});
-				}, 500);
+				}
 			}
-		} else if (notification.type == 'post') {
-
-		}
-	}
 
 	function sendChat(message) {
 		websocket.send(message);
@@ -133,17 +139,8 @@
 			$("#alarm_notification").addClass('alert');
 		}
 	}
+	
 </script>
-
-<
-<c:if test="${postResult > 0 }">
-	<script type="text/javascript">
-		sendChat(JSON.stringify({
-			type : "post",
-			from : userid
-		}));
-	</script>
-</c:if>
 <body>
 	<div id="wrapper">
 		<div id="layerPop">
@@ -168,10 +165,15 @@
 				<ol class="post_view_box">
 					<li class="type_choice_box" id="infinite_container">
 						<form action="postWrite.do" method="post"
-							enctype="multipart/form-data">
+							enctype="multipart/form-data" onsubmit='return sendChat(JSON.stringify({type:"post",from:"<%=id%>"}));'>
 							<input type="hidden"
 								value="<%=(String) session.getAttribute("sessionId")%>"
 								name="member_id">
+							<%
+								System.out.println("path=" + application.getRealPath("/fileSave"));
+							%>
+							<input type="hidden"
+								value="<%=application.getRealPath("/fileSave")%>" name="path">
 							<textarea rows="1" cols="1" class="type_choice_textarea"
 								name="text" placeholder="오늘은 무슨일이 있었나요?"></textarea>
 							<div class="write_type_choice">
@@ -198,39 +200,50 @@
 					<!-- 타입 선택 후 끝 -->
 					<%
 						PostDao pdo = PostDao.getInstance();
-						List<Post> postList = pdo.getTimelinePostList(userid);
-						System.out.println(postList.size()+"개의 포스트가 있음");
-						if (postList.size() == 0) {
+							List<Post> postList = pdo.getTimelinePostList(userid);
+							if (postList == null) {
 					%>
 					<li class="infinite_scroll">
 						<h3>등록된 글이 없습니다</h3>
 					</li>
 					<%
 						} else {
-							for(Post p : postList){
-								%><li class="infinite_scroll"><%
-								if(p.getType()==0){ // 텍스트 타입
-									%>
-									<h3><%=p.getMember_id() %></h3>
-									<hr>
-									<h3><%=p.getText() %></h3>
-									<%
-								} else if(p.getType()==1){ // 사진타입
-									%>
-									<h3><%=p.getMember_id() %></h3>
-									<hr>
-									<h3><%=p.getText() %></h3>
-									<img src="<%=p.getUrl() %>" style="height: 200px; width: 50%; display: inline;">
-									<%
-								}
-								
-								%><div class="reactBtn"><div class='heart'></div>
-								<div class="share_out" onclick="openLayer('layerPop',200,18)"></div></div>
-								<div class="commentForm">
-								<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기" class="comment_textarea"></textarea>
-								</div></li><%
-							}
+								System.out.println(postList.size() + "개의 포스트가 있음");
+								for (Post p : postList) {
+									AlertDao ado = AlertDao.getInstance();
+									ado.markReadPost(userid, p.getPid());
+					%><li class="infinite_scroll">
+						<%
+							if (p.getType() == 0) { // 텍스트 타입
+						%>
+						<h3><%=p.getUserid()%></h3>
+						<hr>
+						<h3><%=p.getText()%></h3> <%
+ 	} else if (p.getType() == 1) { // 사진타입
+ %>
+						<h3><%=p.getUserid()%></h3>
+						<hr>
+						<h3><%=p.getText()%></h3> <img src="upload/<%=p.getUrl()%>"
+						style="height: 200px; width: 50%; display: inline;"> <%
+ 	} else if (p.getType() == 2) {
+ %> <video width="320" height="240" controls>
+							<source src="upload/<%=p.getUrl()%>" type="video/mp4">
+							<source src="upload/<%=p.getUrl()%>" type="video/ogg">
+							<source src="upload/<%=p.getUrl()%>" type="video/mp4">
+						</video> <%
+ 	}
+ %><div class="reactBtn">
+							<div class='heart'></div>
+							<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
+						</div>
+						<div class="commentForm">
+							<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
+								class="comment_textarea"></textarea>
+						</div>
+					</li>
+					<%
 						}
+							}
 					%>
 					<!-- 포스트 뷰 시작 -->
 					<!-- <li class="infinite_scroll">
