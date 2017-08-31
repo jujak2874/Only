@@ -76,16 +76,17 @@
 								<td valign="middle" width="10%"><img alt=''
 									src='<%=application.getContextPath() + (member.getProfile_image())%>'>
 								</td>
-								<td valign="middle" align="left"><a href="#" class="test"
+								<td valign="middle" align="left">
+								<a href="#" class="test"
 									id="test-<%=member.getUserid()%>"><h3><%=member.getUsername()%></h3>
 
 										<div class="hide" id="rmenu-<%=member.getUserid()%>"
 											name="rmenu">
 											<ul>
-												<li><a href="#" id="chat">Visit</a></li>
+												<li><a href="#" id="chat">Visi1t</a></li>
 												<li><a href="#" id="follow"
 													data-followid="<%=member.getUserid()%>"><span
-														id="followText">Follow</span></a></li>
+														id="followText-<%=member.getUserid() %>">Follow</span></a></li>
 												<li><a href="#" class="chatStart <%=chatroom%>"
 													id="<%=chatroom%>" data-sendT="<%=sendT%>"
 													data-getT="<%=getT%>">Send Message</a></li>
@@ -145,7 +146,7 @@
 												<li><a href="#" id="chat">Visit</a></li>
 												<li><a href="#" id="follow"
 													data-followid="<%=member.getUserid()%>"><span
-														id="followText">Follow</span></a></li>
+														id="followText-<%=member.getUserid()%>">Follow</span></a></li>
 												<li><a href="#" class="chatStart <%=chatroom%>"
 													id="<%=chatroom%>" data-sendT="<%=sendT%>"
 													data-getT="<%=getT%>">Send Message</a></li>

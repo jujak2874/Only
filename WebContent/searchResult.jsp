@@ -115,7 +115,7 @@
 												} else{%>
 												<li><a href="#" id="follow"
 													data-followid="<%=member.getUserid()%>"><span
-														id="followText">Follow</span></a></li>
+														id="followText-<%=member.getUserid()%>">Follow</span></a></li>
 												<li><a href="#" class="chatStart <%=chatroom%>"
 													id="<%=chatroom%>" data-sendT="<%=sendT%>"
 													data-getT="<%=getT%>">Send Message</a></li>

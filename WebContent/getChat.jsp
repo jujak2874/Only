@@ -31,7 +31,7 @@
 					if(cm.getUserid().equals((String) session.getAttribute("sessionId"))){
 						%>
 						<div class="sentMsg">
-							<div class="chatMessage" style="word-break:break-all"><%=cm.getMessage() %></div>
+							<div class="chatMessage"><%=cm.getMessage() %></div>
 						</div>
 	<%
 					}else{
@@ -39,7 +39,7 @@
 							dao.readMessage(cm.getMid());
 						}
 						%><div class="receivedMsg">
-						<img href="#"  src="<%=revcProfileImage %>"></a><div class="chatMessage" style="word-break:break-all"><%=cm.getMessage() %></div>
+							<div class="chatMessage"><%=cm.getMessage() %></div>
 						</div>
 	<%						
 					}

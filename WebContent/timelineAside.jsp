@@ -31,7 +31,8 @@
 			  case 'chat':
 				 chat_reload(notification.message);
 				 $.post("updateNotification.jsp", {type:"chat"}, function(data) {
-					 updateMessageNotification(data.trim());
+					 console.log("update notification");
+					 updateMessageNotification(data.trim());	 
 					 });
 				 break;
 			  }
@@ -43,7 +44,8 @@
 	}
 	
 	function updateMessageNotification(num){
-		if(num==0){
+		console.log(num);
+		if(num==0 || num=="0"){
 			$("#message_notification").html("<span>모든 메시지 읽음</span>");
 			$("#message_notification").removeClass('alert');
 		}else{

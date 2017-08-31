@@ -76,9 +76,8 @@ $(function() {
 		});
 		
 	});
-
-	$(".send").click(
-			function(e) {
+	$(".send").off('click').on('click', function(e) {
+				console.log("send 눌림");
 				if ($(".chat").val() == "") {
 					alert("메시지를 입력하세요");
 					$(".chat").focus();
@@ -110,22 +109,21 @@ $(function() {
 						// e.target.getAttribute("data-sendT"));
 						// $("#placeI").show();
 						$("#chatRoomDisplay").html(result);
-						$("#placeI").scrollTop(
-								$("#placeI")[0].scrollHeight);
-
-						$("#chatRoomDisplay").scrollTop(
-								$("#chatRoomDisplay")[0].scrollHeight);
+						$("#placeI").scrollTop($("#placeI")[0].scrollHeight);
+						$("#chatRoomDisplay").scrollTop($("#chatRoomDisplay")[0].scrollHeight);
 						$(".chat").val("");
 					});
 				});
 			});
 
 	$(".FKKK").click(function(e) {
+		$("#chatRoomDisplay").attr("data-currentroom", "");
 		$("#placeI").css('display','none');
 	});
 });
 
 function enterKeyPressed() {
+	console.log("enterkey눌림");
 	if ($(".chat").val() == "") {
 		alert("메시지를 입력하세요");
 		$(".chat").focus();
@@ -149,15 +147,14 @@ function enterKeyPressed() {
 			// e.target.getAttribute("data-sendT"));
 			// $("#placeI").show();
 			$("#chatRoomDisplay").html(result);
-			$("#chatRoomDisplay").scrollTop(
-					$("#chatRoomDisplay")[0].scrollHeight);
+			$("#chatRoomDisplay").scrollTop($("#chatRoomDisplay")[0].scrollHeight);
 			$(".chat").val("");
 		});
 	});
 }
 
 function chat_reload(chatroom){
-	//alert($('#chatRoomDisplay').attr('data-currentroom'));
+	console.log("chat_reload()불림");
 	if($("#chatRoomDisplay").attr("data-currentroom")==chatroom){
 		  // 해당 채팅창이 열려있으면
 		  var sendData = "chatRoom=" + chatroom;

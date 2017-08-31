@@ -20,17 +20,20 @@ $(document).ready(
 					// document.getElementById("test").attachEvent('oncontextmenu',
 					// function() {
 					$(".test").bind('contextmenu',function(e) {
-						var _target = e.currentTarget.text.trim();
+						var _target = e.target.parentNode.id;
+						_target = _target.substr(5);
+						var followId = "#followText-"+_target;
+						/*console.log(_target);*/
 						var sendData = "userid2=" + _target;
 						$.post('followChk.jsp', sendData, function(data) {
 							console.log("data true: "+ data.indexOf("true"));
 							console.log("data false: "+ data.indexOf("false"));
 							if (data.indexOf("true") > 0) {
 								console.log("unfollow");
-								$('#followText').text("Unfollow");
+								$(followId).text("Unfollow");
 								} else if (data.indexOf("false") > 0) {
 									console.log("follow");
-									$('#followText').text("Follow");
+									$(followId).text("Follow");
 									}
 							});
 						e.preventDefault();
@@ -40,6 +43,7 @@ $(document).ready(
 							// alert(rmenu[i].id);
 							rmenu[i].className = "hide";
 							}
+						/*console.log("rmenu-"+_target);*/
 						document.getElementById("rmenu-"+ _target).className = "show";
 						document.getElementById("rmenu-"+ _target).style.top = mouseY(event)+ 'px';
 						document.getElementById("rmenu-"+ _target).style.left = mouseX(event)+ 'px';
