@@ -28,13 +28,14 @@
                                                                                                     
 
  -->
+<%@page import="java.util.List"%>
 <%@page import="dao.PostDao"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="dto.Post"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="sessionChk.jsp" %>
+<%@ include file="sessionChk.jsp"%>
 <%!boolean isset(String str) {
 		if (str == null) {
 			return false;
@@ -69,7 +70,7 @@
 		System.out.println("세션받아옴");
 		String userid = (String) session.getAttribute("sessionId");
 %>
-	<script type="text/javascript">
+<script type="text/javascript">
 		var websocket = new WebSocket("ws://localhost:8080/Only/mysocket");
 		websocket.onopen = function(){
 			document.getElementById("disp").innerHTML += "연결성공<br>";
@@ -85,60 +86,64 @@
 		
 		websocket.onmessage = function(event){
 			var notification = JSON.parse(event.data);
-			switch(notification.type){
 			  if(notification.type=='chat'){
-				  if(notification.to=="<%=userid%>"){
-					  console.log("메시지 받음: "+ notification.message);
-					  console.log("현 메시지 창: " + $("#message_notification").attr("data-currentroom"));
-					  chat_reload(notification.message);
-					  setTimeout(function(){
-						  $.post("updateNotification.jsp", {type:"chat"}, function(data) {
-							  console.log("update notification");
-							  updateMessageNotification(data.trim());
-							  });
-						  }, 500);
-					  }
-				  } else if(notification.type=='post'){
-					  
-					  
-				  }
-			  }
-		}
+				  if(notification.to=="<%=userid%>
+	") {
+				console.log("메시지 받음: " + notification.message);
+				console.log("현 메시지 창: "
+						+ $("#message_notification").attr("data-currentroom"));
+				chat_reload(notification.message);
+				setTimeout(function() {
+					$.post("updateNotification.jsp", {
+						type : "chat"
+					}, function(data) {
+						console.log("update notification");
+						updateMessageNotification(data.trim());
+					});
+				}, 500);
+			}
+		} else if (notification.type == 'post') {
 
-		function sendChat(message){
-			websocket.send(message);
 		}
-		function updateMessageNotification(num){
-			console.log(num);
-			if(num==0 || num=="0"){
-				$("#message_notification").html("<span>모든 메시지 읽음</span>");
-				$("#message_notification").removeClass('alert');
-			}else{
-				$("#message_notification").html("<span>"+num+"개의 읽지 않은 Message</span>");
-				$("#message_notification").addClass('alert');
-			}
+	}
+
+	function sendChat(message) {
+		websocket.send(message);
+	}
+	function updateMessageNotification(num) {
+		console.log(num);
+		if (num == 0 || num == "0") {
+			$("#message_notification").html("<span>모든 메시지 읽음</span>");
+			$("#message_notification").removeClass('alert');
+		} else {
+			$("#message_notification").html(
+					"<span>" + num + "개의 읽지 않은 Message</span>");
+			$("#message_notification").addClass('alert');
 		}
-		
-		function updateAlertNotification(num){
-			console.log(num);
-			if(num==0 || num=="0"){
-				$("#alarm_notification").html("<span>새 글 없음</span>");
-				$("#alarm_notification").removeClass('alert');
-			}else{
-				$("#alarm_notification").html("<span>"+num+"개의 읽지 않은 새 글</span>");
-				$("#alarm_notification").addClass('alert');
-			}
+	}
+
+	function updateAlertNotification(num) {
+		console.log(num);
+		if (num == 0 || num == "0") {
+			$("#alarm_notification").html("<span>새 글 없음</span>");
+			$("#alarm_notification").removeClass('alert');
+		} else {
+			$("#alarm_notification").html(
+					"<span>" + num + "개의 읽지 않은 새 글</span>");
+			$("#alarm_notification").addClass('alert');
 		}
+	}
+</script>
+
+<
+<c:if test="${postResult > 0 }">
+	<script type="text/javascript">
+		sendChat(JSON.stringify({
+			type : "post",
+			from : userid
+		}));
 	</script>
-	
-	<%-- <c:if test="${postResult > 0 }">
-		<script type="text/javascript">
-			sendChat(JSON.stringify({
-				type : "post",
-				from : userid
-				}));
-		</script>
-	</c:if> --%>
+</c:if>
 <body>
 	<div id="wrapper">
 		<div id="layerPop">
@@ -182,22 +187,53 @@
 									onclick='document.all.videoUpload.click();'> <input
 									type="file" name="videoUpload" style='display: none;'
 									accept="video/*">
-								</a>
-								<label class="img_hide img_hidden"><br>해시태그</label><input class="img_hide img_hidden" type="text" name="hashtag"><br>
-								<label class="img_hide img_hidden">회원태그</label><input class="img_hide img_hidden" type="text" name="membertag"><br>
+								</a> <label class="img_hide img_hidden"><br>해시태그</label><input
+									class="img_hide img_hidden" type="text" name="hashtag"><br>
+								<label class="img_hide img_hidden">회원태그</label><input
+									class="img_hide img_hidden" type="text" name="membertag"><br>
 							</div>
 							<button type="submit" class="post_submit_btn">작성</button>
 						</form>
 					</li>
 					<!-- 타입 선택 후 끝 -->
-					<!-- 포스트 뷰 시작 -->
+					<%
+						PostDao pdo = PostDao.getInstance();
+						List<Post> postList = pdo.getTimelinePostList(userid);
+						System.out.println(postList.size()+"개의 포스트가 있음");
+						if (postList.size() == 0) {
+					%>
 					<li class="infinite_scroll">
-						<h3>1번포스트</h3>
-						<hr> 테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>테스트<br>
-						<hr>
-						<h3>답변입니다</h3>
+						<h3>등록된 글이 없습니다</h3>
 					</li>
-					<li class="infinite_scroll">
+					<%
+						} else {
+							for(Post p : postList){
+								%><li class="infinite_scroll"><%
+								if(p.getType()==0){ // 텍스트 타입
+									%>
+									<h3><%=p.getMember_id() %></h3>
+									<hr>
+									<h3><%=p.getText() %></h3>
+									<%
+								} else if(p.getType()==1){ // 사진타입
+									%>
+									<h3><%=p.getMember_id() %></h3>
+									<hr>
+									<h3><%=p.getText() %></h3>
+									<img src="<%=p.getUrl() %>" style="height: 200px; width: 50%; display: inline;">
+									<%
+								}
+								
+								%><div class="reactBtn"><div class='heart'></div>
+								<div class="share_out" onclick="openLayer('layerPop',200,18)"></div></div>
+								<div class="commentForm">
+								<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기" class="comment_textarea"></textarea>
+								</div></li><%
+							}
+						}
+					%>
+					<!-- 포스트 뷰 시작 -->
+					<!-- <li class="infinite_scroll">
 						<h3>자민</h3>
 						<hr> <br>테스트 하려고 한번 써봤어요~ <br> <br>
 						<hr>
@@ -209,8 +245,8 @@
 							<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
 								class="comment_textarea"></textarea>
 						</div>
-					</li>
-					<li class="infinite_scroll">
+					</li> -->
+					<!-- <li class="infinite_scroll">
 						<h3>민규</h3>
 						<hr> 나도 테스트 한번 해보자~ <br> <br> <img alt=""
 						src="img_all/mainbg8.jpg"
@@ -230,7 +266,7 @@
 							<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
 								class="comment_textarea"></textarea>
 						</div>
-					</li>
+					</li> -->
 				</ol>
 			</div>
 			<!-- 포스트 뷰 끝 -->
@@ -258,11 +294,12 @@
 					<input class="chatBtn" id="chat" type="text" name="chat" style="float: left; width: 225px; height: 20px;"> 
 					<input class="chatBtn" id="send" type="submit" value="보내기" data-chatRoom="" data-sendT="" data-getT="" style="float: left; height: 26px; width: 113px;">
 					<!-- <input id="FKKK" type="submit" value="나가기" style="width: 112px; float: left; height: 26px;"> -->
-				</div>
-			</div>
-		</div> -->
+	</div>
+	</div>
+	</div>
+	-->
 
-		<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
+	<!-- aside 부분 / *팔로우 추천, 광고등 끝 -->
 	</div>
 	<!-- 내용 들어갈 부분 끝 -->
 	<%

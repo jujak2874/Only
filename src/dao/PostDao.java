@@ -194,5 +194,50 @@ public class PostDao {
 		
 		return result;
 	}
+	
+	// 해당 유저가 팔로하는 유저의 post + 내 post
+	public List<Post> getTimelinePostList(String userid){
+		System.out.println("getTimelinePostList called.." + userid);
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Post> postList = null;
+		String sql = "select * from post where userid in"
+				+ "(select userid from member where userid in (select userid2 from follow where userid1 = ?) or userid = ?)";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			pstmt.setString(2, userid);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				System.out.println(rs.getString("pid"));
+				Post post = new Post();
+				post.setPost_id(rs.getString("pid"));
+				post.setText(rs.getString("text"));
+				post.setUrl(rs.getString("url"));
+				post.setMember_id(rs.getString("userid"));
+				//post.setQna(rs.getString("qna"));
+				post.setType(rs.getInt("type"));
+				//post.setWrite_date(rs.getDate("write_date"));
+				//post.setModifi_date(rs.getDate("modifi_date"));
+				//post.setDelete_chk(rs.getInt("delete_chk"));
+				postList.add(post);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+			}
+		}
+		return postList;
+	}
 
 }

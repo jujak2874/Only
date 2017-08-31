@@ -3,7 +3,73 @@ package dto;
 import java.sql.Date;
 
 public class Post {
-	private String post_id;
+	
+	private int pid; //"PID" NUMBER(38,0) NOT NULL ENABLE, 
+	private Date created;//"CREATED" DATE NOT NULL ENABLE, 
+	private String del; //"DEL" CHAR(1 BYTE) NOT NULL ENABLE, 
+	private String qna; //"QNA" VARCHAR2(1000 BYTE), 
+	private String text; //"TEXT" VARCHAR2(1000 BYTE), 
+	private String url; //"URL" VARCHAR2(1000 BYTE), 
+	private String userid; //"USERID" VARCHAR2(20 BYTE) NOT NULL ENABLE, 
+	private Date modified; //"MODIFIED" CHAR(18 BYTE), 
+	private String type; //"TYPE" CHAR(18 BYTE), 
+	public int getPid() {
+		return pid;
+	}
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
+	public Date getCreated() {
+		return created;
+	}
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+	public String getDel() {
+		return del;
+	}
+	public void setDel(String del) {
+		this.del = del;
+	}
+	public String getQna() {
+		return qna;
+	}
+	public void setQna(String qna) {
+		this.qna = qna;
+	}
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	public Date getModified() {
+		return modified;
+	}
+	public void setModified(Date modified) {
+		this.modified = modified;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	
+	/*private String post_id;
 	private Date write_date;
 	private Date modifi_date;
 	private int delete_chk;
@@ -12,8 +78,8 @@ public class Post {
 	private String text;
 	private String url;
 	private int type;
-
-	public String getPost_id() {
+*/
+	/*public String getPost_id() {
 		return post_id;
 	}
 
@@ -83,6 +149,6 @@ public class Post {
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
+	}*/
 
 }
