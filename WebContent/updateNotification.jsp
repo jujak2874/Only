@@ -4,10 +4,14 @@
 <%
 	String type= request.getParameter("type");
 	System.out.println(type);
-	int unreadMessage = 0;
+	int unchecked = 0;
 	if(type.equals("chat")){
 		ChatDao cdo = ChatDao.getInstance();
-		unreadMessage = cdo.checkUnreadMessage((String) session.getAttribute("sessionId"));
-		System.out.println("unread message: " + unreadMessage);
+		unchecked = cdo.checkUnreadMessage((String) session.getAttribute("sessionId"));
+		System.out.println("unread message: " + unchecked);
+	} else if(type.equals("post")){
+		AlertDao ado = AlertDao.getInstance();
+		unchecked = ado.uncheckedAlert((String) session.getAttribute("sessionId"));
+		System.out.println("unchecked alert: "+ unchecked);
 	}
-%><%=unreadMessage %>
+%><%=unchecked %>

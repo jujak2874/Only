@@ -20,11 +20,15 @@
 	}
 
 	$(function() {
-		$.post("updateNotification.jsp", {
-			type : "chat"
-		}, function(data) {
+		$.post("updateNotification.jsp", {type : "chat"}, function(data) {
+			console.log("updateNotification for chat");
 			updateMessageNotification(data.trim());
 		});
+		$.post("updateNotification.jsp", {type : "post"}, function(data) {
+			console.log("updateNotification for post");
+			updateAlertNotification(data.trim());
+		});
+		
 		
 		$("#chatList").click(function(e) {
 			var memberId = $("#chatList").attr('data-id');

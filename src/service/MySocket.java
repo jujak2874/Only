@@ -20,9 +20,6 @@ public class MySocket {
 	
 	@OnMessage
 	public void onMessage(String message) {
-//	    System.out.println("session msg received" + message);
-//	    JsonParser parser = 	new JsonParser();
-//	    JsonObject json = (JsonObject) parser.parse(message);
 	    broadcast(message);
 	}
 	

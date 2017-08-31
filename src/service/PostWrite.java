@@ -1,6 +1,7 @@
 package service;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import dao.PostDao;
-import dto.Post;
+import dao.*;
+import dto.*;
 
 public class PostWrite implements CommandProcess {
 	@Override
@@ -37,13 +38,25 @@ public class PostWrite implements CommandProcess {
 			}else {
 				post.setUrl(fileFullPath);
 			}
-			int result = dao.insertPost(post);
+			long result = dao.insertPost(post);
 			if (result > 0) {
-				System.out.println("작성성공");
+				System.out.println("작성성공 from PostWrite");
+				// Alert 생성
+				AlertDao ad = AlertDao.getInstance();
+				FollowDao fd = FollowDao.getInstance();
+				List<Member> followers = fd.getFollowers(member_id);
+				for(Member mem : followers){
+					Alert alert = new Alert();
+					alert.setType(0);
+					alert.setUserid1(member_id);
+					alert.setUserid2(mem.getUserid());
+					alert.setUrl(request.getContextPath()+result);
+					ad.insert(alert);
+				}
 			} else {
 				System.out.println("작성실패");
 			}
-			request.setAttribute("result", result);
+			request.setAttribute("postResult", result);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}

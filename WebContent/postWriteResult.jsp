@@ -9,13 +9,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${result > 0 }">
+	<c:if test="${postResult > 0 }">
 		<script type="text/javascript">
 			alert("작성성공");
 			location.href = "timeline.jsp";
 		</script>
 	</c:if>
-	<c:if test="${result <= 0 }">
+	<c:if test="${postResult <= 0 }">
 		<script type="text/javascript">
 			alert("작성실패");
 			location.href = "timeline.jsp";

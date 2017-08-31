@@ -40,26 +40,45 @@ public class PostDao {
 		return con;
 	}
 
-	public int insertPost(Post post) {
+	public long insertPost(Post post) {
 		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into POST " + "values(seq_pid.nextval,sysdate,0,?,?,?,?,null,0)";
+		// postID생성
+		long myId = 0;
+		String sqlIdentifier = "select seq_pid.NEXTVAL from dual";
 		try {
 			con = getConnection();
-			pstmt = con.prepareStatement(sql);
-			// question
-			pstmt.setString(1, null);
-			// text
-			pstmt.setString(2, post.getText());
-			// URL
-			pstmt.setString(3, post.getUrl());
-			// mid
-			pstmt.setString(4, post.getMember_id());
-			result = pstmt.executeUpdate();
-			System.out.println("작성성공");
+			pstmt = con.prepareStatement(sqlIdentifier);
+			synchronized (this) {
+				ResultSet rs = pstmt.executeQuery();
+				if (rs.next()) {
+					myId = rs.getLong(1);
+					System.out.println("seq_pid: " + myId);
+				}
+			}
 		} catch (Exception e) {
-			System.out.println("작성실패");
+
+		}
+
+		String sql = "insert into POST values(?,sysdate,0,?,?,?,?,null,0)";
+		try {
+			/*con = getConnection();*/
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, myId);
+			// question
+			pstmt.setString(2, null);
+			// text
+			pstmt.setString(3, post.getText());
+			// URL
+			pstmt.setString(4, post.getUrl());
+			// mid
+			pstmt.setString(5, post.getMember_id());
+			result = pstmt.executeUpdate();
+			System.out.println("작성성공 from DAO");
+		} catch (Exception e) {
+			myId = 0;
+			System.out.println("작성실패 from DAO");
 			System.out.println(e.getMessage());
 		} finally {
 			try {
@@ -72,7 +91,7 @@ public class PostDao {
 			} catch (SQLException e) {
 			}
 		}
-		return result;
+		return myId;
 	}
 
 	public List<Post> postView(Post post) {
