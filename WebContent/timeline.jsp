@@ -184,7 +184,7 @@
 							<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
 						</div>
 						<div class="commentForm">
-							<textarea rows="1" cols="1" name="text" placeholder="댓글쓰기"
+							<textarea rows="1" cols="1" name="commentText" placeholder="댓글쓰기"
 								class="comment_textarea"></textarea>
 						</div>
 					</li>
