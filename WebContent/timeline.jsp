@@ -28,6 +28,8 @@
                                                                                                     
 
  -->
+<%@page import="dto.Hashtag"%>
+<%@page import="dto.Member"%>
 <%@page import="dao.LikeDao"%>
 <%@page import="dao.AlertDao"%>
 <%@page import="java.util.List"%>
@@ -185,6 +187,36 @@
  							%>
 							<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
 						</div>
+						<% 
+							List<Hashtag> hList=pdo.getHashtagList(p.getPid());
+							if(hList.size()!=0){
+						%>
+								<div>
+						<%		for(Hashtag ht: hList){										
+						%>
+							<span style="font-weight:bold; color:lightblue;">#<%=ht.getTag_id()%> </span>
+						
+						<%
+								}
+						%>
+							</div>
+						<%
+							}
+						%>
+						<%
+							List<Member> mList=pdo.getMembertagList(p.getPid());
+							if(mList.size()!=0){
+						%>
+							<div class="displayMemberTag">
+						<%
+								for(Member m: mList){
+						%>
+							<span style="font-weight:bold; color:lightpink;"><%=m.getUserid() %> </span>
+						<%
+								}
+						%></div><%
+							}
+						%>
 						<div class="commentForm">
 							<textarea rows="1" cols="1" name="commentText" placeholder="댓글쓰기"
 								class="comment_textarea"></textarea>
