@@ -104,12 +104,12 @@
 									src='<%=application.getContextPath() + (member.getProfile_image())%>'>
 								</td>
 								<td valign="middle" align="left"><a href="#" class="test"
-									id="test-<%=member.getUserid()%>"><h3><%=member.getUsername()%></h3>
+									id="test-<%=member.getUserid()%>"><h3 onclick="location.href='<%=member.getUserid()%>.blog'"><%=member.getUsername()%></h3>
 
 										<div class="hide" id="rmenu-<%=member.getUserid()%>"
 											name="rmenu">
 											<ul>
-												<li><a href="#" id="chat">Visit</a></li>
+												<li><a href="<%=member.getUserid() %>.blog">Visit</a></li>
 												<%if(sendT.equals("") || sendT==null || sendT.equals(getT)){
 													System.out.println("본인 생략");
 												} else{%>
