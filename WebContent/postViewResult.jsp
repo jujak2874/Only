@@ -8,14 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${result > 0 }">
+	<c:if test="${commentResult > 0 }">
 		<script type="text/javascript">
-			alert("보이기");
 		</script>
 	</c:if>
-	<c:if test="${result <= 0 }">
+	<c:if test="${commentResult <= 0 }">
 		<script type="text/javascript">
-			alert("보이기실패");
 		</script>
 	</c:if>
 </body>

@@ -372,11 +372,11 @@
 	/* .heart:hover {
  background-position:right;
 } */
-	@
-	keyframes heart-burst {
-		from {background-position: left;
-	}
-	to {
-		background-position: right;
-	}
+	@keyframes heart-burst {
+		from {
+			background-position: left;
+		}
+		to {
+			background-position: right;
+		}
 }

@@ -9,7 +9,6 @@ import dao.PostDao;
 import dto.Post;
 
 public class PostView implements CommandProcess {
-
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		Post post = new Post();

@@ -2,7 +2,7 @@ package dto;
 
 import java.sql.Date;
 
-public class Comments {
+public class Comment {
 	private String text;
 	private String userId;
 	private int pid;
