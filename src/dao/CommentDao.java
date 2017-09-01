@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.Comment;
+import dto.Member;
 import dto.Post;
 
 public class CommentDao {
@@ -82,7 +83,8 @@ public class CommentDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from comments where pid = ? and del='0' order by cid desc";
+		/*String sql = "select * from comments where pid = ? and del='0' order by cid desc";*/
+		String sql = "select * from comments c,member m where c.userid = m.userid and c.pid=? and del='0' order by cid desc";
 		try {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -93,6 +95,7 @@ public class CommentDao {
 				comment.setPid(rs.getInt("pid"));
 				comment.setUserId(rs.getString("userid"));
 				comment.setText(rs.getString("text"));
+				comment.setCreated(rs.getDate("created"));
 				list.add(comment);
 			}
 		} catch (SQLException e) {

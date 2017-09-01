@@ -11,8 +11,15 @@ public class Comment {
 	private int cid;
 	private int delStatus;
 	private Date modified;
+	private String nick;
 	
 	
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	public String getText() {
 		return text;
 	}

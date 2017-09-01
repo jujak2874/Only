@@ -185,21 +185,28 @@
 									placeholder="댓글쓰기" class="comment_textarea"></textarea>
 								<button class="commentBtn">입력</button>
 								<input type="hidden" value="<%=p.getPid()%>" name="commentPid">
-								<div class="commentView">
-									<%
-										for (Comment c : cList) {
-														System.out.println(c.getText());
-									%>
-									<div class="commentViewMid">
-										<%=c.getUserId()%>
-									</div>
-										<%=c.getText()%>
-									<%
-										}
-									%>
-								</div>
 							</div>
 						</form>
+						<div class="commentView">
+							<%
+								for (Comment c : cList) {
+												System.out.println(c.getText());
+							%>
+							<hr>
+							<div class="commentSpace">
+								<span class="commentViewMid"> 
+									<%=c.getUserId()%>
+								</span> <span class="commentViewCre"> 
+									<%=c.getCreated()%>
+								</span> <br> <span class="commentViewText"> 
+									<%=c.getText()%>
+								</span>
+							</div>
+							<br>
+							<%
+								}
+							%>
+						</div>
 					</li>
 					<%
 						}

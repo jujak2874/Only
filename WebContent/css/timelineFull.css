@@ -340,13 +340,19 @@ flat(ctrl++shift+f) 절대로 금지 */
 		display: block;
 	}
 	.commentView{
-		margin-top: 40px;
-		font-size: 1em;
-		font-weight: normal;
+		position: relative;
+		top: 15px;
 	}
 	.commentViewMid{
 		font-weight: bold;
-		font-size: 1.1em;
+		font-size: 0.9em;
+	}
+	.commentViewCre{
+		font-size: 0.8em;
+		margin-left: 5px; 
+	}
+	.commentViewMid{
+		font-size: 1.5em;
 	}
 	.comment_textarea:focus {
 		border: 3px solid #adbed8;
