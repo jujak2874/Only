@@ -230,10 +230,9 @@
  %>
 						<h3><%=p.getUserid()%></h3>
 						<hr>
-						<h3><%=p.getText()%></h3> <img src="upload/<%=p.getUrl()%>"
-						style="height: 200px; width: 50%; display: inline;"> <%
+						<h3><%=p.getText()%></h3> <img src="upload/<%=p.getUrl()%>" class="postImg"> <%
  	} else if (p.getType() == 2) {
- %> <video width="320" height="240" controls>
+ %> <video class="postVideo" controls>
 							<source src="upload/<%=p.getUrl()%>" type="video/mp4">
 							<source src="upload/<%=p.getUrl()%>" type="video/ogg">
 							<source src="upload/<%=p.getUrl()%>" type="video/mp4">

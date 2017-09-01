@@ -413,6 +413,15 @@ flat(ctrl++shift+f) 절대로 금지 */
 	hr {
 		margin-bottom: 3px;
 	}
+	.postImg{
+		height: 200px; 
+		width: 50%; 
+		display: inline;
+	}
+	.postVideo{
+		width: 50%; 
+		height: 240px; 
+	}
 	@keyframes heart-burst {
 		from { 
 			background-position:left;
