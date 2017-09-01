@@ -120,8 +120,10 @@ public class LikeDao {
 				pstmt.setString(1, memberId);
 				pstmt.setInt(2, pid);
 				result = pstmt.executeUpdate();
-				if(result>0) System.out.println("like update성공");
-				else System.out.println("like update실패");
+				if (result > 0)
+					System.out.println("like update성공");
+				else
+					System.out.println("like update실패");
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			} finally {
@@ -161,6 +163,35 @@ public class LikeDao {
 			} else {
 				result = -1;
 			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+			}
+		}
+		return result;
+	}
+
+	public int getLike(int pid) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "select count(userid) likcount from likes where pid = ? and status='y'";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pid);
+			rs = pstmt.executeQuery();
+			rs.next();
+			result = rs.getInt("likcount");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {

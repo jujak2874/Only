@@ -23,8 +23,8 @@
 
 	<div class="page_margin"></div>
 	<div class="chatProfile chatListToggle">
-		<img alt="" src=".${profile_img }" class="chatProfileImg">
-		<h2 class="chatUserName">TEST</h2>
+		<img alt="" src="" class="chatProfileImg">
+		<h2 class="chatUserName"></h2>
 		<button class="FKKK" id="" type="submit">X</button>
 	</div>
 	<div id="placeI" class="chatListToggle">

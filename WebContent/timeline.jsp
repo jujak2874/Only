@@ -171,14 +171,16 @@
  							<%
  								LikeDao ldo = LikeDao.getInstance();
  								String likeStatus = ldo.checkLikeStatus(userid, p.getPid());
+ 								int likeCount = ldo.getLike(p.getPid());
  								if(likeStatus.equals("y")){
  									%>
-			 						<div class='heart on' id="heart-<%=p.getPid()%>"></div>			
+ 									<div class='heart on' id="heart-<%=p.getPid()%>"><span><%=likeCount %></span></div>			
  									<%
  								} else{
  									%>
-			 						<div class='heart' id="heart-<%=p.getPid()%>"></div>			
+			 						<div class='heart' id="heart-<%=p.getPid()%>"><span><%=likeCount %></span></div>
  									<%
+ 									
  								}
  							%>
 							<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>

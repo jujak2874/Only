@@ -1,6 +1,6 @@
 $(function() {
 	$(".chatStart").click(function(e) {
-				//console.log("chatroomid: " + $(".chatStart").attr("data-getT"));
+				console.log("chatroomid: " + $(".chatStart").attr("data-getT"));
 				var chatroomid = e.target.id;
 				var sendData = "chatRoom=" + chatroomid;
 				$("#chatRoomDisplay").attr("data-currentroom", chatroomid);
@@ -18,7 +18,7 @@ $(function() {
 						var memberid = result2.substr(0, result2.indexOf(":"));
 						var profileImgUrl = "."+result2.substr(result2.indexOf(":")+1);
 						$(".chatProfileImg").attr("src", profileImgUrl);
-						$(".chatProfile .half h2").text(memberid);
+						$(".chatUserName").text(memberid);
 												
 					});
 					
@@ -140,7 +140,14 @@ function enterKeyPressed() {
 	};
 
 	$.post("saveChat.jsp", sendData, function(data) {
-		var sendData = "chatRoom=" + $(".send").attr("data-chatroom");
+		sendChat(JSON.stringify({
+			type : "chat",
+			message : $(".send").attr("data-chatroom"),
+			from : $(".send").attr("data-sendT"),
+			to : $(".send").attr("data-getT")
+			}));
+		var sendData = "chatRoom="
+				+ $(".send").attr("data-chatroom");
 		$.post("getChat.jsp", sendData, function(data) {
 			var start = data.indexOf('<span>');
 			var end = data.indexOf('</span>');
@@ -151,6 +158,7 @@ function enterKeyPressed() {
 			// e.target.getAttribute("data-sendT"));
 			// $("#placeI").show();
 			$("#chatRoomDisplay").html(result);
+			$("#placeI").scrollTop($("#placeI")[0].scrollHeight);
 			$("#chatRoomDisplay").scrollTop($("#chatRoomDisplay")[0].scrollHeight);
 			$(".chat").val("");
 		});
