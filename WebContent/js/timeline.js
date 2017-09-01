@@ -40,7 +40,7 @@ $(window)
 				});*/
 // infinite scroll 끝
 // Like 버튼 활성화
-$(function(){
+/*$(function(){
 	$("ol").on('click','.heart', function(){
 		$(this).toggleClass('is_animating');
 	});
@@ -48,7 +48,7 @@ $(function(){
 		$(this).toggleClass('is_animating');
 		$(this).toggleClass('bg-position');
 	});
-});
+});*/
 // Like 버튼 활성화 끝
 // DimLayer 
 function dEI(elementID){

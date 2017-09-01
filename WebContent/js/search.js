@@ -2,6 +2,7 @@ var userid = 0;
 
 $(document).ready(
 		function() {
+			
 			/* 검색결과 오른쪽 마우스 이벤트 등록 */
 			if ($(".test").addEventListener) {
 			/*
@@ -152,3 +153,5 @@ function sendSearch() {
 	}
 	setTimeout("sendSearch();", 200);
 }
+
+

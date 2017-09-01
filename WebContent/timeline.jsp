@@ -28,6 +28,7 @@
                                                                                                     
 
  -->
+<%@page import="dao.LikeDao"%>
 <%@page import="dao.AlertDao"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.PostDao"%>
@@ -54,6 +55,7 @@
 <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/timeline.js"></script>
 <script type="text/javascript" src="js/chat.js"></script>
+<script type="text/javascript" src="js/likes.js"></script>
 <script type="text/javascript">
 	/* 검색창 focus 상태에서 검색이력 view */
 	/* 검색창 focus 상태에서 검색이력 view 끝 */
@@ -166,7 +168,19 @@
 						</video> <%
  	}
  %><div class="reactBtn">
-							<div class='heart'></div>
+ 							<%
+ 								LikeDao ldo = LikeDao.getInstance();
+ 								String likeStatus = ldo.checkLikeStatus(userid, p.getPid());
+ 								if(likeStatus.equals("y")){
+ 									%>
+			 						<div class='heart on' id="heart-<%=p.getPid()%>"></div>			
+ 									<%
+ 								} else{
+ 									%>
+			 						<div class='heart' id="heart-<%=p.getPid()%>"></div>			
+ 									<%
+ 								}
+ 							%>
 							<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
 						</div>
 						<div class="commentForm">

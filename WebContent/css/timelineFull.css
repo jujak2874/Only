@@ -346,6 +346,22 @@ flat(ctrl++shift+f) 절대로 금지 */
 		display: inline-block;
 		float: left;
 	}
+	
+	
+	.on {
+		position: relative;
+		cursor: pointer;
+		height: 40px;
+		width: 40px;
+		background-image:
+			url( 'https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png');
+		background-position: right;
+		background-repeat: no-repeat;
+		background-size: 2900%;
+		overflow: hidden;
+		display: inline-block;
+		float: left;
+	}
 	.comments {
 		position: relative;
 		cursor: pointer;
