@@ -206,6 +206,9 @@ flat(ctrl++shift+f) 절대로 금지 */
 		padding-left: 20px;
 		padding-right: 20px;
 	}
+	.commentView{
+		clear: both;
+	}
 
 	/* .type_choice {
 	width: 20%;
@@ -315,12 +318,41 @@ flat(ctrl++shift+f) 절대로 금지 */
 		border: 1px solid #adbed8;
 		transition: all 0.3s;
 		padding: 5px;
-		width: 100%;
+		width: 80%;
 		box-sizing: border-box;
 		outline: 0;
 		height: 30px;
 		overflow: hidden;
 		margin-bottom: 0;
+		display: block;
+		float: left;
+	}
+	.commentBtn{
+		float: left;
+		width: 15%;
+		height: 30px;
+		box-sizing: border-box;
+		background: #adbed8;
+		border-radius: 5px;
+		border: 0;
+		cursor: pointer;
+		color: white;
+		display: block;
+	}
+	.commentView{
+		position: relative;
+		top: 15px;
+	}
+	.commentViewMid{
+		font-weight: bold;
+		font-size: 0.9em;
+	}
+	.commentViewCre{
+		font-size: 0.8em;
+		margin-left: 5px; 
+	}
+	.commentViewMid{
+		font-size: 1.5em;
 	}
 	.comment_textarea:focus {
 		border: 3px solid #adbed8;

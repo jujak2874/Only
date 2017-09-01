@@ -31,6 +31,8 @@
 <%@page import="dto.Hashtag"%>
 <%@page import="dto.Member"%>
 <%@page import="dao.LikeDao"%>
+<%@page import="dto.Comment"%>
+<%@page import="dao.CommentDao"%>
 <%@page import="dao.AlertDao"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.PostDao"%>
@@ -159,11 +161,12 @@
  %>
 						<h3><%=p.getUserid()%></h3>
 						<hr>
-						<h3><%=p.getText()%></h3> <img src="upload/<%=p.getUrl()%>" class="postImg"> <%
+						<h3><%=p.getText()%></h3> <img src="upload/<%=p.getUrl()%>"
+						class="postImg"> <%
  	} else if (p.getType() == 2) {
- %> 					<h3><%=p.getUserid()%></h3>
-						<hr>
-						<video class="postVideo" controls>
+ %>
+						<h3><%=p.getUserid()%></h3>
+						<hr> <video class="postVideo" controls>
 							<source src="upload/<%=p.getUrl()%>" type="video/mp4">
 							<source src="upload/<%=p.getUrl()%>" type="video/ogg">
 							<source src="upload/<%=p.getUrl()%>" type="video/mp4">
@@ -187,6 +190,7 @@
  							%>
 							<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
 						</div>
+<<<<<<< HEAD
 						<% 
 							List<Hashtag> hList=pdo.getHashtagList(p.getPid());
 							if(hList.size()!=0){
@@ -217,9 +221,40 @@
 						%></div><%
 							}
 						%>
-						<div class="commentForm">
-							<textarea rows="1" cols="1" name="commentText" placeholder="댓글쓰기"
-								class="comment_textarea"></textarea>
+						<form action="commentWrite.do">
+							<div class="commentForm">
+								<input type="hidden"
+									value="<%=(String) session.getAttribute("sessionId")%>"
+									name="userid">
+								<%
+									CommentDao cdo = CommentDao.getInstance();
+												List<Comment> cList = cdo.commentView(p.getPid());
+								%>
+								<textarea rows="1" cols="1" name="commentText"
+									placeholder="댓글쓰기" class="comment_textarea"></textarea>
+								<button class="commentBtn">입력</button>
+								<input type="hidden" value="<%=p.getPid()%>" name="commentPid">
+							</div>
+						</form>
+						<div class="commentView">
+							<%
+								for (Comment c : cList) {
+												System.out.println(c.getText());
+							%>
+							<hr>
+							<div class="commentSpace">
+								<span class="commentViewMid"> 
+									<%=c.getUserId()%>
+								</span> <span class="commentViewCre"> 
+									<%=c.getCreated()%>
+								</span> <br> <span class="commentViewText"> 
+									<%=c.getText()%>
+								</span>
+							</div>
+							<br>
+							<%
+								}
+							%>
 						</div>
 					</li>
 					<%

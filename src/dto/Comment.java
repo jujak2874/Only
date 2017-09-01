@@ -2,7 +2,7 @@ package dto;
 
 import java.sql.Date;
 
-public class Comments {
+public class Comment {
 	private String text;
 	private String userId;
 	private int pid;
@@ -11,8 +11,15 @@ public class Comments {
 	private int cid;
 	private int delStatus;
 	private Date modified;
+	private String nick;
 	
 	
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	public String getText() {
 		return text;
 	}
