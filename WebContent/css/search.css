@@ -136,6 +136,17 @@ body {
 	display: none;
 }
 
+.heart span{
+	display: none;
+}
+
+.heart:hover span{
+	display: inline;
+}
+
+.heart:hover span:after{
+	display: inline;
+}
 .navImage:hover span,
 #friend_notification:hover span,
 #alarm_notification:hover span,
@@ -152,7 +163,8 @@ body {
 	text-align: center;
 }
 
-.navImage:hover span:after.
+.navImage:hover span:after,
+.heart:hover span:after,
 #friend_notification:hover span:after,
 #alarm_notification:hover span:after,
 #message_notification:hover span:after {

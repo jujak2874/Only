@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.Hashtag;
+import dto.Member;
 import dto.Post;
 
 public class PostDao {
@@ -309,6 +310,77 @@ public class PostDao {
 			}
 		}
 		return postList;
+	}
+	
+	public List<Hashtag> getHashtagList(int pid){
+		List<Hashtag> hList=new ArrayList<Hashtag>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from hash_tag where pid = ? order by hname";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pid);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Hashtag ht=new Hashtag();
+				ht.setPost_id(rs.getInt("pid"));
+				ht.setTag_id(rs.getString("hname"));
+				hList.add(ht);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+				System.out.println("해시태그 리스트 불러오기 오류: " + e.getMessage());
+			}
+		}
+		
+		return hList;
+	}
+	
+	public List<Member> getMembertagList(int pid){
+		List<Member> mList=new ArrayList<Member>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from member_tag where pid = ? order by userid";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pid);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Member mb=new Member();
+				mb.setUserid(rs.getString("userid"));
+				mList.add(mb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+				System.out.println("멤버태그 리스트 불러오기 오류: " + e.getMessage());
+			}
+		}
+		return mList;
 	}
 
 }

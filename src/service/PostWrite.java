@@ -33,8 +33,8 @@ public class PostWrite implements CommandProcess {
 					type=1;
 				}
 			} else if(multi.getFilesystemName("videoUpload")!=null){
-				if(multi.getFilesystemName("imageUpload").length()>0){
-					fileName = multi.getFilesystemName("imageUpload");
+				if(multi.getFilesystemName("videoUpload").length()>0){
+					fileName = multi.getFilesystemName("videoUpload");
 					type=2;
 				}
 			}
@@ -63,13 +63,7 @@ public class PostWrite implements CommandProcess {
 			Post post = new Post();
 			post.setUserid(member_id);
 			post.setText(text);
-			if(fileName==null) {
-				post.setType(0);
-			} else if(fileName.endsWith("png") || fileName.endsWith("jpg") || fileName.endsWith("gif") || fileName.endsWith("bmp")){
-				
-			} else if(fileName.endsWith("mp4") || fileName.endsWith("avi")) {
-				post.setType(2);
-			}
+			post.setType(type);
 			post.setUrl(fileName);
 			long pid = dao.insertPost(post);
 			if (pid > 0) {
