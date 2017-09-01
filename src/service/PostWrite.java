@@ -25,7 +25,19 @@ public class PostWrite implements CommandProcess {
 			String text = multi.getParameter("text");
 			String member_id = multi.getParameter("member_id");
 			// 파일이름, 중복되는 파일이름은 뒤에 숫자가 늘어남
-			String fileName = multi.getFilesystemName("imageUpload");
+			String fileName = "";
+			int type = 0;
+			if(multi.getFilesystemName("imageUpload")!=null){
+				if(multi.getFilesystemName("imageUpload").length()>0){
+					fileName = multi.getFilesystemName("imageUpload");
+					type=1;
+				}
+			} else if(multi.getFilesystemName("videoUpload")!=null){
+				if(multi.getFilesystemName("imageUpload").length()>0){
+					fileName = multi.getFilesystemName("imageUpload");
+					type=2;
+				}
+			}
 			// 파일 URL
 			String fileFullPath = savePath + "/" + fileName;
 			System.out.println("text : " + text);
@@ -53,8 +65,10 @@ public class PostWrite implements CommandProcess {
 			post.setText(text);
 			if(fileName==null) {
 				post.setType(0);
-			}else {
-				post.setType(1);
+			} else if(fileName.endsWith("png") || fileName.endsWith("jpg") || fileName.endsWith("gif") || fileName.endsWith("bmp")){
+				
+			} else if(fileName.endsWith("mp4") || fileName.endsWith("avi")) {
+				post.setType(2);
 			}
 			post.setUrl(fileName);
 			long pid = dao.insertPost(post);

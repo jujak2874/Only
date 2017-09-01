@@ -28,6 +28,7 @@
 <%
 	String userid = (String) session.getAttribute("sessionId");
 	String blogowner = (String) request.getAttribute("blogowner");
+	System.out.println("user: " + userid + ", " + "blogowner: " + blogowner);
 %>
 <body>
 	<div id="wrapper">
@@ -46,14 +47,18 @@
 	<!-- 내용 들어갈 부분 -->
 	<div class="timeline_main">
 	<!-- 포스트작성 / 뷰 부분 -->
+	<% if(userid.equals(blogowner)){ %>
 	<jsp:include page="blogAside.jsp"></jsp:include>
+	<%} %>
 	<div class="blog_post">
 			<div class="page_margin"></div>
 			<!-- 테스트 -->
 			<!--  -->
 			<div id="main_container">
 				<ol class="post_view_box">
-				<% if(userid.equals(blogowner)){ %>
+				<% if(userid.equals(blogowner)){
+					System.out.println("내블로그");
+					%>
 					<li class="type_choice_box" id="infinite_container">
 						<form action="postWrite.do" method="post"
 							enctype="multipart/form-data" onsubmit='return sendChat(JSON.stringify({type:"post",from:"<%=id%>"}));'>

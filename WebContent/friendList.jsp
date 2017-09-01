@@ -83,7 +83,7 @@
 										<div class="hide" id="rmenu-<%=member.getUserid()%>"
 											name="rmenu">
 											<ul>
-												<li><a href="#" id="chat">Visi1t</a></li>
+												<li><a href="<%=member.getUserid() %>.blog">Visi1t</a></li>
 												<li><a href="#" id="follow"
 													data-followid="<%=member.getUserid()%>"><span
 														id="followText-<%=member.getUserid() %>">Follow</span></a></li>
@@ -143,7 +143,7 @@
 										<div class="hide" id="rmenu-<%=member.getUserid()%>"
 											name="rmenu">
 											<ul>
-												<li><a href="#" id="chat">Visit</a></li>
+												<li><a href="<%=member.getUserid()%>.blog">Visit</a></li>
 												<li><a href="#" id="follow"
 													data-followid="<%=member.getUserid()%>"><span
 														id="followText-<%=member.getUserid()%>">Follow</span></a></li>

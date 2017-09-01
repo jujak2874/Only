@@ -72,7 +72,7 @@
 		String userid = (String) session.getAttribute("sessionId");
 %>
 <script type="text/javascript">
-		var websocket = new WebSocket("ws://localhost:8080/Only/mysocket");
+		var websocket = new WebSocket("ws://192.168.50.8:8080/Only/mysocket");
 		websocket.onopen = function(){
 			document.getElementById("disp").innerHTML += "연결성공<br>";
 		}
@@ -226,7 +226,9 @@
 						<h3><%=p.getText()%></h3> <img src="upload/<%=p.getUrl()%>"
 						style="height: 200px; width: 50%; display: inline;"> <%
  	} else if (p.getType() == 2) {
- %> <video width="320" height="240" controls>
+
+ %> <h3><%=p.getUserid()%></h3>
+						<hr><video width="320" height="240" controls>
 							<source src="upload/<%=p.getUrl()%>" type="video/mp4">
 							<source src="upload/<%=p.getUrl()%>" type="video/ogg">
 							<source src="upload/<%=p.getUrl()%>" type="video/mp4">
