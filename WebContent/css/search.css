@@ -393,7 +393,7 @@ span {
 	min-height: 35%;
 	line-height: 25px;
 	box-sizing: border-box;
-	bottom: 5px;
+	bottom: 35px;
 }
 
 #placeI #chatRoomDisplay {
@@ -404,10 +404,15 @@ span {
 	width: 100%;
 }
 
-#placeI #chatRoomInput {
-	height: 10%;
+#chatRoomInput {
+	position:relative;
+	height:30px;
 	margin-bottom: 15px;
 	box-sizing: border-box;
+	bottom: -540px;
+	background-color: #FFF; 
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 #chatRoomDisplay .sentMsg {
