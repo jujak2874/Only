@@ -11,7 +11,78 @@
 
 <script type="text/javascript" src="js/search.js"></script>
 
+<%
+String userid = (String) session.getAttribute("sessionId");
+%>
 <script type="text/javascript">
+
+	var websocket = new WebSocket("ws://192.168.50.8:8080/Only/mysocket");
+	websocket.onopen = function(){
+	}
+	websocket.onclose = function(){
+	}	
+	websocket.onerr = function(){
+	}
+	websocket.onmessage = function(event){
+		var notification = JSON.parse(event.data);
+		if(notification.type=='chat'){
+			if(notification.to == '<%=userid%>') {
+			console.log("메시지 받음: " + notification.message);
+			console.log("현 메시지 창: "
+					+ $("#message_notification").attr("data-currentroom"));
+			chat_reload(notification.message);
+			setTimeout(function() {
+				$.post("updateNotification.jsp", {
+					type : "chat"
+				}, function(data) {
+					console.log("update msg notification");
+					updateMessageNotification(data.trim());
+				});
+			}, 500);
+		}
+		} else if (notification.type == 'post') {
+			$.post("followChk.jsp", "userid2=" + notification.from, function(data) {
+				if (data.indexOf("true") > 0) {
+					setTimeout(function() {
+						$.post("updateNotification.jsp", {type : "post"}, function(data) {
+							console.log("update post notification");
+							updateAlertNotification(data.trim());
+						});
+					}, 100);
+				}
+			});
+		}
+	}
+	
+	function sendChat(message) {
+	websocket.send(message);
+	}
+	function updateMessageNotification(num) {
+	console.log(num);
+	if (num == 0 || num == "0") {
+		$("#message_notification").html("<span>모든 메시지 읽음</span>");
+		$("#message_notification").removeClass('alert');
+	} else {
+		$("#message_notification").html(
+				"<span>" + num + "개의 읽지 않은 Message</span>");
+		$("#message_notification").addClass('alert');
+	}
+	}
+	
+	function updateAlertNotification(num) {
+	console.log(num);
+	if (num == 0 || num == "0") {
+		$("#alarm_notification").html("<span>새 글 없음</span>");
+		$("#alarm_notification").removeClass('alert');
+	} else {
+		$("#alarm_notification").html(
+				"<span>" + num + "개의 읽지 않은 새 글</span>");
+		$("#alarm_notification").addClass('alert');
+	}
+	}
+
+
+
 	function searchChk() {
 		if (document.frm.searchTerm.value == "") {
 			alert("검색어를 입력하세요");
