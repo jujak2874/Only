@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="sessionChk.jsp"%>
 <%
-	String userid = (String)session.getAttribute("sessionId"); 
+	String userid = (String) session.getAttribute("sessionId");
 %>
 <!-- aside 부분 / *팔로우 추천, 광고등 -->
 <div class="timeline_aside">
@@ -22,19 +22,21 @@
 	</div>
 
 	<div class="page_margin"></div>
-	<div id="placeI" class="chatListToggle">
-	<div class="aside_chat">
-		<div id="chatRoomDisplay" data-currentroom=""></div>
-		<div id="chatRoomInput">
-			<input class="chat" id ="" type="text" name="chat" onkeypress="if(event.keyCode==13) {enterKeyPressed(); return false;}"
-				style="float: left; width: 90%; height: 20px;"> 
-			<input
-				class="send" id="" type="submit" value="보내기" data-chatRoom="" data-sendT=""
-				data-getT="" style="float: left; height: 26px; width: 40%;">
-			<input class="FKKK" id="" type="submit" value="나가기"
-				style="width: 40%; float: left; height: 26px;">
-		</div>
+	<div class="chatProfile chatListToggle">
+		<img alt="" src=".${profile_img }" class="chatProfileImg">
+		<h2 class="chatUserName">TEST</h2>
+		<button class="FKKK" id="" type="submit">X</button>
 	</div>
+	<div id="placeI" class="chatListToggle">
+		<div class="chatMargin"></div>
+		<div id="chatRoomDisplay" data-currentroom=""></div>
+	</div>
+		<div id="chatRoomInput" class="chatListToggle">
+			<input class="chat" id="" type="text" name="chat"
+				onkeypress="if(event.keyCode==13) {enterKeyPressed(); return false;}">
+			<input class="send" id="" type="submit" value="보내기" data-chatRoom=""
+				data-sendT="" data-getT="">
+		</div>
 </div>
-		
+
 <!-- aside 부분 / *팔로우 추천, 광고등 끝 -->

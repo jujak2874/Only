@@ -37,6 +37,8 @@ $(function() {
 							e.target.getAttribute("data-sendT"));
 					$(".FKKK").attr("id", "FKKK-" + chatroomid);
 					$("#placeI").show();
+					$(".chatProfile").show();
+					$("#chatRoomInput").show();
 					$("#chatRoomDisplay").html(result);
 					$("#placeI").scrollTop(
 							$("#placeI")[0].scrollHeight);
@@ -119,6 +121,8 @@ $(function() {
 	$(".FKKK").click(function(e) {
 		$("#chatRoomDisplay").attr("data-currentroom", "");
 		$("#placeI").css('display','none');
+		$(".chatProfile").css('display','none');
+		$("#chatRoomInput").css('display','none');
 	});
 });
 

@@ -88,30 +88,37 @@
 		websocket.onmessage = function(event){
 			var notification = JSON.parse(event.data);
 			if(notification.type=='chat'){
-				if(notification.to == '<%=userid%>') {
-					console.log("메시지 받음: " + notification.message);
-					console.log("현 메시지 창: " + $("#message_notification").attr("data-currentroom"));
-					chat_reload(notification.message);
-					setTimeout(function() {
-						$.post("updateNotification.jsp", {type : "chat"}, function(data) {
-							console.log("update msg notification");
-							updateMessageNotification(data.trim());
-							});
-						}, 500);
-					}
-				} else if(notification.type=='post'){
-					$.post("followChk.jsp", "userid2="+notification.from, function(data){
-						if(data.indexOf("true")>0){
-							setTimeout(function(){
-							$.post("updateNotification.jsp", {type : "post"}, function(data) {
-								console.log("update post notification");
-								updateAlertNotification(data.trim());
-								});
-							}, 100);
-						}
+				if(notification.to == '<%=userid%>
+	') {
+				console.log("메시지 받음: " + notification.message);
+				console.log("현 메시지 창: "
+						+ $("#message_notification").attr("data-currentroom"));
+				chat_reload(notification.message);
+				setTimeout(function() {
+					$.post("updateNotification.jsp", {
+						type : "chat"
+					}, function(data) {
+						console.log("update msg notification");
+						updateMessageNotification(data.trim());
 					});
-				}
+				}, 500);
 			}
+		} else if (notification.type == 'post') {
+			$.post("followChk.jsp", "userid2=" + notification.from, function(
+					data) {
+				if (data.indexOf("true") > 0) {
+					setTimeout(function() {
+						$.post("updateNotification.jsp", {
+							type : "post"
+						}, function(data) {
+							console.log("update post notification");
+							updateAlertNotification(data.trim());
+						});
+					}, 100);
+				}
+			});
+		}
+	}
 
 	function sendChat(message) {
 		websocket.send(message);
@@ -139,7 +146,6 @@
 			$("#alarm_notification").addClass('alert');
 		}
 	}
-	
 </script>
 <body>
 	<div id="wrapper">
@@ -165,7 +171,8 @@
 				<ol class="post_view_box">
 					<li class="type_choice_box" id="infinite_container">
 						<form action="postWrite.do" method="post"
-							enctype="multipart/form-data" onsubmit='return sendChat(JSON.stringify({type:"post",from:"<%=id%>"}));'>
+							enctype="multipart/form-data"
+							onsubmit='return sendChat(JSON.stringify({type:"post",from:"<%=id%>"}));'>
 							<input type="hidden"
 								value="<%=(String) session.getAttribute("sessionId")%>"
 								name="member_id">
@@ -182,13 +189,13 @@
 									class="img_hide img_hidden type_photo" width="30px" border='0'
 									onclick='document.all.imageUpload.click();'> <input
 									type="file" name="imageUpload" style='display: none;'
-									accept="image/*">
+									accept="image/png, image/gif, image/jpg">
 								</a> <a class="choice_type"> <img
 									src='img_timeline/video-camera.svg'
 									class="img_hide img_hidden img_video" width="30px" border='0'
 									onclick='document.all.videoUpload.click();'> <input
 									type="file" name="videoUpload" style='display: none;'
-									accept="video/*">
+									accept="video/mp4">
 								</a> <label class="img_hide img_hidden"><br>해시태그</label><input
 									class="img_hide img_hidden" type="text" name="hashtag"><br>
 								<label class="img_hide img_hidden">회원태그</label><input
@@ -250,7 +257,7 @@
 			<!-- 포스트 뷰 끝 -->
 		</div>
 		<jsp:include page="timelineAside.jsp"></jsp:include>
-						<!-- <input id="FKKK" type="submit" value="나가기" style="width: 112px; float: left; height: 26px;"> -->
+		<!-- <input id="FKKK" type="submit" value="나가기" style="width: 112px; float: left; height: 26px;"> -->
 	</div>
 	<!-- 내용 들어갈 부분 끝 -->
 	<%

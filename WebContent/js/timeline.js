@@ -13,7 +13,7 @@ $(function() {
 });
 // textarea focus일 때 작성폼 열기 끝
 // infinite scroll 구현
-var page = 4;
+/*var page = 4;
 $(window)
 		.scroll(
 				function() {
@@ -37,7 +37,7 @@ $(window)
 										+'</li>'
 										)}
 					}
-				});
+				});*/
 // infinite scroll 끝
 // Like 버튼 활성화
 $(function(){
