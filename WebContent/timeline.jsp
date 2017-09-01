@@ -190,7 +190,6 @@
  							%>
 							<div class="share_out" onclick="openLayer('layerPop',200,18)"></div>
 						</div>
-<<<<<<< HEAD
 						<% 
 							List<Hashtag> hList=pdo.getHashtagList(p.getPid());
 							if(hList.size()!=0){
